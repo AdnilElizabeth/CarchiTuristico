@@ -14,7 +14,7 @@
 			$.ajax({
 				url:'index2.php',
 				type:'POST',
-				data:{a:'4',b:'6'},
+				data:{a:'4',b:'8'},
 				success:function(data){
 					console.log(data)
 					$('#txt_numero').val(data)
