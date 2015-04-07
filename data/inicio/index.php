@@ -78,6 +78,11 @@
 						<button class="btn btn-danger">
 							<i class="ace-icon fa fa-cogs"></i>
 						</button>
+						<button class="btn btn-white btn-default btn-round">
+						<i class="fa fa-bed"></i>
+							<i class="ace-icon fa fa-bed"></i>
+						</button>
+											<button type="button" class="btn btn-white btn-yellow btn-sm">Yellow</button>
 					</div>
 
 					<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
