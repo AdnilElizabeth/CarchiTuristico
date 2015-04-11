@@ -23,7 +23,7 @@ function menu_cabecera(){
 
 		<div class="navbar-buttons navbar-header pull-right" role="navigation">
 			<ul class="nav ace-nav">
-				<li class="light-blue">
+				<li class="light-black">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 						<img class="nav-user-photo" src="../../dist/avatars/user.jpg" alt="Jasons Photo" />
 						<span class="user-info">
@@ -74,7 +74,7 @@ function menu_lateral(){
 				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
 						<button class="btn btn-success">
-							<i class="ace-icon fa fa-home"></i>
+							<i class="ace-icon fa fa-bed"></i>
 						</button>
 
 						<button class="btn btn-info">
@@ -146,7 +146,7 @@ function menu_lateral(){
 
 						<ul class="submenu">
 							<li class="">
-								<a href="">
+								<a href="../tipo_alojamiento/">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Tipo Alojamiento
 								</a>
