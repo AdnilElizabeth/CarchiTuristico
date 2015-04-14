@@ -6,7 +6,7 @@ $(function(){
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {existencia_tipo_alojamiento:'ok',reg:registro},            
+	            data: {existencia_categoria:'ok',reg:registro},            
 	            success : function ( data )  {
 	            	console.log(data)
 			         result = data ;  
@@ -14,7 +14,7 @@ $(function(){
 	    	});
 		return result ; 
 	}
-	jQuery.validator.addMethod("existe_tipo", function (value, element) {
+	jQuery.validator.addMethod("existe_categoria", function (value, element) {
 		var a=value;
 		var reg=$('#txt_nombre').val().toUpperCase();					
 		if (buscando(reg,0)==0) {						
@@ -33,7 +33,7 @@ $(function(){
 		rules: {
 			txt_nombre: {
 				required: true,
-				existe_tipo:true
+				existe_categoria:true
 			}
 		},
 
@@ -102,43 +102,6 @@ $(function(){
 			});
 		}		
 	});
-	// llenar select tipo alojamiento
-	$.ajax({
-		url:'app.php',
-		type:'POST',
-		data:{llenar_tipo_alojamiento:':)'},
-		success:function(data){
-			$('#sel_tipo').html(data);
-		}
-	})
-
-//ocultar select canton
-	$('#sel_parroquia').hide();
-
-
-//llenar canton
-	$.ajax({
-		url:'app.php',
-		type:'POST',
-		data:{llenar_canton:':)'},
-		success:function(data){
-			$('#sel_canton').html(data);
-		}
-	})
-
-	//llenar parroquia
-	$('#sel_canton').change(function(){
-		$('#sel_parroquia').show();
-		var id_canton=$('#sel_canton'). val();
-		$.ajax({
-		url:'app.php',
-		type:'POST',
-		data:{llenar_parroquia:':)', id:id_canton},
-		success:function(data){
-			$('#sel_parroquia').html(data);
-			console.log(data);
-		}
-	})
-	})
+	
 
 });

@@ -18,6 +18,7 @@
 		<link rel="stylesheet" href="../../dist/css/jquery.gritter.min.css" />
 
 
+
 		<!-- text fonts -->
 		<link rel="stylesheet" href="../../dist/fonts/fonts.googleapis.com.css" />
 
@@ -62,17 +63,17 @@
 			<?php menu_lateral() ?>
 			<div class="main-content">
 				<div class="main-content-inner">
-					<div class="breadcrumbs" id="breadcrumbs">
+				 <div class="breadcrumbs" id="breadcrumbs">
 						<script type="text/javascript">
 							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
 						</script>
 
 						<ul class="breadcrumb">
 							<li>
-								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Carchi</a>
+								<i class="ace-icon fa fa-cogs"></i>
+								<a href="#">Configuracion</a>
 							</li>
-							<li class="active">Alojamiento</li>
+							<li class="active">Subtipo de Atractivo turístico</li>
 						</ul><!-- /.breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -90,7 +91,7 @@
 								<!-- PAGE CONTENT BEGINS -->
 								<div class="widget-box">
 									<div class="widget-header">
-										<h5 class="widget-title">Registro Alojamiento</h5>
+										<h5 class="widget-title">Subtipo de Atractivo turístico</h5>
 
 										<div class="widget-toolbar">
 											<div class="widget-menu">
@@ -112,156 +113,30 @@
 										<div class="widget-main">
 											<div></div>
 											<form class="form-horizontal" id="form-guardar">
-												<h4 class="header orange">Información General</h4>
-												<div class="form-group">
+											<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Categoría:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<select id="sel_categoria" name="sel_categoria">								
+														</select>
+													</div>													
+											</div>
+											<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Tipo:</label>
 
 													<div class="col-xs-12 col-sm-9">
-														<select id="sel_tipo" name="sel_tipo" data-placeholder="Seleccione Tipo">
-															
-														</select>
-													</div>
-												</div>	
+														<select id="sel_tipo_a" name="sel_tipo_a"></select>
+													</div>													
+												</div>
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Nombre:</label>
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Subipo:</label>
 
 													<div class="col-xs-12 col-sm-9">
 														<div class="clearfix">
 															<input type="text" name="txt_nombre" id="txt_nombre" style='text-transform:uppercase;' class="col-xs-12 col-sm-6">
 														</div>
 													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Propietario:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<input type="text" name="txt_propietario" id="txt_propietario" style='text-transform:uppercase;' class="col-xs-12 col-sm-6">
-														</div>
-													</div>
-												</div>
-												<h4 class="header orange">Ubicación</h4>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Cantón:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<select id="sel_canton" name="sel_canton">								
-														</select>
-													</div>													
-												</div>	
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Parroquia:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<select id="sel_parroquia" name="sel_parroquia"></select>
-													</div>													
-												</div>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Dirección:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<input type="text" name="txt_direccion" id="txt_direccion" style='text-transform:uppercase;' class="col-xs-12 col-sm-6">
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Longitud:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<input type="number" name="txt_longitud" id="txt_longitud" class="col-xs-12 col-sm-6">
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Latitud:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<input type="number" name="txt_latitud" id="txt_latitud" class="col-xs-12 col-sm-6">
-														</div>
-													</div>
-												</div>
-												<h4 class="header orange">Detalles</h4>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Categoría:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<select id="sel_categoria" name="sel_categoria">
-															<option value="">Seleccionar</option>
-															<option value="UNA">UNA ESTRELLA</option>
-															<option value="DOS">DOS ESTRELLAS</option>
-															<option value="TRES">TRES ESTRELLAS</option>
-															<option value="CUATRO">CUATRO ESTRELLAS</option>
-															<option value="CINCO">CINCO ESTELLAS</option>
-														</select>
-													</div>													
-												</div>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">N° habitaciones:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<input type="number" name="txt_nhab" id="txt_nhab" class="col-xs-12 col-sm-6">
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">N° plazas:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<input type="number" name="txt_nplazas" id="txt_nplazas" class="col-xs-12 col-sm-6">
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Teléfono:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<input name="txt_telf" id="txt_telf" type="tel" class="col-xs-12 col-sm-6">
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Correo:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<input name="txt_correo" type="email" id="txt_correo" class="col-xs-12 col-sm-6">
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Sitio Web:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<input name="txt_web" id="txt_web" type="url" class="col-xs-12 col-sm-6">
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment">Descripció:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<textarea class="input-xlarge" name="descripcion" id="descripcion"></textarea>
-														</div>
-													</div>
-												</div>	
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Fotografia:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<input type="file" id="txt_fotos" />
-
-														</div>
-													</div>
-												</div>
+												</div>												
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment"></label>
 													<div class="col-xs-12 col-sm-9">
@@ -748,7 +623,8 @@
 		<script src="../../dist/js/jquery.validate.min.js"></script>
 		<script src="../../dist/js/additional-methods.min.js"></script>
 		<script src="../../dist/js/select2.min.js"></script>
-		<script src="../../dist/js/jquery.gritter.min.js"></script><script src="../../dist/js/jquery.gritter.min.js"></script>
+		<script src="../../dist/js/jquery.gritter.min.js"></script>
+
 
 
 		<!-- ace scripts -->

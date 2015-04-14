@@ -63,13 +63,35 @@
 			<?php menu_lateral() ?>
 			<div class="main-content">
 				<div class="main-content-inner">
+				 <div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-cogs"></i>
+								<a href="#">Configuracion</a>
+							</li>
+							<li class="active">Tipo de alojamiento</li>
+						</ul><!-- /.breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- /.nav-search -->
+					</div>
 					<div class="page-content">
 						<div class="row">
 							<div class="col-xs-6">
 								<!-- PAGE CONTENT BEGINS -->
 								<div class="widget-box">
 									<div class="widget-header">
-										<h5 class="widget-title">Información Registros</h5>
+										<h5 class="widget-title">Tipo Alojamiento</h5>
 
 										<div class="widget-toolbar">
 											<div class="widget-menu">
@@ -96,14 +118,14 @@
 
 													<div class="col-xs-12 col-sm-9">
 														<div class="clearfix">
-															<input type="text" name="txt_nombre" id="txt_nombre" class="col-xs-12 col-sm-6">
+															<input type="text" name="txt_nombre" id="txt_nombre" style='text-transform:uppercase;' class="col-xs-12 col-sm-6">
 														</div>
 													</div>
 												</div>												
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment"></label>
 													<div class="col-xs-12 col-sm-9">
-														<button class="btn btn-success btn-next" data-last="Finish">
+														<button class="btn btn-inverse btn-next" data-last="Finish">
 															Guardar
 															<i class="ace-icon fa fa-save icon-save"></i>
 														</button>

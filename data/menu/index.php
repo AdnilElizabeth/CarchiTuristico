@@ -74,15 +74,15 @@ function menu_lateral(){
 				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
 						<button class="btn btn-success">
-							<i class="ace-icon fa fa-bed"></i>
+							<i class="ace-icon fa fa-home"></i>
 						</button>
 
 						<button class="btn btn-info">
-							<i class="ace-icon fa fa-picture-o"></i>
+							<i class="ace-icon fa fa-cutlery"></i>
 						</button>
 
 						<button class="btn btn-warning">
-							<i class="ace-icon fa fa-cutlery"></i>
+							<i class="ace-icon fa fa-picture-o"></i>
 						</button>
 
 						<button class="btn btn-danger">
@@ -105,7 +105,7 @@ function menu_lateral(){
 					<li class="">
 						<a href="gallery.html">
 							<i class="menu-icon fa fa-dashboard"></i>
-							<span class="menu-text"> Inicio </span>
+							<span class="menu-text"> Carchi </span>
 						</a>
 
 						<b class="arrow"></b>
@@ -113,7 +113,7 @@ function menu_lateral(){
 					<li class="">
 						<a href="../alojamiento/">
 							<i class="menu-icon fa fa-home"></i>
-							<span class="menu-text"> Alejomiento </span>
+							<span class="menu-text"> Alojamiento </span>
 						</a>
 
 						<b class="arrow"></b>

@@ -6,7 +6,7 @@ $(function(){
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {existencia_tipo_alojamiento:'ok',reg:registro},            
+	            data: {existencia_comidas:'ok',reg:registro},            
 	            success : function ( data )  {
 	            	console.log(data)
 			         result = data ;  
@@ -14,9 +14,10 @@ $(function(){
 	    	});
 		return result ; 
 	}
-	jQuery.validator.addMethod("existe_tipo", function (value, element) {
+	jQuery.validator.addMethod("existe_comidas", function (value, element) {
 		var a=value;
-		var reg=$('#txt_nombre').val().toUpperCase();					
+		var reg=$('#txt_nombre').val().toUpperCase();
+
 		if (buscando(reg,0)==0) {						
 			return true;
 		};
@@ -24,6 +25,7 @@ $(function(){
 			return false;
 		};
 	}, "El registro ya existe!!!.");
+
 	// validacion de formulario
 	$('#form-guardar').validate({
 		errorElement: 'div',
@@ -31,24 +33,112 @@ $(function(){
 		focusInvalid: false,
 		ignore: "",
 		rules: {
+			sel_tipo: {
+				required: true
+			},			
 			txt_nombre: {
 				required: true,
-				existe_tipo:true
+				existe_comidas: true
+			},
+			txt_propietario: {
+				required: true				 
+			},
+			sel_canton: {
+				required: true
+			},
+			sel_parroquia: {
+				required: true
+			},
+			txt_direccion: {
+				required: true,
+			},
+			txt_longitud: {
+				required: true,
+				number: true
+			},
+			txt_latitud: {
+				required: true,
+				number: true
+			},
+			sel_categoria: {
+				required: true
+			},
+			txt_nhab: {
+				required: true,
+				number: true
+			},
+			txt_nplazas: {
+				required: true,
+				number: true
+			},
+			txt_telf: {
+				number: true
 			}
 		},
 
 		messages: {
+			sel_tipo: {
+				required: "Este campo es requerido."
+			},
 			txt_nombre: {
 				required: "Este campo es requerido."
-			}
+			},
+			txt_propietario:{
+				required: "Este campo es requerido.",				
+			},
+			sel_canton: {
+				required: "Este campo es requerido."
+			},
+			sel_parroquia: {
+				required: "Este campo es requerido."
+			},
+			txt_direccion: {
+				required: "Este campo es requerido."
+			},
+			txt_longitud: {
+				required: "Este campo es requerido.",
+				number: "Ingrese solo números."
+			},
+			txt_latitud: {
+				required: "Este campo es requerido.",
+				number: "Ingrese solo números."
+			},
+			sel_categoria: {
+				required: "Este campo es requerido."
+			},
+			txt_nhab: {
+				required: "Este campo es requerido.",
+				number: "Ingrese solo números."
+			},
+			txt_nplazas: {
+				required: "Este campo es requerido.",
+				number: "Ingrese solo números."
+			},
+			txt_telf: {				
+				number: "Ingrese solo números."
+			},
+			txt_correo: {				
+				email: "Ingrese una dirección de correo electrónico válida."
+			},
+			txt_web:{
+				url: "Ingrese un sitio web válido."
+			},
+			state: "Please choose state",
+			subscription: "Please choose at least one option",
+			gender: "Please choose gender",
+			agree: "Please accept our policy"
 		},
+
+
 		highlight: function (e) {
 			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
 		},
+
 		success: function (e) {
 			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
 			$(e).remove();
 		},
+
 		errorPlacement: function (error, element) {
 			if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
 				var controls = element.closest('div[class*="col-"]');
@@ -71,7 +161,21 @@ $(function(){
 				type:'POST',
 				data:{
 					guardar:'ok',
-					txt_1:$('#txt_nombre').val().toUpperCase()
+					txt_1:$('#sel_tipo').val(),
+					txt_2:$('#txt_nombre').val().toUpperCase(),
+					txt_3:$('#txt_propietario').val().toUpperCase(),
+					txt_4:$('#txt_direccion').val().toUpperCase(),
+					txt_5:$('#txt_latitud').val(),
+					txt_6:$('#txt_longitud').val(),
+					txt_7:$('#sel_categoria').val(),
+					txt_8:$('#txt_nhab').val(),
+					txt_9:$('#txt_nplazas').val(),
+					txt_10:$('#txt_telf').val(),
+					txt_11:$('#txt_correo').val(),
+					txt_12:$('#txt_web').val(),
+					txt_13:$('#descripcion').val(),
+					txt_14:$('#txt_fotos').val(),
+					txt_15:$('#sel_parroquia').val()
 				},
 				success:function(data){
 					console.log(data)
@@ -100,13 +204,15 @@ $(function(){
 					};
 				}
 			});
-		}		
+		},
+		invalidHandler: function (form) {
+		}
 	});
-	// llenar select tipo alojamiento
+	// llenar select tipo comida bebida
 	$.ajax({
 		url:'app.php',
 		type:'POST',
-		data:{llenar_tipo_alojamiento:':)'},
+		data:{llenar_tipo_comida:':)'},
 		success:function(data){
 			$('#sel_tipo').html(data);
 		}
