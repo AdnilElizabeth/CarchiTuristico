@@ -1,5 +1,151 @@
+// funcion llenar data table
+		function llenar(){
+			$.ajax({
+				url:'app.php',
+				type:'POST',
+				dataType:'json',
+				data:{llenar:'ok'},
+				success:function(data){											    
+					$('#tabla-informacion').DataTable().clear().draw();		
+					var a=0;		
+					for (var i = 0; i<data.length; i=i+3) {
+						a++;
+						$('#tabla-informacion').DataTable().row.add( [
+							a,
+				            data[i+0],
+				            data[i+1],
+				            '<div class="hidden-sm hidden-xs action-buttons">'	
+								+'<a href="#" class="green" onclick=editar("'+data[i+2]+'")>'
+									+'<i class="ace-icon fa fa-pencil bigger-130"></i>'
+								+'</a>'
+								+'<a href="#" class="red"  onclick=eliminar("'+data[i+2]+'")>'
+									+'<i class="ace-icon fa fa-trash-o bigger-130"></i>'
+								+'</a>'
+							+'</div>'
+				        ] ).draw();		
+					};		        		   
+				}
+			});
+		}
+	// proceso tabla configuracion
+		// edicion de registro
+			function editar(id){				
+				$('#txt_id_parroquia').val(id)
+				// edicion
+				$.ajax({
+					url:'app.php',
+					type:'POST',
+					dataType:'json',
+					data:{datos_editar:'ok',id:id},
+					success:function(data){
+						$('#modal-editar').modal('show');	
+						$('#select_canton').text(data[0])				
+						$('#lbl_parroquia').text(data[1])				
+					}
+				})
+			}
+		// eliminar registros
+			function eliminar(id){
+				bootbox.confirm("Esta seguro que desea eliminar el registro..?", function(result) {
+					if(result) {
+						$.ajax({
+							url:'app.php',
+							type:'POST',
+							data:{eliminar:'ok',id:id},
+							success:function(data){
+								if (data==1){
+									bootbox.alert("Registro eliminado");
+									llenar();														
+								}
+								else{
+									bootbox.alert("Tenemos inconvenientes intente mas tarde");	
+								}								
+							}
+						})
+					}
+				});
+				
+			}
+	// fin proceso tabla configuracion
+
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
+	// inicializacion de procesos con nuevos frameworks nativos
+	//editables on first profile page
+	$.fn.editable.defaults.mode = 'inline';
+	$.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-blue'></i></div>";
+    $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>'+
+                                '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';    
+	
+	//editables 
+	
+	//text editable
+    $('#lbl_parroquia').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite tipo de atractivo, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_parroquia').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_tipo_a:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+    // select editabl
+    $('#select_canton').editable({
+		type:'select2',
+		select2:{
+			placeholder: "Selec. Canton",
+			containerCssClass: "" ,
+			'width': 170
+		},		
+		value : 'NL',
+		source: select_canton(),
+		success: function(response, newValue) {						
+			var id=$('#txt_id_parroquia').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_canton_parroquia:'ok',id:id,valor:newValue}	            		                
+	    	});
+			
+		}		
+    });
+    function select_canton(){
+		var b="source";
+		var result;
+		$.ajax({
+            type: "POST",
+            url:"app.php",
+            data:{llenar_canton2:'ok'},                   
+            contentType:"application/x-www-form-urlencoded; charset=UTF-8", 
+            global:false,
+            async: false,
+            dataType: "json",
+            success: function(response) {                             
+                  result=response;
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                    alert(xhr.status);
+                    alert(thrownError);
+            }
+		});  
+		 return result;
+	}
+
+
+	// llamando funciones
+		llenar();		
+// inicialisando procesos del dom para ejecución de jquery
+
 	function buscando(registro){			
 		var result = "" ; 					
 		$.ajax({
