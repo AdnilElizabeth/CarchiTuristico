@@ -39,31 +39,11 @@
 					success:function(data){
 						$('#modal-editar').modal('show');										
 						$('#lbl_parroquia').text(data[0]);
-
+						$('#lbl_parroquia').editable('setValue', data[0]) //clear values
 
 						//editables de aka
 						//text editable
-					    $('#lbl_parroquia').editable({
-							type: 'text',
-							name: 'username',
-							value:function(){
-								return data[0];
-							},
-							validate: function(value) {
-							    if($.trim(value) == '') {
-							        return 'Por favor, digite cantón, campo requerido';
-							    }		    
-							},
-							success: function(response, newValue) {	
-								var id=$('#txt_id_parroquia').val();			
-								$.ajax({
-						            url:'app.php',
-						            async :  false ,   
-						            type:  'post',
-						            data: {editar_clima:'ok',id:id,valor:newValue}          		                
-						    	});
-							}
-					    });			
+					    		
 					}
 				})
 			}
@@ -101,7 +81,24 @@ $(function(){
 	
 	//editables 
 	
-
+	$('#lbl_parroquia').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite cantón, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_parroquia').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_clima:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });	
   
 	// llamando funciones
 		llenar();	
