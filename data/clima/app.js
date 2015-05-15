@@ -39,6 +39,7 @@
 					success:function(data){
 						$('#modal-editar').modal('show');										
 						$('#lbl_parroquia').text(data[0]);
+
 						$('#lbl_parroquia').editable('setValue', data[0]) //clear values
 
 						//editables de aka
@@ -97,6 +98,7 @@ $(function(){
 	            type:  'post',
 	            data: {editar_clima:'ok',id:id,valor:newValue}          		                
 	    	});
+	    	llenar();
 		}
     });	
   

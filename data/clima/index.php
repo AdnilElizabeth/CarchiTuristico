@@ -175,6 +175,7 @@
 						</div>
 						<div class="modal-body padding">
 							<div class="profile-user-info profile-user-info-striped">
+								<input type="hidden" id="txt_id_parroquia">
 								<div class="profile-info-row">
 									<div class="profile-info-name"> Clima: </div>
 
