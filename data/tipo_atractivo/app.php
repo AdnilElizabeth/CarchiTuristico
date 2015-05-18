@@ -9,6 +9,18 @@ $class=new constante();
 			print'<option value="'.$row[0].'">'.$row[1].'</option>';
 	 	}
 	}
+
+	// buscar categoria atractivos2
+	if(isset($_POST['llenar_cat2'])) {
+		$resultado = $class->consulta("SELECT * FROM categoria_atractivo_turistico WHERE ESTADO=1");	
+		$acu;
+		while ($row=$class->fetch_array($resultado)) {		
+			$arr = array('id' => $row[0], 'text' => $row[1]);
+			$acu[]=$arr;
+		}
+		print_r(json_encode($acu));
+	}
+
 	// verificar existencia
 	if(isset($_POST['existencia_tipo_atractivo'])) {
 		$resultado = $class->consulta("SELECT * FROM tipo_atractivo_turistico WHERE ESTADO=1 and NOMBRE='$_POST[reg]'");	
@@ -41,7 +53,7 @@ $class=new constante();
 			print('1');
 		}		
 	}
-	// editar parroquias
+	// editar tipo
 	if(isset($_POST['editar_tipo_a'])) {
 		$id=$class->idz();
 		$fecha=$class->fecha_hora();
@@ -54,11 +66,11 @@ $class=new constante();
 		}		
 	}
 
-	// editar canton parroquias
-	if(isset($_POST['editar_canton_parroquia'])) {
+	// editar categoria tipo
+	if(isset($_POST['editar_categoria_tipo'])) {
 		$id=$class->idz();
 		$fecha=$class->fecha_hora();
-			$resultado = $class->consulta("UPDATE tipo_atractivo_turistico SET cod_canton='$_POST[valor]' WHERE codigo='$_POST[id]'");	
+			$resultado = $class->consulta("UPDATE tipo_atractivo_turistico SET id_categoria='$_POST[valor]' WHERE codigo='$_POST[id]'");	
 		if (!$resultado) {
 			print('0');
 		}else{

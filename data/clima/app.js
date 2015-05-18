@@ -29,7 +29,7 @@
 	// proceso tabla configuracion
 		// edicion de registro
 			function editar(id){				
-				$('#txt_id_parroquia').val(id)
+				$('#txt_id_clima').val(id)
 				// edicion
 				$.ajax({
 					url:'app.php',
@@ -38,9 +38,9 @@
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
 						$('#modal-editar').modal('show');										
-						$('#lbl_parroquia').text(data[0]);
+						$('#lbl_tipo').text(data[0]);
 
-						$('#lbl_parroquia').editable('setValue', data[0]) //clear values
+						$('#lbl_tipo').editable('setValue', data[0]) //clear values
 
 						//editables de aka
 						//text editable
@@ -82,16 +82,17 @@ $(function(){
 	
 	//editables 
 	
-	$('#lbl_parroquia').editable({
+	//text editable
+	$('#lbl_tipo').editable({
 		type: 'text',
 		name: 'username',
 		validate: function(value) {
 		    if($.trim(value) == '') {
-		        return 'Por favor, digite cantón, campo requerido';
+		        return 'Por favor, digite clima, campo requerido';
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_parroquia').val();			
+			var id=$('#txt_id_clima').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -185,11 +186,12 @@ $(function(){
 						$.gritter.add({						
 							title: '..Mensaje..!',						
 							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
-							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',														
 							sticky: false,						
 							time: 2000,
 							class_name: 'gritter-info gritter-center'
 						});
+						llenar();
 						$('#form-guardar').each (function(){
 							this.reset();
 						})

@@ -152,7 +152,7 @@
 												<th class="center">
 													<i class="fa fa-list-ol"></i>
 												</th>
-												<th>Canton</th>
+												<th>Cantón</th>
 												<th>Parroquia</th>
 												<th><i class="fa fa-cogs"></i></th>
 											</tr>
@@ -167,9 +167,6 @@
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
-
-
-
 
 			
 			<div id="modal-editar" class="modal fade" tabindex="-1">
@@ -190,7 +187,7 @@
 
 									<div class="profile-info-value">
 										<input type="hidden" id="txt_id_parroquia">
-										<span class="editable" id="select_canton">Canton</span>
+										<span class="editable" id="select_canton">Cantón</span>
 									</div>
 								</div>
 								<div class="profile-info-row">

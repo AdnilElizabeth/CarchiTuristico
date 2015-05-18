@@ -175,10 +175,11 @@
 							<div class="profile-user-info profile-user-info-striped">
 							
 								<div class="profile-info-row">
+									<input type="hidden" id="txt_id_tipo_alojamiento">	
 									<div class="profile-info-name"> Tipo: </div>
 
 									<div class="profile-info-value" >
-										<span class="editable" id="lbl_parroquia">Tipo</span>
+										<span class="editable" id="lbl_tipo">Tipo</span>
 										
 									</div>
 								</div>

@@ -30,7 +30,7 @@
 	// proceso tabla configuracion
 		// edicion de registro
 			function editar(id){				
-				$('#txt_id_parroquia').val(id)
+				$('#txt_id_atractivos_categoria').val(id)
 				// edicion
 				$.ajax({
 					url:'app.php',
@@ -39,7 +39,9 @@
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
 						$('#modal-editar').modal('show');										
-						$('#lbl_parroquia').text(data[0])				
+						$('#lbl_nombre').text(data[0]);
+						$('#lbl_nombre').editable('setValue', data[0]) //clear values	
+
 					}
 				})
 			}
@@ -78,22 +80,23 @@ $(function(){
 	//editables 
 	
 	//text editable
-    $('#lbl_parroquia').editable({
+    $('#lbl_nombre').editable({
 		type: 'text',
 		name: 'username',
 		validate: function(value) {
 		    if($.trim(value) == '') {
-		        return 'Por favor, digite cantón, campo requerido';
+		        return 'Por favor, digite categoría de atractivo, campo requerido';
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_parroquia').val();			
+			var id=$('#txt_id_atractivos_categoria').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
 	            data: {editar_categoria:'ok',id:id,valor:newValue}          		                
 	    	});
+	    	llenar();
 		}
     });
   
@@ -184,6 +187,7 @@ $(function(){
 							time: 2000,
 							class_name: 'gritter-info gritter-center'
 						});
+						llenar();
 						$('#form-guardar').each (function(){
 							this.reset();
 						})

@@ -10,6 +10,16 @@ $class=new constante();
 	 	}
 	}
 
+	// buscar categoria atractivos2
+	if(isset($_POST['llenar_categoria2'])) {
+	$resultado = $class->consulta("SELECT * FROM categoria_atractivo_turistico WHERE ESTADO=1");	
+		$acu;
+		while ($row=$class->fetch_array($resultado)) {		
+			$arr = array('id' => $row[0], 'text' => $row[1]);
+			$acu[]=$arr;
+		}
+		print_r(json_encode($acu));
+	}
 		// busqueda tipo atractivo	
 	if(isset($_POST['llenar_tipo_a'])) {
 		$id_categoria=$_POST['id'];

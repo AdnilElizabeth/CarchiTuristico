@@ -174,11 +174,12 @@
 						</div>
 						<div class="modal-body padding">
 							<div class="profile-user-info profile-user-info-striped">
+							<input type="hidden" id="txt_id_cantones">
 								<div class="profile-info-row">
 									<div class="profile-info-name"> Cantón: </div>
 
 									<div class="profile-info-value" >
-										<span class="editable" id="lbl_parroquia">Nombre</span>
+										<span class="editable" id="lbl_nombre">Nombre</span>
 										
 									</div>
 								</div>

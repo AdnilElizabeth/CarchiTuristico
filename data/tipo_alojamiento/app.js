@@ -30,7 +30,7 @@
 	// proceso tabla configuracion
 		// edicion de registro
 			function editar(id){				
-				$('#txt_id_parroquia').val(id)
+				$('#txt_id_tipo_alojamiento').val(id)
 				// edicion
 				$.ajax({
 					url:'app.php',
@@ -39,7 +39,12 @@
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
 						$('#modal-editar').modal('show');				
-						$('#lbl_parroquia').text(data[0])				
+						$('#lbl_tipo').text(data[0]);
+						$('#lbl_tipo').editable('setValue', data[0]) //clear values
+
+						//editables de aka
+						//text editable
+					    						
 					}
 				})
 			}
@@ -80,7 +85,7 @@ $(function(){
 	//editables 
 	
 	//text editable
-    $('#lbl_parroquia').editable({
+    $('#lbl_tipo').editable({
 		type: 'text',
 		name: 'username',
 		validate: function(value) {
@@ -89,16 +94,16 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_parroquia').val();			
+			var id=$('#txt_id_tipo_alojamiento').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {editar_parroquia:'ok',id:id,valor:newValue}          		                
+	            data: {editar_tipo:'ok',id:id,valor:newValue}          		                
 	    	});
+	    		llenar();
 		}
     });
-
  
 	// llamando funciones
 		llenar();		
@@ -186,6 +191,7 @@ $(function(){
 							time: 2000,
 							class_name: 'gritter-info gritter-center'
 						});
+						llenar();
 						$('#form-guardar').each (function(){
 							this.reset();
 						})

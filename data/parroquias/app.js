@@ -40,7 +40,12 @@
 					success:function(data){
 						$('#modal-editar').modal('show');	
 						$('#select_canton').text(data[0])				
-						$('#lbl_parroquia').text(data[1])				
+						$('#lbl_parroquia').text(data[1])		
+
+						$('#lbl_parroquia').editable('setValue', data[1]) //clear values
+
+						//editables de aka
+						//text editable		
 					}
 				})
 			}
@@ -83,6 +88,7 @@ $(function(){
     $('#lbl_parroquia').editable({
 		type: 'text',
 		name: 'username',
+		
 		validate: function(value) {
 		    if($.trim(value) == '') {
 		        return 'Por favor, digite parroquia, campo requerido';
@@ -96,6 +102,7 @@ $(function(){
 	            type:  'post',
 	            data: {editar_parroquia:'ok',id:id,valor:newValue}          		                
 	    	});
+	    	llenar();
 		}
     });
     // select editabl
@@ -116,7 +123,7 @@ $(function(){
 	            type:  'post',
 	            data: {editar_canton_parroquia:'ok',id:id,valor:newValue}	            		                
 	    	});
-			
+			llenar();
 		}		
     });
     function select_canton(){
@@ -238,6 +245,7 @@ $(function(){
 							time: 2000,
 							class_name: 'gritter-info gritter-center'
 						});
+						llenar();
 						$('#form-guardar').each (function(){
 							this.reset();
 						})

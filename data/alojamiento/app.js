@@ -31,7 +31,7 @@
 	// proceso tabla configuracion
 		// edicion de registro
 			function editar(id){				
-				$('#txt_id_parroquia').val(id)
+				$('#txt_id_alojamiento').val(id)
 				// edicion
 				$.ajax({
 					url:'app.php',
@@ -40,8 +40,40 @@
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
 						$('#modal-editar').modal('show');	
-						$('#select_tipo').text(data[0])				
-						$('#lbl_nombre').text(data[1])				
+						$('#select_tipo').text(data[0]);				
+						$('#lbl_nombre').text(data[1]);	
+						$('#lbl_propietario').text(data[1]);	
+						$('#select_canton').text(data[1]);	
+						$('#select_parroquia').text(data[1]);	
+						$('#lbl_direccion').text(data[1]);	
+						$('#lbl_longitud').text(data[1]);	
+						$('#lbl_latitud').text(data[1]);	
+						$('#select_categoria').text(data[1]);	
+						$('#lbl_habitaciones').text(data[1]);	
+						$('#lbl_plazas').text(data[1]);	
+						$('#lbl_telefono').text(data[1]);	
+						$('#lbl_correo').text(data[1]);	
+						$('#lbl_web').text(data[1]);	
+						$('#lbl_descripcion').text(data[1]);	
+						$('#lbl_foto').text(data[1]);	
+
+
+						$('#select_tipo').editable('setValue', data[1]);
+						$('#lbl_nombre').editable('setValue', data[1]);
+						$('#lbl_propietario').editable('setValue', data[1]);
+						$('#select_canton').editable('setValue', data[1]);
+						$('#select_parroquia').editable('setValue', data[1]);
+						$('#lbl_direccion').editable('setValue', data[1]);
+						$('#lbl_longitud').editable('setValue', data[1]);
+						$('#lbl_latitud').editable('setValue', data[1]);
+						$('#select_categoria').editable('setValue', data[1]);
+						$('#lbl_habitaciones').editable('setValue', data[1]);
+						$('#lbl_plazas').editable('setValue', data[1]);
+						$('#lbl_telefono').editable('setValue', data[1]);
+						$('#lbl_correo').editable('setValue', data[1]);
+						$('#lbl_web').editable('setValue', data[1]);
+						$('#lbl_descripcion').editable('setValue', data[1]);
+						$('#lbl_foto').editable('setValue', data[1]);
 					}
 				})
 			}
@@ -79,9 +111,28 @@ $(function(){
                                 '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';    
 	
 	//editables 
-	
 	//text editable
-    $('#lbl_parroquia').editable({
+    $('#select_tipo').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite tipo, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_tipo:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+	//text editable
+    $('#lbl_nombre').editable({
 		type: 'text',
 		name: 'username',
 		validate: function(value) {
@@ -90,7 +141,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_parroquia').val();			
+			var id=$('#txt_id_alojamiento').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -99,7 +150,28 @@ $(function(){
 	    	});
 		}
     });
-    // select editabl
+
+    	//text editable
+    $('#lbl_propietario').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite propietario, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_propietario:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+	  // select editabl
     $('#select_canton').editable({
 		type:'select2',
 		select2:{
@@ -110,15 +182,258 @@ $(function(){
 		value : 'NL',
 		source: select_canton(),
 		success: function(response, newValue) {						
-			var id=$('#txt_id_parroquia').val();			
+			var id=$('#txt_id_alojamiento').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {editar_tipo_alojamiento:'ok',id:id,valor:newValue}	            		                
+	            data: {editar_canton:'ok',id:id,valor:newValue}	            		                
 	    	});
 			
 		}		
+    });
+
+
+    	//text editable
+    $('#select_parroquia').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite parroquia, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_parroquia:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+	//text editable
+    $('#lbl_direccion').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite dirección, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_direccion:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+    	//text editable
+    $('#lbl_longitud').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite longitud, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_longitud:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+ 	//text editable
+    $('#lbl_latitud').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite latitud, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_longitud:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+     	//text editable
+    $('#select_categoria').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite categoría, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_categoria:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+  
+
+  	//text editable
+    $('#lbl_habitaciones').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite num de habitaciones, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_habitaciones:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+  
+
+  	//text editable
+    $('#lbl_plazas').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite num de plazas, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_plazas:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+	//text editable
+    $('#lbl_telefono').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite teléfono, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_telefono:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+    	//text editable
+    $('#lbl_correo').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite correo, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_correo:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+ 	//text editable
+    $('#lbl_web').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite Sitio Web, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_web:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+     	//text editable
+    $('#lbl_descripcion').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite descripcion, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_descripcion:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+ 	//text editable
+    $('#lbl_foto').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite correo, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_foto:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
     });
     function select_canton(){
 		var b="source";

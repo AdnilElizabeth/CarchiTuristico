@@ -186,15 +186,15 @@
 									<div class="profile-info-name"> Categoría: </div>
 
 									<div class="profile-info-value">
-										<input type="hidden" id="txt_id_parroquia">
-										<span class="editable" id="select_canton">Categoria</span>
+										<input type="hidden" id="txt_id_tipo_atractivo">
+										<span class="editable" id="select_categoria">Categoria</span>
 									</div>
 								</div>
 								<div class="profile-info-row">
 									<div class="profile-info-name"> Tipo: </div>
 
 									<div class="profile-info-value" >
-										<span class="editable" id="lbl_parroquia">Tipo</span>
+										<span class="editable" id="lbl_tipo">Tipo</span>
 										
 									</div>
 								</div>

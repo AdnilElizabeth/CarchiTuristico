@@ -30,7 +30,7 @@
 	// proceso tabla configuracion
 		// edicion de registro
 			function editar(id){				
-				$('#txt_id_parroquia').val(id)
+				$('#txt_id_tipo_atractivo').val(id)
 				// edicion
 				$.ajax({
 					url:'app.php',
@@ -39,8 +39,9 @@
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
 						$('#modal-editar').modal('show');	
-						$('#select_canton').text(data[0])				
-						$('#lbl_parroquia').text(data[1])				
+						$('#select_categoria').text(data[0]);				
+						$('#lbl_tipo').text(data[1]);
+						$('#lbl_tipo').editable('setValue', data[1]) //clear values				
 					}
 				})
 			}
@@ -80,7 +81,7 @@ $(function(){
 	//editables 
 	
 	//text editable
-    $('#lbl_parroquia').editable({
+    $('#lbl_tipo').editable({
 		type: 'text',
 		name: 'username',
 		validate: function(value) {
@@ -89,43 +90,44 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_parroquia').val();			
+			var id=$('#txt_id_tipo_atractivo').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
 	            data: {editar_tipo_a:'ok',id:id,valor:newValue}          		                
 	    	});
+	    	llenar();
 		}
     });
     // select editabl
-    $('#select_canton').editable({
+    $('#select_categoria').editable({
 		type:'select2',
 		select2:{
-			placeholder: "Selec. Canton",
+			placeholder: "Selec. categoria",
 			containerCssClass: "" ,
 			'width': 170
 		},		
 		value : 'NL',
-		source: select_canton(),
+		source: select_categoria(),
 		success: function(response, newValue) {						
-			var id=$('#txt_id_parroquia').val();			
+			var id=$('#txt_id_tipo_atractivo').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {editar_canton_parroquia:'ok',id:id,valor:newValue}	            		                
+	            data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
 	    	});
-			
+			llenar();
 		}		
     });
-    function select_canton(){
+    function select_categoria(){
 		var b="source";
 		var result;
 		$.ajax({
             type: "POST",
             url:"app.php",
-            data:{llenar_canton2:'ok'},                   
+            data:{llenar_cat2:'ok'},                   
             contentType:"application/x-www-form-urlencoded; charset=UTF-8", 
             global:false,
             async: false,
@@ -238,6 +240,7 @@ $(function(){
 							time: 2000,
 							class_name: 'gritter-info gritter-center'
 						});
+						llenar();
 						$('#form-guardar').each (function(){
 							this.reset();
 						})

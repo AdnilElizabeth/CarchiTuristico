@@ -318,22 +318,136 @@
 						</div>
 						<div class="modal-body padding">
 							<div class="profile-user-info profile-user-info-striped">
+							<h4 class="header orange">Información General</h4>
 								<div class="profile-info-row">
-									<div class="profile-info-name"> Tipo </div>
+									<div class="profile-info-name"> Tipo: </div>
 
 									<div class="profile-info-value">
-										<input type="hidden" id="txt_id_parroquia">
+										<input type="hidden" id="txt_id_alojamiento">
 										<span class="editable" id="select_tipo">Tipo</span>
 									</div>
 								</div>
 								<div class="profile-info-row">
-									<div class="profile-info-name"> Nombre </div>
+									<div class="profile-info-name"> Nombre: </div>
 
 									<div class="profile-info-value" >
 										<span class="editable" id="lbl_nombre">..</span>
 										
 									</div>
 								</div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Propietario: </div>
+
+									<div class="profile-info-value" >
+										<span class="editable" id="lbl_propietario">..</span>
+										
+									</div>
+								</div>
+								<h4 class="header orange">Ubicación</h4>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Canton: </div>
+
+									<div class="profile-info-value">										
+										<span class="editable" id="select_canton">Cantón</span>
+									</div>
+								</div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Parroquia: </div>
+
+									<div class="profile-info-value" >
+										<span class="editable" id="select_parroquia">..</span>
+										
+									</div>
+								</div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Dirección: </div>
+
+									<div class="profile-info-value" >
+										<span class="editable" id="lbl_direccion">..</span>
+										
+									</div>
+								</div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Longitud:: </div>
+
+									<div class="profile-info-value" >
+										<span class="editable" id="lbl_longitud">..</span>
+										
+									</div>
+								</div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Latitud: </div>
+
+									<div class="profile-info-value" >
+										<span class="editable" id="lbl_latitud">..</span>
+										
+									</div>
+								</div>
+								<h4 class="header orange">Detalles</h4>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Categoría: </div>
+
+									<div class="profile-info-value">										
+										<span class="editable" id="select_categoria">Categoría</span>
+									</div>
+								</div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> N° Habitaciones: </div>
+
+									<div class="profile-info-value" >
+										<span class="editable" id="lbl_habitaciones">..</span>
+										
+									</div>
+								</div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> N° Plazas: </div>
+
+									<div class="profile-info-value" >
+										<span class="editable" id="lbl_plazas">..</span>
+										
+									</div>
+								</div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Teléfono: </div>
+
+									<div class="profile-info-value" >
+										<span class="editable" id="lbl_telefono">..</span>
+										
+									</div>
+								</div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Correo: </div>
+
+									<div class="profile-info-value" >
+										<span class="editable" id="lbl_correo">..</span>
+										
+									</div>
+								</div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Sitio Web: </div>
+
+									<div class="profile-info-value" >
+										<span class="editable" id="lbl_web">..</span>
+										
+									</div>
+								</div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Descripción: </div>
+
+									<div class="profile-info-value" >
+										<span class="editable" id="lbl_descripcion">..</span>
+										
+									</div>
+								</div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Fotografía: </div>
+
+									<div class="profile-info-value" >
+										<span class="editable" id="lbl_foto">..</span>
+										
+									</div>
+								</div>
+
 							</div>
 
 						</div>

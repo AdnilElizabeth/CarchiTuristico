@@ -31,7 +31,7 @@
 	// proceso tabla configuracion
 		// edicion de registro
 			function editar(id){				
-				$('#txt_id_parroquia').val(id)
+				$('#txt_id_subtipo_atractivo').val(id)
 				// edicion
 				$.ajax({
 					url:'app.php',
@@ -42,7 +42,10 @@
 						$('#modal-editar').modal('show');	
 						$('#select_categoria').text(data[0]);
 						$('#select_tipo').text(data[1]);				
-						$('#lbl_subtipo').text(data[2])				
+						$('#lbl_subtipo').text(data[2])	
+						$('#select_categoria').editable('setValue', data[0]) //clear values				
+						$('#select_tipo').editable('setValue', data[1]) //clear values				
+						$('#lbl_subtipo').editable('setValue', data[2]) //clear values							
 					}
 				})
 			}
@@ -91,7 +94,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_parroquia').val();			
+			var id=$('#txt_id_subtipo_atractivo').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -104,21 +107,21 @@ $(function(){
     $('#select_categoria').editable({
 		type:'select2',
 		select2:{
-			placeholder: "Selec. Canton",
+			placeholder: "Selec. categoria",
 			containerCssClass: "" ,
 			'width': 170
 		},		
 		value : 'NL',
 		source: select_categoria(),
 		success: function(response, newValue) {						
-			var id=$('#txt_id_parroquia').val();			
+			var id=$('#txt_id_subtipo_atractivo').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
 	            data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
 	    	});
-			
+			llenar();
 		}		
     });
     function select_categoria(){
@@ -244,6 +247,7 @@ $(function(){
 							time: 2000,
 							class_name: 'gritter-info gritter-center'
 						});
+						llenar();
 						$('#form-guardar').each (function(){
 							this.reset();
 						})
