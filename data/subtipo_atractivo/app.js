@@ -5,7 +5,7 @@
 				type:'POST',
 				dataType:'json',
 				data:{llenar:'ok'},
-				success:function(data){											    
+				success:function(data){	
 					$('#tabla-informacion').DataTable().clear().draw();		
 					var a=0;		
 					for (var i = 0; i<data.length; i=i+4) {
@@ -42,10 +42,37 @@
 						$('#modal-editar').modal('show');	
 						$('#select_categoria').text(data[0]);
 						$('#select_tipo').text(data[1]);				
-						$('#lbl_subtipo').text(data[2])	
-						$('#select_categoria').editable('setValue', data[0]) //clear values				
-						$('#select_tipo').editable('setValue', data[1]) //clear values				
-						$('#lbl_subtipo').editable('setValue', data[2]) //clear values							
+						$('#lbl_subtipo').text(data[2]);
+						$('#txt_id_categoria').val(data[3]);
+
+						//$('#select_categoria').editable('setValue', data[0]) //clear values				
+						//$('#select_tipo').editable('setValue', data[1]) //clear values				
+						$('#lbl_subtipo').editable('setValue', data[2]) //clear values	
+
+						$('#select_tipo').editable({
+							type:'select2',
+							select2:{
+								placeholder: "Selec. Tipo",
+								containerCssClass: "" ,
+								'width': 170
+							},		
+							value : 'NL',
+							source: select_tipo(id),
+							success: function(response, newValue) {						
+							// 	var id=$('#txt_id_subtipo_atractivo').val();			
+							// 	// $.ajax({
+						 //  //           url:'app.php',
+						 //  //           async :  false ,   
+						 //  //           type:  'post',
+						 //  //           //data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
+						 //  //   	});
+							// 	llenar();
+							// 	//permiti simular el evento que se requiere en el elemento
+							// 	$("#select_tipo").trigger("click");
+							}		
+					    });
+
+
 					}
 				})
 			}
@@ -71,6 +98,51 @@
 				});
 				
 			}
+		//procesos en puro 
+		function select_tipo(id){
+			var b="source";
+			var result;
+			$.ajax({
+	            type: "POST",
+	            url:"app.php",
+	            data:{llenar_tipo2:'ok', id:id},
+	            contentType:"application/x-www-form-urlencoded; charset=UTF-8", 
+	            global:false,
+	            async: false,
+	            dataType: "json",
+	            success: function(response) {                             
+	                result=response;
+	            },
+	            error:function (xhr, ajaxOptions, thrownError){
+	                    console.log(xhr.status);
+	                    console.log(thrownError);
+	            }
+			});  
+			 return result;
+		}
+		function select_tipo2(id){
+			var b="source";
+			alert(id)
+			var result;
+			$.ajax({
+	            type: "POST",
+	            url:"app.php",
+	            data:{llenar_tipo3:'ok', id:id},
+	            contentType:"application/x-www-form-urlencoded; charset=UTF-8", 
+	            global:false,
+	            async: false,
+	            dataType: "json",
+	            success: function(response) {                             
+	                result=response;
+	                alert(response);
+	            },
+	            error:function (xhr, ajaxOptions, thrownError){
+	                    console.log(xhr.status);
+	                    console.log(thrownError);
+	            }
+			});  
+			 return result;
+		}
 	// fin proceso tabla configuracion
 
 // inicialisando procesos del dom para ejecución de jquery
@@ -119,9 +191,37 @@ $(function(){
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
+	            //data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
 	    	});
 			llenar();
+			//permiti simular el evento que se requiere en el elemento
+			$('#select_categoria').editable('setValue', newValue) //clear values	
+
+			$('#select_tipo').editable({
+				type:'select2',
+				select2:{
+					placeholder: "Selec. Tipo",
+					containerCssClass: "" ,
+					'width': 170
+				},		
+				value : 'NL',
+				source: select_tipo2(newValue),
+				success: function(response, newValue) {						
+				// 	var id=$('#txt_id_subtipo_atractivo').val();			
+				// 	// $.ajax({
+			 //  //           url:'app.php',
+			 //  //           async :  false ,   
+			 //  //           type:  'post',
+			 //  //           //data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
+			 //  //   	});
+				// 	llenar();
+				// 	//permiti simular el evento que se requiere en el elemento
+				// 	$("#select_tipo").trigger("click");
+				}		
+		    });
+		    $("#select_tipo").trigger("click");
+
+
 		}		
     });
     function select_categoria(){
@@ -139,15 +239,14 @@ $(function(){
                   result=response;
             },
             error:function (xhr, ajaxOptions, thrownError){
-                    alert(xhr.status);
-                    alert(thrownError);
+                    console.log(xhr.status);
+                    console.log(thrownError);
             }
 		});  
 		 return result;
 	}
-
-
-	// llamando funciones
+	
+    // llamando funciones
 		llenar();
 	function buscando(registro){			
 		var result = "" ; 					

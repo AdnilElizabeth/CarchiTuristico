@@ -1,3 +1,5 @@
+
+
 <?php require('../menu/index.php');?>
 <!DOCTYPE html>
 <html lang="en">
@@ -205,7 +207,7 @@
 									<div class="profile-info-name"> Tipo: </div>
 
 									<div class="profile-info-value">
-										
+										<input type="hidden" id="txt_id_categoria">
 										<span class="editable" id="select_tipo">Tipo</span>
 									</div>
 								</div>

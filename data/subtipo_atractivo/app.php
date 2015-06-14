@@ -20,6 +20,31 @@ $class=new constante();
 		}
 		print_r(json_encode($acu));
 	}
+	// buscar categoria atractivos2
+	if(isset($_POST['llenar_tipo2'])) {
+		$resultado = $class->consulta(" SELECT C.* FROM tipo_atractivo_turistico P, categoria_atractivo_turistico C, subtipo_atractivo_turistico S 
+										WHERE S.ESTADO='1' AND P.id_categoria=C.CODIGO AND S.id_tipo=P.codigo AND S.CODIGO='$_POST[id]'");
+		$acu;
+		while ($row1=$class->fetch_array($resultado)) {	
+			$dcacu=$row1[0];
+			$res = $class->consulta("SELECT * FROM TIPO_ATRACTIVO_TURISTICO T, CATEGORIA_ATRACTIVO_TURISTICO C WHERE T.ESTADO=1 AND T.ID_CATEGORIA=C.CODIGO AND C.CODIGO='$dcacu'");
+			while ($row=$class->fetch_array($res)) {
+				$arr = array('id' => $row[0], 'text' => $row[1]);
+				$acu[]=$arr;
+			}
+		}
+		print_r(json_encode($acu));
+	}
+	// buscar categoria atractivos2
+	if(isset($_POST['llenar_tipo3'])) {		
+		$acu;		
+		$res = $class->consulta("SELECT * FROM TIPO_ATRACTIVO_TURISTICO T, CATEGORIA_ATRACTIVO_TURISTICO C WHERE T.ESTADO=1 AND T.ID_CATEGORIA=C.CODIGO AND T.ID_CATEGORIA='$_POST[id]'");
+		while ($row=$class->fetch_array($res)) {
+			$arr = array('id' => $row[0], 'text' => $row[1]);
+			$acu[]=$arr;
+		}
+		print_r(json_encode($acu));
+	}
 		// busqueda tipo atractivo	
 	if(isset($_POST['llenar_tipo_a'])) {
 		$id_categoria=$_POST['id'];
@@ -99,12 +124,14 @@ $class=new constante();
 	}
 	// llenar tabla
 	if (isset($_POST['datos_editar'])) {
-		$resultado = $class->consulta("SELECT C.NOMBRE, P.NOMBRE, S.nombre, S.CODIGO FROM tipo_atractivo_turistico P, categoria_atractivo_turistico C, subtipo_atractivo_turistico S WHERE S.ESTADO='1' AND P.id_categoria=C.CODIGO AND S.id_tipo=P.codigo AND S.CODIGO='$_POST[id]'");	
+		$resultado = $class->consulta("SELECT C.NOMBRE, P.NOMBRE, S.nombre, S.CODIGO,P.ID_CATEGORIA FROM tipo_atractivo_turistico P, categoria_atractivo_turistico C, subtipo_atractivo_turistico S WHERE S.ESTADO='1' AND P.id_categoria=C.CODIGO AND S.id_tipo=P.codigo AND S.CODIGO='$_POST[id]'");	
 		$acu;
 		while ($row=$class->fetch_array($resultado)) {					
 			$acu[]=$row[0];
 			$acu[]=$row[1];
 			$acu[]=$row[2];
+			$acu[]=$row[4];
+
 	 	}
 	 	print_r(json_encode($acu));
 	}
