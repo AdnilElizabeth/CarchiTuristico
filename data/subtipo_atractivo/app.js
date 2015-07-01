@@ -28,76 +28,127 @@
 				}
 			});
 		}
+		function select_categoria(id){
+			var b="source";
+			var result;
+			$.ajax({
+	            type: "POST",
+	            url:"app.php",
+	            data:{llenar_categoria2:'ok',id:id},                   
+	            contentType:"application/x-www-form-urlencoded; charset=UTF-8", 
+	            global:false,
+	            async: false,
+	            dataType: "json",
+	            success: function(response) {                             
+	                  result=response;
+	            },
+	            error:function (xhr, ajaxOptions, thrownError){
+	                    console.log(xhr.status);
+	                    console.log(thrownError);
+	            }
+			});  
+			 return result;
+		}
 	// proceso tabla configuracion
 		// edicion de registro
-			function editar(id){				
-				$('#txt_id_subtipo_atractivo').val(id)
-				// edicion
-				$.ajax({
-					url:'app.php',
-					type:'POST',
-					dataType:'json',
-					data:{datos_editar:'ok',id:id},
-					success:function(data){
-						$('#modal-editar').modal('show');	
-						$('#select_categoria').text(data[0]);
-						$('#select_tipo').text(data[1]);				
-						$('#lbl_subtipo').text(data[2]);
-						$('#txt_id_categoria').val(data[3]);
+		function editar(idx){
+			$('#txt_id_subtipo_atractivo').val(idx);
+			// edicion
+			$.ajax({
+				url:'app.php',
+				type:'POST',
+				dataType:'json',
+				data:{datos_editar:'ok',id:idx},
+				success:function(data){
+					$('#modal-editar').modal('show');	
+					var h=$('#txt_id_tipo').val(data[4]);
+					
+					$('#txt_id_index').val(idx);
+					$('#select_categoria').text(data[0]);
+					$('#select_tipo').text(data[1]);				
+					$('#lbl_subtipo').text(data[2]);
+					$('#txt_id_categoria').val(data[3]);
+					
 
-						//$('#select_categoria').editable('setValue', data[0]) //clear values				
-						//$('#select_tipo').editable('setValue', data[1]) //clear values				
-						$('#lbl_subtipo').editable('setValue', data[2]) //clear values	
+					//$('#select_categoria').editable('setValue', data[0]) //clear values				
+					//$('#select_tipo').editable('setValue', data[1]) //clear values				
+					$('#lbl_subtipo').editable('setValue', data[2]) //clear values	
 
-						$('#select_tipo').editable({
-							type:'select2',
-							select2:{
-								placeholder: "Selec. Tipo",
-								containerCssClass: "" ,
-								'width': 170
-							},		
-							value : 'NL',
-							source: select_tipo(id),
-							success: function(response, newValue) {						
-							// 	var id=$('#txt_id_subtipo_atractivo').val();			
-							// 	// $.ajax({
-						 //  //           url:'app.php',
-						 //  //           async :  false ,   
-						 //  //           type:  'post',
-						 //  //           //data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
-						 //  //   	});
-							// 	llenar();
-							// 	//permiti simular el evento que se requiere en el elemento
-							// 	$("#select_tipo").trigger("click");
-							}		
-					    });
+					$('#select_categorias').editable({
+						type:'select2',
+						select2:{
+							placeholder: "Selec. categoria",
+							containerCssClass: "" ,
+							'width': 170
+						},		
+						value : 'NL',
+						source: select_categoria(idx),
+						success: function(response, newValue) {						
+							$.ajax({
+					            url:'app.php',
+					            async :  false ,   
+					            type:  'post',
+					            //data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
+					    	});							
+							//permiti simular el evento que se requiere en el elemento
+							$('#select_categoria').editable('setValue', newValue) //clear values
+
+							
+						    $("#select_tipo").trigger("click",dc_llenado());
 
 
-					}
-				})
-			}
+						}		
+				    });
+
+					$('#select_tipo').editable({
+						type:'select2',
+						select2:{
+							placeholder: "Selec. Tipo",
+							containerCssClass: "" ,
+							'width': 170
+						},		
+						value : 'NL',
+						source: select_tipo(id),
+						success: function(response, newValue) {						
+						// 	var id=$('#txt_id_subtipo_atractivo').val();			
+						// 	// $.ajax({
+					 //  //           url:'app.php',
+					 //  //           async :  false ,   
+					 //  //           type:  'post',
+					 //  //           //data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
+					 //  //   	});
+						// 	llenar();
+						// 	//permiti simular el evento que se requiere en el elemento
+						// 	$("#select_tipo").trigger("click");
+						}		
+				    });
+
+					
+
+				}
+			})
+		}
 		// eliminar registros
-			function eliminar(id){
-				bootbox.confirm("Esta seguro que desea eliminar el registro..?", function(result) {
-					if(result) {
-						$.ajax({
-							url:'app.php',
-							type:'POST',
-							data:{eliminar:'ok',id:id},
-							success:function(data){
-								if (data==1){
-									bootbox.alert("Registro eliminado");
-									llenar();														
-								}
-								else{
-									bootbox.alert("Tenemos inconvenientes intente mas tarde");	
-								}								
+		function eliminar(id){
+			bootbox.confirm("Esta seguro que desea eliminar el registro..?", function(result) {
+				if(result) {
+					$.ajax({
+						url:'app.php',
+						type:'POST',
+						data:{eliminar:'ok',id:id},
+						success:function(data){
+							if (data==1){
+								bootbox.alert("Registro eliminado");
+								llenar();														
 							}
-						})
-					}
-				});
-				
-			}
+							else{
+								bootbox.alert("Tenemos inconvenientes intente mas tarde");	
+							}								
+						}
+					})
+				}
+			});			
+		}
 		//procesos en puro 
 		function select_tipo(id){
 			var b="source";
@@ -121,8 +172,8 @@
 			 return result;
 		}
 		function select_tipo2(id){
-			var b="source";
 			alert(id)
+			var b="source";			
 			var result;
 			$.ajax({
 	            type: "POST",
@@ -134,7 +185,7 @@
 	            dataType: "json",
 	            success: function(response) {                             
 	                result=response;
-	                alert(response);
+	                console.log(response);
 	            },
 	            error:function (xhr, ajaxOptions, thrownError){
 	                    console.log(xhr.status);
@@ -166,81 +217,34 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_subtipo_atractivo').val();			
+			var id=$('#txt_id_subtipo_atractivo').val();
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {editar_subtipo:'ok',id:id,valor:newValue}          		                
+	            data: {editar_subtipo:'ok',id:id,valor:newValue,idindex:$('#txt_id_subtipo_atractivo').val()},
+	            success:function(){
+	            	llenar();
+	            }        		                
 	    	});
 		}
     });
     // select editabl
-    $('#select_categoria').editable({
-		type:'select2',
-		select2:{
-			placeholder: "Selec. categoria",
-			containerCssClass: "" ,
-			'width': 170
-		},		
-		value : 'NL',
-		source: select_categoria(),
-		success: function(response, newValue) {						
-			var id=$('#txt_id_subtipo_atractivo').val();			
-			$.ajax({
-	            url:'app.php',
-	            async :  false ,   
-	            type:  'post',
-	            //data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
-	    	});
-			llenar();
-			//permiti simular el evento que se requiere en el elemento
-			$('#select_categoria').editable('setValue', newValue) //clear values	
-
-			$('#select_tipo').editable({
-				type:'select2',
-				select2:{
-					placeholder: "Selec. Tipo",
-					containerCssClass: "" ,
-					'width': 170
-				},		
-				value : 'NL',
-				source: select_tipo2(newValue),
-				success: function(response, newValue) {						
-				// 	var id=$('#txt_id_subtipo_atractivo').val();			
-				// 	// $.ajax({
-			 //  //           url:'app.php',
-			 //  //           async :  false ,   
-			 //  //           type:  'post',
-			 //  //           //data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
-			 //  //   	});
-				// 	llenar();
-				// 	//permiti simular el evento que se requiere en el elemento
-				// 	$("#select_tipo").trigger("click");
-				}		
-		    });
-		    $("#select_tipo").trigger("click");
-
-
-		}		
-    });
-    function select_categoria(){
+    
+    function dc_llenado(){
+    	alert('hola mundo');
+    }
+    
+	function buscar_tipo_categoria(id){
 		var b="source";
 		var result;
 		$.ajax({
             type: "POST",
             url:"app.php",
-            data:{llenar_categoria2:'ok'},                   
-            contentType:"application/x-www-form-urlencoded; charset=UTF-8", 
-            global:false,
+            data:{buscar_tipo_categoria:'ok',id:id},                   
             async: false,
-            dataType: "json",
             success: function(response) {                             
                   result=response;
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                    console.log(xhr.status);
-                    console.log(thrownError);
             }
 		});  
 		 return result;

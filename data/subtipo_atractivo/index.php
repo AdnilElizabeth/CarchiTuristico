@@ -193,6 +193,8 @@
 							</div>
 						</div>
 						<div class="modal-body padding">
+							<!-- id principal del registro -->
+							<input type="hidden" id="txt_id_index">
 							<div class="profile-user-info profile-user-info-striped">
 								<div class="profile-info-row">
 									<div class="profile-info-name"> Categoría </div>
@@ -207,7 +209,7 @@
 									<div class="profile-info-name"> Tipo: </div>
 
 									<div class="profile-info-value">
-										<input type="hidden" id="txt_id_categoria">
+										<input type="hidden" id="txt_id_tipo">
 										<span class="editable" id="select_tipo">Tipo</span>
 									</div>
 								</div>
@@ -216,8 +218,7 @@
 									<div class="profile-info-name"> Subtipo </div>
 
 									<div class="profile-info-value" >
-										<span class="editable" id="lbl_subtipo">Subtipo</span>
-										
+										<span class="editable" id="lbl_subtipo">Subtipo</span>										
 									</div>
 								</div>
 							</div>

@@ -85,6 +85,18 @@ $class=new constante();
 			print('1');
 		}		
 	}
+	// editar subtipo texto no SELECT
+	if(isset($_POST['editar_subtipo'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+		$valor=$_POST['valor'];
+			$resultado = $class->consulta("UPDATE subtipo_atractivo_turistico SET NOMBRE=upper('$valor') WHERE codigo='$_POST[idindex]'");	
+		if (!$resultado) {
+			print('0');
+		}else{
+			print('1');
+		}		
+	}
 	// editar parroquias
 	if(isset($_POST['editar_parroquia'])) {
 		$id=$class->idz();
@@ -112,7 +124,7 @@ $class=new constante();
 
 	// llenar tabla
 	if (isset($_POST['llenar'])) {
-		$resultado = $class->consulta("SELECT C.NOMBRE, P.NOMBRE, S.nombre, S.CODIGO FROM tipo_atractivo_turistico P, categoria_atractivo_turistico C, subtipo_atractivo_turistico S WHERE S.ESTADO='1' AND P.id_categoria=C.CODIGO AND S.id_tipo=P.codigo");	
+		$resultado = $class->consulta("SELECT C.NOMBRE, P.NOMBRE, S.nombre, S.CODIGO FROM tipo_atractivo_turistico P, categoria_atractivo_turistico C, subtipo_atractivo_turistico S WHERE S.ESTADO='1' AND P.id_categoria=C.CODIGO AND S.id_tipo=P.codigo order by P.nombre");	
 		$acu;
 		while ($row=$class->fetch_array($resultado)) {					
 			$acu[]=$row[0];
@@ -122,16 +134,25 @@ $class=new constante();
 	 	}
 	 	print_r(json_encode($acu));
 	}
+	// buscar id tipo categoria con relacion tipo
+	if (isset($_POST['id_tipo_categoria_relacion'])) {
+		$resultado = $class->consulta("SELECT T.ID_CATEGORIA FROM TIPO_ATRACTIVO_TURISTICO T WHERE CODIGO='$_POST[id]'");	
+		while ($row=$class->fetch_array($resultado)) {					
+			print $row[0];	
+	 	}
+	 	// print($acu);
+	}
+	
 	// llenar tabla
 	if (isset($_POST['datos_editar'])) {
-		$resultado = $class->consulta("SELECT C.NOMBRE, P.NOMBRE, S.nombre, S.CODIGO,P.ID_CATEGORIA FROM tipo_atractivo_turistico P, categoria_atractivo_turistico C, subtipo_atractivo_turistico S WHERE S.ESTADO='1' AND P.id_categoria=C.CODIGO AND S.id_tipo=P.codigo AND S.CODIGO='$_POST[id]'");	
+		$resultado = $class->consulta("SELECT C.NOMBRE, P.NOMBRE, S.nombre, S.CODIGO, P.ID_CATEGORIA, S.ID_TIPO FROM tipo_atractivo_turistico P, categoria_atractivo_turistico C, subtipo_atractivo_turistico S WHERE S.ESTADO='1' AND P.id_categoria=C.CODIGO AND S.id_tipo=P.codigo AND S.CODIGO='$_POST[id]'");	
 		$acu;
 		while ($row=$class->fetch_array($resultado)) {					
 			$acu[]=$row[0];
 			$acu[]=$row[1];
 			$acu[]=$row[2];
 			$acu[]=$row[4];
-
+			$acu[]=$row[5];
 	 	}
 	 	print_r(json_encode($acu));
 	}
