@@ -72,7 +72,7 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="#">Carchi</a>
 							</li>
-							<li class="active">Alojamiento</li>
+							<li class="active">Comidas & Bebidas</li>
 						</ul><!-- /.breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -90,7 +90,7 @@
 								<!-- PAGE CONTENT BEGINS -->
 								<div class="widget-box">
 									<div class="widget-header">
-										<h5 class="widget-title">Registro Alojamiento</h5>
+										<h5 class="widget-title">Registro Comidas & Bebidas</h5>
 
 										<div class="widget-toolbar">
 											<div class="widget-menu">
@@ -113,8 +113,7 @@
 											<div></div>
 											<form class="form-horizontal" name="form-guardar" id="form-guardar" enctype="multipart/form-data">
 												<h4 class="header orange">Información General</h4>
-												<div class="form-group">
-												
+												<div class="form-group">												
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Tipo:</label>
 
 													<div class="col-xs-12 col-sm-9">
@@ -200,7 +199,7 @@
 													</div>													
 												</div>
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">N° habitaciones:</label>
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">N° de mesas:</label>
 
 													<div class="col-xs-12 col-sm-9">
 														<div class="clearfix">
@@ -313,7 +312,7 @@
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									<span class="white">&times;</span>
 								</button>
-								Actualizar Alojamiento
+								Actualizar Comidas & Bebidas
 							</div>
 						</div>
 						<div class="modal-body padding">
@@ -326,7 +325,7 @@
 											<div class="profile-info-name"> Tipo: </div>											
 
 											<div class="profile-info-value">
-												<input type="hidden" id="txt_id_alojamiento">
+												<input type="hidden" id="txt_id_comidas>
 												<span class="editable" id="select_tipo">Tipo</span>
 											</div>
 										</div>
@@ -406,7 +405,7 @@
 											</div>
 										</div>
 										<div class="profile-info-row">
-											<div class="profile-info-name"> N° Hab.: </div>
+											<div class="profile-info-name"> N° Mesas: </div>
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_habitaciones">..</span>

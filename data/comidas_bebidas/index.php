@@ -111,7 +111,7 @@
 									<div class="widget-body">
 										<div class="widget-main">
 											<div></div>
-											<form class="form-horizontal" id="form-guardar">
+											<form class="form-horizontal" name="form-guardar" id="form-guardar" enctype="multipart/form-data">
 												<h4 class="header orange">Información General</h4>
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Tipo:</label>
@@ -283,13 +283,13 @@
 								<table id="tabla-informacion" class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
-												<th class="center">
+												<th class="center" width="60px">
 													<i class="fa fa-list-ol"></i>
 												</th>
 												<th>Tipo</th>
 												<th>Nombre</th>
 												<th>Ciudad</th>
-												<th><i class="fa fa-cogs"></i></th>
+												<th width="90px"><i class="fa fa-cogs"></i></th>
 											</tr>
 										</thead>
 
@@ -303,8 +303,6 @@
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
-
-
 
 			<div id="modal-editar" class="modal fade" tabindex="-1">
 				<div class="modal-dialog">

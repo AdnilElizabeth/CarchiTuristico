@@ -35,7 +35,7 @@
 	// proceso tabla configuracion
 		// edicion de registro
 			function editar(id){				
-				$('#txt_id_alojamiento').val(id)
+				$('#txt_id_comida').val(id)
 				// edicion
 				$.ajax({
 					url:'app.php',
@@ -142,7 +142,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -162,7 +162,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -182,7 +182,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -203,7 +203,7 @@ $(function(){
 		value : 'NL',
 		source: select_canton(),
 		success: function(response, newValue) {						
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -225,7 +225,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -245,7 +245,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -265,7 +265,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -285,7 +285,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -305,7 +305,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -322,11 +322,11 @@ $(function(){
 		name: 'username',
 		validate: function(value) {
 		    if($.trim(value) == '') {
-		        return 'Por favor, digite num de habitaciones, campo requerido';
+		        return 'Por favor, digite num de mesas, campo requerido';
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -347,7 +347,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -367,7 +367,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -387,7 +387,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -407,7 +407,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -427,7 +427,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -447,7 +447,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+			var id=$('#txt_id_comida').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -489,7 +489,7 @@ $(function(){
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {existencia_alojamiento:'ok',reg:registro,reg1:reg1,reg2:reg2},        
+	            data: {existencia_comidas:'ok',reg:registro,reg1:reg1,reg2:reg2},            
 	            success : function ( data )  {
 	            	console.log(data)
 			         result = data ;  
@@ -497,7 +497,7 @@ $(function(){
 	    	});
 		return result ; 
 	}
-	jQuery.validator.addMethod("existe_alojamiento", function (value, element) {
+	jQuery.validator.addMethod("existe_comidas", function (value, element) {
 		var a=value;
 		var reg=$('#txt_nombre').val().toUpperCase();
 		var reg1=$('#sel_tipo').val();
@@ -523,7 +523,7 @@ $(function(){
 			},			
 			txt_nombre: {
 				required: true,
-				existe_alojamiento: true
+				existe_comidas: true
 			},
 			txt_propietario: {
 				required: true				 
@@ -676,15 +676,16 @@ $(function(){
 			});
 		}
 	});
-	// llenar select tipo alojamiento
+	// llenar select tipo comida bebida
 	$.ajax({
 		url:'app.php',
 		type:'POST',
-		data:{llenar_tipo_alojamiento:':)'},
+		data:{llenar_tipo_comida:':)'},
 		success:function(data){
 			$('#sel_tipo').html(data);
 		}
 	})
+
 //ocultar select canton
 	$('#sel_parroquia').hide();
 

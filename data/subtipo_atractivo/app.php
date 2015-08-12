@@ -109,6 +109,17 @@ $class=new constante();
 			print('1');
 		}		
 	}
+	// editar tipo
+	if(isset($_POST['name'])) {
+		if ($_POST['name']=='actualizar_tipo') {
+				$resultado = $class->consulta("UPDATE subtipo_atractivo_turistico SET id_tipo='$_POST[value]' WHERE codigo='$_POST[pk]'");	
+			if (!$resultado) {
+				print('0');
+			}else{
+				print('1');
+			}		
+		}		
+	}
 
 	// editar canton parroquias
 	if(isset($_POST['editar_canton_parroquia'])) {

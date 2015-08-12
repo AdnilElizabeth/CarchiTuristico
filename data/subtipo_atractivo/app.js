@@ -68,36 +68,29 @@
 					$('#select_tipo').text(data[1]);				
 					$('#lbl_subtipo').text(data[2]);
 					$('#txt_id_categoria').val(data[3]);
-					
 
-					//$('#select_categoria').editable('setValue', data[0]) //clear values				
 					//$('#select_tipo').editable('setValue', data[1]) //clear values				
 					$('#lbl_subtipo').editable('setValue', data[2]) //clear values	
 
-					$('#select_categorias').editable({
+					$('#select_categoria').editable({
 						type:'select2',
 						select2:{
 							placeholder: "Selec. categoria",
 							containerCssClass: "" ,
-							'width': 170
-						},		
+							'width': 200
+						},
 						value : 'NL',
 						source: select_categoria(idx),
 						success: function(response, newValue) {						
-							$.ajax({
-					            url:'app.php',
-					            async :  false ,   
-					            type:  'post',
-					            //data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
-					    	});							
+							// $.ajax({
+					  //           url:'app.php',
+					  //           async : false ,   
+					  //           type:  'post',
+					  //           //data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
+					  //   	});
 							//permiti simular el evento que se requiere en el elemento
-							$('#select_categoria').editable('setValue', newValue) //clear values
-
-							
-						    $("#select_tipo").trigger("click",dc_llenado());
-
-
-						}		
+						    $("#select_tipo").trigger("click");
+						}						
 				    });
 
 					$('#select_tipo').editable({
@@ -105,25 +98,17 @@
 						select2:{
 							placeholder: "Selec. Tipo",
 							containerCssClass: "" ,
-							'width': 170
-						},		
+							'width': 200
+						},
+						pk:    idx,
+						name:  'actualizar_tipo',
+						url:   'app.php', 	
 						value : 'NL',
-						source: select_tipo(id),
+						source: select_tipo(idx),
 						success: function(response, newValue) {						
-						// 	var id=$('#txt_id_subtipo_atractivo').val();			
-						// 	// $.ajax({
-					 //  //           url:'app.php',
-					 //  //           async :  false ,   
-					 //  //           type:  'post',
-					 //  //           //data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
-					 //  //   	});
-						// 	llenar();
-						// 	//permiti simular el evento que se requiere en el elemento
-						// 	$("#select_tipo").trigger("click");
+							llenar();
 						}		
-				    });
-
-					
+				    });				
 
 				}
 			})
