@@ -6,9 +6,9 @@
 				dataType:'json',
 				data:{llenar:'ok'},
 				async:false,
-				success:function(data){		
-					$('#tabla-informacion').DataTable().clear().draw();		
-					var a=0;		
+				success:function(data){
+					$('#tabla-informacion').DataTable().clear().draw();
+					var a=0;
 					for (var i = 0; i<data.length; i=i+4) {
 						a++;
 						$('#tabla-informacion').DataTable().row.add( [
@@ -16,7 +16,7 @@
 				            data[i+0],
 				            data[i+1],
 				            data[i+2],
-				            '<div class="hidden-sm hidden-xs action-buttons">'	
+				            '<div class="hidden-sm hidden-xs action-buttons">'
 								+'<a href="#" class="green" onclick=editar("'+data[i+3]+'")>'
 									+'<i class="ace-icon fa fa-pencil bigger-130"></i>'
 								+'</a>'
@@ -27,14 +27,14 @@
 									+'<i class="ace-icon fa fa-eye bigger-130"></i>'
 								+'</a>'
 							+'</div>'
-				        ] ).draw();		
-					};		        		   
+				        ] ).draw();
+					};
 				}
 			});
 		}
 	// proceso tabla configuracion
 		// edicion de registro
-			function editar(id){				
+			function editar(id){
 				$('#txt_id_comida').val(id)
 				// edicion
 				$.ajax({
@@ -43,10 +43,10 @@
 					dataType:'json',
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
-						$('#modal-editar').modal('show');	
-						$('#select_tipo').text(data[0]);				
-						$('#lbl_nombre').text(data[1]);	
-						$('#lbl_propietario').text(data[2]);	
+						$('#modal-editar').modal('show');
+						$('#select_tipo').text(data[0]);
+						$('#lbl_nombre').text(data[1]);
+						$('#lbl_propietario').text(data[2]);
 						$('#select_canton').text(data[3]);	
 						$('#select_parroquia').text(data[4]);	
 						$('#lbl_direccion').text(data[5]);								
@@ -101,7 +101,7 @@
 						})
 					}
 				});
-				
+
 			}
 	// fin proceso tabla configuracion
 
@@ -117,7 +117,7 @@ $(function(){
 		droppable:true,
 		thumbnail:'small',
 		preview_error : function(filename, error_code) {
-			
+
 		}
 
 	}).on('change', function(){
@@ -162,7 +162,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_comida').val();			
+			var id=$('#txt_id_comida').val();
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
