@@ -88,7 +88,24 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
+								<div id="test">
+							<script type="text/javascript">
 							
+							var datos=[["rojo","red"],["verde","green"],["azul","blue"]];
+							var div = document.getElementById("test");
+
+							function cambiar(i){         
+							    i=(i+Math.floor(Math.random()*(datos.length-1)+1))%datos.length;
+							    div.style.background=datos[i][1];
+							    div.innerHTML=datos[i][0];
+							    
+							    setTimeout(function(){cambiar(i);},1000);
+							}
+							        
+							cambiar(0);
+							
+          				</script>
+          				</div>
 
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->

@@ -46,7 +46,6 @@
 	</head>
 
 	<body class="no-skin">
-		
 		<div id="navbar" class="navbar navbar-default">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -320,9 +319,35 @@
 								<div class="profile-info-row">
 									<div class="profile-info-name"> Tipo </div>
 
+<<<<<<< HEAD
 									<div class="profile-info-value">
 										<input type="hidden" id="txt_id_parroquia">
 										<span class="editable" id="select_tipo">Tipo</span>
+=======
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Tipo: </div>
+
+											<div class="profile-info-value">
+												<input type="hidden" id="txt_id_comida">
+												<span class="editable" id="select_tipo">Tipo</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Nombre: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_nombre">..</span>
+
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Propietario: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_propietario">..</span>
+											</div>
+										</div>
+>>>>>>> origin/master
 									</div>
 								</div>
 								<div class="profile-info-row">

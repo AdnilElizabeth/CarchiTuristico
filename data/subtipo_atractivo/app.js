@@ -67,7 +67,7 @@
 					$('#select_categoria').text(data[0]);
 
 
-					$('#select_tipo').text(data[1]);				
+					$('#select_tipo').text(data[1]);
 					$('#lbl_subtipo').text(data[2]);
 					$('#txt_id_categoria').val(data[3]);
 

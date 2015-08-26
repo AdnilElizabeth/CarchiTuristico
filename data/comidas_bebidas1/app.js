@@ -5,9 +5,16 @@
 				type:'POST',
 				dataType:'json',
 				data:{llenar:'ok'},
+<<<<<<< HEAD
 				success:function(data){											    
 					$('#tabla-informacion').DataTable().clear().draw();		
 					var a=0;		
+=======
+				async:false,
+				success:function(data){
+					$('#tabla-informacion').DataTable().clear().draw();
+					var a=0;
+>>>>>>> origin/master
 					for (var i = 0; i<data.length; i=i+4) {
 						a++;
 						$('#tabla-informacion').DataTable().row.add( [
@@ -15,7 +22,7 @@
 				            data[i+0],
 				            data[i+1],
 				            data[i+2],
-				            '<div class="hidden-sm hidden-xs action-buttons">'	
+				            '<div class="hidden-sm hidden-xs action-buttons">'
 								+'<a href="#" class="green" onclick=editar("'+data[i+3]+'")>'
 									+'<i class="ace-icon fa fa-pencil bigger-130"></i>'
 								+'</a>'
@@ -23,15 +30,20 @@
 									+'<i class="ace-icon fa fa-trash-o bigger-130"></i>'
 								+'</a>'
 							+'</div>'
-				        ] ).draw();		
-					};		        		   
+				        ] ).draw();
+					};
 				}
 			});
 		}
 	// proceso tabla configuracion
 		// edicion de registro
+<<<<<<< HEAD
 			function editar(id){				
 				$('#txt_id_parroquia').val(id)
+=======
+			function editar(id){
+				$('#txt_id_comida').val(id)
+>>>>>>> origin/master
 				// edicion
 				$.ajax({
 					url:'app.php',
@@ -39,9 +51,47 @@
 					dataType:'json',
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
+<<<<<<< HEAD
 						$('#modal-editar').modal('show');	
 						$('#select_tipo').text(data[0])				
 						$('#lbl_nombre').text(data[1])				
+=======
+						$('#modal-editar').modal('show');
+						$('#select_tipo').text(data[0]);
+						$('#lbl_nombre').text(data[1]);
+						$('#lbl_propietario').text(data[2]);
+						$('#select_canton').text(data[3]);	
+						$('#select_parroquia').text(data[4]);	
+						$('#lbl_direccion').text(data[5]);								
+						$('#lbl_latitud').text(data[6]);	
+						$('#lbl_longitud').text(data[7]);
+						$('#select_categoria').text(data[8]);	
+						$('#lbl_habitaciones').text(data[9]);	
+						$('#lbl_plazas').text(data[10]);	
+						$('#lbl_telefono').text(data[11]);	
+						$('#lbl_correo').text(data[12]);	
+						$('#lbl_web').text(data[13]);	
+						$('#lbl_descripcion').text(data[14]);	
+						$('#lbl_foto').text(data[15]);	
+
+
+						$('#select_tipo').editable('setValue', data[0]);
+						$('#lbl_nombre').editable('setValue', data[1]);
+						$('#lbl_propietario').editable('setValue', data[2]);
+						$('#select_canton').editable('setValue', data[3]);
+						$('#select_parroquia').editable('setValue', data[4]);
+						$('#lbl_direccion').editable('setValue', data[5]);						
+						$('#lbl_latitud').editable('setValue', data[6]);
+						$('#lbl_longitud').editable('setValue', data[7]);
+						$('#select_categoria').editable('setValue', data[8]);
+						$('#lbl_habitaciones').editable('setValue', data[9]);
+						$('#lbl_plazas').editable('setValue', data[10]);
+						$('#lbl_telefono').editable('setValue', data[11]);
+						$('#lbl_correo').editable('setValue', data[12]);
+						$('#lbl_web').editable('setValue', data[13]);
+						$('#lbl_descripcion').editable('setValue', data[14]);
+						$('#lbl_foto').editable('setValue', data[15]);
+>>>>>>> origin/master
 					}
 				})
 			}
@@ -65,13 +115,33 @@
 						})
 					}
 				});
-				
+
 			}
 	// fin proceso tabla configuracion
 
 
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
+<<<<<<< HEAD
+=======
+
+		// proceso subir imagenes
+	$('#txt_fotos').ace_file_input({
+		style:'well',
+		btn_choose:'Soltar archivos aquí o haga clic para elegir',
+		btn_change:null,
+		no_icon:'ace-icon fa fa-cloud-upload',
+		droppable:true,
+		thumbnail:'small',
+		preview_error : function(filename, error_code) {
+
+		}
+
+	}).on('change', function(){
+		//console.log($(this).data('ace_input_files'));
+		//console.log($(this).data('ace_input_method'));
+	});
+>>>>>>> origin/master
 		// inicializacion de procesos con nuevos frameworks nativos
 	//editables on first profile page
 	$.fn.editable.defaults.mode = 'inline';
@@ -91,7 +161,11 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
+<<<<<<< HEAD
 			var id=$('#txt_id_parroquia').val();			
+=======
+			var id=$('#txt_id_comida').val();
+>>>>>>> origin/master
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
