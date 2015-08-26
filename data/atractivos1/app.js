@@ -1,4 +1,4 @@
-	// funcion llenar data table
+// funcion llenar data table
 		function llenar(){
 			$.ajax({
 				url:'app.php',
@@ -69,7 +69,6 @@
 			}
 	// fin proceso tabla configuracion
 
-
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
 		// inicializacion de procesos con nuevos frameworks nativos
@@ -116,7 +115,7 @@ $(function(){
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {editar_tipo_comida:'ok',id:id,valor:newValue}	            		                
+	            data: {editar_tipo_alojamiento:'ok',id:id,valor:newValue}	            		                
 	    	});
 			
 		}		
@@ -147,14 +146,14 @@ $(function(){
 	// llamando funciones
 		llenar();		
 	// funcion de validar registros existentes
-	
+
 	function buscando(registro,r,reg1,reg2){			
 		var result = "" ; 					
 		$.ajax({
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {existencia_comidas:'ok',reg:registro,reg1:reg1,reg2:reg2},            
+	            data: {existencia_atractivo:'ok',reg:registro,reg1:reg1,reg2:reg2},       
 	            success : function ( data )  {
 	            	console.log(data)
 			         result = data ;  
@@ -162,10 +161,10 @@ $(function(){
 	    	});
 		return result ; 
 	}
-	jQuery.validator.addMethod("existe_comidas", function (value, element) {
+	jQuery.validator.addMethod("existe_atractivo", function (value, element) {
 		var a=value;
 		var reg=$('#txt_nombre').val().toUpperCase();
-		var reg1=$('#sel_tipo').val();
+		var reg1=$('#sel_subtipo').val();
 		var reg2=$('#sel_parroquia').val();
 
 		if (buscando(reg,0,reg1,reg2)==0) {						
@@ -174,7 +173,7 @@ $(function(){
 		if(buscando(reg,0,reg1,reg2)!=0){						
 			return false;
 		};
-	}, "El registro ya existe!!!.");
+	}, "El registro ya existe!!!.");	
 
 	// validacion de formulario
 	$('#form-guardar').validate({
@@ -183,24 +182,24 @@ $(function(){
 		focusInvalid: false,
 		ignore: "",
 		rules: {
-			sel_tipo: {
+			sel_categoria: {
 				required: true
-			},			
+			},
+			sel_tipo_a: {
+				required: true
+			},
+			sel_subtipo: {
+				required: true
+			},
 			txt_nombre: {
 				required: true,
-				existe_comidas: true
-			},
-			txt_propietario: {
-				required: true				 
+				existe_atractivo: true
 			},
 			sel_canton: {
 				required: true
 			},
 			sel_parroquia: {
 				required: true
-			},
-			txt_direccion: {
-				required: true,
 			},
 			txt_longitud: {
 				required: true,
@@ -211,6 +210,9 @@ $(function(){
 				number: true
 			},
 			sel_categoria: {
+				required: true
+			},
+			sel_clima: {
 				required: true
 			},
 			txt_nhab: {
@@ -227,7 +229,13 @@ $(function(){
 		},
 
 		messages: {
-			sel_tipo: {
+			sel_categoria: {
+				required: "Este campo es requerido."
+			},
+			sel_tipo_a: {
+				required: "Este campo es requerido."
+			},
+			sel_subtipo: {
 				required: "Este campo es requerido."
 			},
 			txt_nombre: {
@@ -252,6 +260,9 @@ $(function(){
 			txt_latitud: {
 				required: "Este campo es requerido.",
 				number: "Ingrese solo números."
+			},
+			sel_clima: {
+				required: "Este campo es requerido."
 			},
 			sel_categoria: {
 				required: "Este campo es requerido."
@@ -311,21 +322,19 @@ $(function(){
 				type:'POST',
 				data:{
 					guardar:'ok',
-					txt_1:$('#sel_tipo').val(),
-					txt_2:$('#txt_nombre').val().toUpperCase(),
-					txt_3:$('#txt_propietario').val().toUpperCase(),
-					txt_4:$('#txt_direccion').val().toUpperCase(),
-					txt_5:$('#txt_latitud').val(),
-					txt_6:$('#txt_longitud').val(),
-					txt_7:$('#sel_categoria').val(),
-					txt_8:$('#txt_nhab').val(),
-					txt_9:$('#txt_nplazas').val(),
-					txt_10:$('#txt_telf').val(),
-					txt_11:$('#txt_correo').val(),
-					txt_12:$('#txt_web').val(),
-					txt_13:$('#descripcion').val(),
-					txt_14:$('#txt_fotos').val(),
-					txt_15:$('#sel_parroquia').val()
+					txt_1:$('#txt_nombre').val().toUpperCase(),
+					txt_2:$('#txt_propietario').val().toUpperCase(),
+					txt_3:$('#txt_direccion').val().toUpperCase(),
+					txt_4:$('#txt_latitud').val(),
+					txt_5:$('#txt_longitud').val(),					
+					txt_6:$('#txt_telf').val(),
+					txt_7:$('#txt_correo').val(),
+					txt_8:$('#txt_web').val(),
+					txt_9:$('#sel_clima').val(),
+					txt_10:$('#descripcion').val(),
+					txt_11:$('#txt_fotos').val(),
+					txt_12:$('#sel_subtipo').val(),
+					txt_13:$('#sel_parroquia').val()
 				},
 				success:function(data){
 					console.log(data)
@@ -358,16 +367,58 @@ $(function(){
 		invalidHandler: function (form) {
 		}
 	});
-	// llenar select tipo comida bebida
+	//ocultar select tipo atractivo y subtipo
+	$('#sel_tipo_a').hide();
+	$('#sel_subtipo').hide();
+
+//llenar categoria
 	$.ajax({
 		url:'app.php',
 		type:'POST',
-		data:{llenar_tipo_comida:':)'},
+		data:{llenar_categoria_atractivo:':)'},
 		success:function(data){
-			$('#sel_tipo').html(data);
+			$('#sel_categoria').html(data);
 		}
 	})
 
+	//llenar tipo atractivo
+	$('#sel_categoria').change(function(){
+		$('#sel_tipo_a').show();
+		var id_categoria=$('#sel_categoria'). val();
+		$.ajax({
+		url:'app.php',
+		type:'POST',
+		data:{llenar_tipo_a:':)', id:id_categoria},
+		success:function(data){
+			$('#sel_tipo_a').html(data);
+			console.log(data);
+		}
+	})
+	})
+//llenar subtipo atractivo
+	$('#sel_tipo_a').change(function(){
+		$('#sel_subtipo').show();
+		var id_tipo_a=$('#sel_tipo_a'). val();
+		$.ajax({
+		url:'app.php',
+		type:'POST',
+		data:{llenar_subtipo:':)', id:id_tipo_a},
+		success:function(data){
+			$('#sel_subtipo').html(data);
+			console.log(data);
+		}
+	})
+	})
+
+	//llenar clima
+	$.ajax({
+		url:'app.php',
+		type:'POST',
+		data:{llenar_clima:':)'},
+		success:function(data){
+			$('#sel_clima').html(data);
+		}
+	})
 //ocultar select canton
 	$('#sel_parroquia').hide();
 

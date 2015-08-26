@@ -65,6 +65,8 @@
 					
 					$('#txt_id_index').val(idx);
 					$('#select_categoria').text(data[0]);
+
+
 					$('#select_tipo').text(data[1]);				
 					$('#lbl_subtipo').text(data[2]);
 					$('#txt_id_categoria').val(data[3]);
@@ -75,21 +77,40 @@
 					$('#select_categoria').editable({
 						type:'select2',
 						select2:{
-							placeholder: "Selec. categoria",
-							containerCssClass: "" ,
+							placeholder: "Selec. categoría",
 							'width': 200
 						},
 						value : 'NL',
 						source: select_categoria(idx),
-						success: function(response, newValue) {						
-							// $.ajax({
-					  //           url:'app.php',
-					  //           async : false ,   
-					  //           type:  'post',
-					  //           //data: {editar_categoria_tipo:'ok',id:id,valor:newValue}	            		                
-					  //   	});
+						success: function(response, newValue) {
+							$('select_tipo').editable('option','source',select_tipo());
+							$('#txt_id_categoria').val(newValue);
+							$.ajax({
+								url:'app.php',
+								type:  'post',
+								data: {nombre_categoria_tipo:'ok',id:newValue},
+								success:function(data){
+									$('#select_categoria').text(data);
+								}            		                
+						  	});
 							//permiti simular el evento que se requiere en el elemento
 						    $("#select_tipo").trigger("click");
+						    $('#select_tipo').editable({
+								type:'select2',
+								select2:{
+									placeholder: "Selec. Tipo",
+									containerCssClass: "" ,
+									'width': 200
+								},
+								pk:    idx,
+								name:  'actualizar_tipo',
+								url:   'app.php', 	
+								value : 'NL',
+								source: select_tipo(),
+								success: function(response, newValue) {						
+									llenar();
+								}		
+						    });
 						}						
 				    });
 
@@ -104,7 +125,7 @@
 						name:  'actualizar_tipo',
 						url:   'app.php', 	
 						value : 'NL',
-						source: select_tipo(idx),
+						source: select_tipo(),
 						success: function(response, newValue) {						
 							llenar();
 						}		
@@ -135,13 +156,13 @@
 			});			
 		}
 		//procesos en puro 
-		function select_tipo(id){
+		function select_tipo(){
 			var b="source";
 			var result;
 			$.ajax({
 	            type: "POST",
 	            url:"app.php",
-	            data:{llenar_tipo2:'ok', id:id},
+	            data:{llenar_tipo2:'ok', id:$('#txt_id_categoria').val()},
 	            contentType:"application/x-www-form-urlencoded; charset=UTF-8", 
 	            global:false,
 	            async: false,
@@ -154,8 +175,9 @@
 	                    console.log(thrownError);
 	            }
 			});  
-			 return result;
+			return result;
 		}
+
 		function select_tipo2(id){
 			alert(id)
 			var b="source";			

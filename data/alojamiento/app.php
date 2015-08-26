@@ -9,6 +9,37 @@ $class=new constante();
 			print'<option value="'.$row[0].'">'.$row[1].'</option>';
 	 	}
 	}	
+
+	if(isset($_POST['llenar_tipo_alojamiento_select'])) {
+		$resultado = $class->consulta("SELECT * FROM tipo_alojamiento WHERE ESTADO=1");
+		$acu;
+		while ($row=$class->fetch_array($resultado)) {		
+			$arr = array('id' => $row[0], 'text' => $row[1]);
+			$acu[]=$arr;
+		}
+		print_r(json_encode($acu));
+	}
+	if(isset($_POST['edicion_imagenes'])) {
+		$resultado = $class->consulta("SELECT F.* FROM ALOJAMIENTO A, FOTOGRAFIAS_ALOJAMIENTO F WHERE F.ESTADO=1 AND F.ID_ALOJAMIENTO=A.CODIGO AND F.ID_ALOJAMIENTO='$_POST[id]'");
+		$acu=0;
+		print'<ul class="ace-thumbnails clearfix">';
+		while ($row=$class->fetch_array($resultado)) {		
+			print'
+				<li>
+					<div>
+						<img width="100" height="100" alt="150x150" src="'.$row[1].'" />
+						<div class="text">
+							<div class="inner" id="default-button">
+								<button class="btn btn-white btn-yellow btn-sm btn-round" onclick=eliminar_img("'.$row[0].'")><i class="ace-icon fa fa-times bigger-120 blue"></i></button>
+							</div>
+						</div>
+					</div>
+				</li>
+			';
+		}
+		print'</ul>';
+	}
+
 	if (isset($_POST['obj_guardar'])) {
 		$carpeta = 'img/';
 		if (!file_exists($carpeta)) {
@@ -37,6 +68,38 @@ $class=new constante();
             {
             	//guardando
             	$resultado = $class->consulta("INSERT INTO FOTOGRAFIAS_ALOJAMIENTO VALUES('$id_img','$destino','$id','1','$fecha')");	
+				if (!$resultado) {
+					print('1');
+				}else{
+					print('0');
+				}
+
+            }
+        }
+
+
+	}
+	if (isset($_POST['obj_guardar_nuevo'])) {
+		$carpeta = 'img/';
+		if (!file_exists($carpeta)) {
+		    mkdir($carpeta, 0777, true);
+		}
+		$carpetaDestino=$carpeta;
+		for($i=0;$i<count($_FILES['txt_fotos2']['name']);$i++)
+        { 
+        	$extension=$_FILES["txt_fotos2"]["name"][$i];
+        	$extension=(string)$extension;
+        	$e=explode('.', $extension);
+        	$id_img=$class->idz();
+        	$fecha=$class->fecha_hora();
+
+            $origen=$_FILES["txt_fotos2"]["tmp_name"][$i];
+            $destino=$carpetaDestino.$id_img.'.'.$e[1];				
+            # movemos el archivo
+            if(@move_uploaded_file($origen, $destino))
+            {
+            	//guardando
+            	$resultado = $class->consulta("INSERT INTO FOTOGRAFIAS_ALOJAMIENTO VALUES('$id_img','$destino','$_POST[txt_id_alojamiento_img]','1','$fecha')");	
 				if (!$resultado) {
 					print('1');
 				}else{
@@ -114,6 +177,16 @@ $class=new constante();
 		$id=$class->idz();
 		$fecha=$class->fecha_hora();
 			$resultado = $class->consulta("UPDATE alojamiento SET estado=0 WHERE codigo='$_POST[id]'");	
+		if (!$resultado) {
+			print('0');
+		}else{
+			print('1');
+		}		
+	}
+	if(isset($_POST['eliminar_imgs'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+			$resultado = $class->consulta("UPDATE fotografias_alojamiento SET estado=0 WHERE codigo='$_POST[id]'");	
 		if (!$resultado) {
 			print('0');
 		}else{
@@ -269,7 +342,7 @@ $class=new constante();
 		$id=$class->idz();
 		$fecha=$class->fecha_hora();
 		$valor=$_POST['valor'];
-			$resultado = $class->consulta("UPDATE alojamiento SET DESCRIPCION=upper('$valor') WHERE codigo='$_POST[id]'");	
+			$resultado = $class->consulta("UPDATE alojamiento SET DESCRIPCION='$valor' WHERE codigo='$_POST[id]'");	
 		if (!$resultado) {
 			print('0');
 		}else{

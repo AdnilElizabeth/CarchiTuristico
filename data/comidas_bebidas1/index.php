@@ -113,7 +113,7 @@
 											<div></div>
 											<form class="form-horizontal" name="form-guardar" id="form-guardar" enctype="multipart/form-data">
 												<h4 class="header orange">Información General</h4>
-												<div class="form-group">												
+												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Tipo:</label>
 
 													<div class="col-xs-12 col-sm-9">
@@ -248,22 +248,22 @@
 
 													<div class="col-xs-12 col-sm-9">
 														<div class="clearfix">
-															<textarea class="col-xs-12 col-sm-10" name="descripcion" id="descripcion" ></textarea>
+															<textarea class="col-xs-12 col-sm-10" name="descripcion" id="descripcion"></textarea>
 														</div>
 													</div>
 												</div>	
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Fotografia:</label>
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Fotografía:</label>
 
 													<div class="col-xs-12 col-sm-9">
 														<div class="clearfix">
-															<input multiple="multiple" type="file" id="txt_fotos" name="txt_fotos[]" accept="image/*" />
+															<input type="file" id="txt_fotos" />
+
 														</div>
 													</div>
 												</div>
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment"></label>
-													<input type="hidden" name="obj_guardar">
 													<div class="col-xs-12 col-sm-9">
 														<button class="btn btn-inverse btn-next" data-last="Finish">
 															Guardar
@@ -316,157 +316,35 @@
 							</div>
 						</div>
 						<div class="modal-body padding">
-							<div class="row">
-								<div class="col-xs-6">
-									<h4 class="header orange">Información General</h4>
-									<div class="profile-user-info no-padding">
+							<div class="profile-user-info profile-user-info-striped">
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Tipo </div>
 
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Tipo: </div>											
-
-											<div class="profile-info-value">
-												<input type="hidden" id="txt_id_comidas>
-												<span class="editable" id="select_tipo">Tipo</span>
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Nombre: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_nombre">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Propietario: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_propietario">..</span>
-												
-											</div>
-										</div>
+									<div class="profile-info-value">
+										<input type="hidden" id="txt_id_parroquia">
+										<span class="editable" id="select_tipo">Tipo</span>
 									</div>
 								</div>
-								<div class="col-xs-6">
-									<h4 class="header orange">Ubicación</h4>
-									<div class="profile-user-info no-padding">
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Canton: </div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Nombre </div>
 
-											<div class="profile-info-value">										
-												<span class="editable" id="select_canton">Cantón</span>
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Parroquia: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="select_parroquia">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Dirección: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_direccion">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Longitud:: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_longitud">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Latitud: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_latitud">..</span>
-												
-											</div>
-										</div>
+									<div class="profile-info-value" >
+										<span class="editable" id="lbl_nombre">..</span>
+										
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-xs-6">
-									<h4 class="header orange">Detalles</h4>
-									<div class="profile-user-info no-padding">
-										<div class="profile-user-info">
-											<div class="profile-info-row">
-											<div class="profile-info-name"> Categoría: </div>
 
-											<div class="profile-info-value">										
-												<span class="editable" id="select_categoria">Categoría</span>
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> N° Mesas: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_habitaciones">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> N° Plazas: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_plazas">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Teléfono: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_telefono">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Correo: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_correo">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Sitio Web: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_web">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Descripción: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_descripcion">..</span>
-												
-											</div>
-										</div>
-									</div>
-
-									</div>
-								</div>
-								<div class="col-xs-6">
-									<h4 class="header orange">Img</h4>
-									
-								</div>
-							</div>							
 						</div>
-						
+						<div class="modal-footer no-margin-top">
+							<button class="btn btn-sm btn-danger pull-rigth" data-dismiss="modal">
+								<i class="ace-icon fa fa-times"></i>
+								Cerrar
+							</button>
+						</div>
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->
 			</div>
-
 
 			<div class="footer">
 				<div class="footer-inner">
@@ -528,7 +406,6 @@
 		<!--[if lte IE 8]>
 		  <script src="../../dist/js/excanvas.min.js"></script>
 		<![endif]-->
-		<script src="../../dist/js/jquery-ui.custom.min.js"></script>
 		<script src="../../dist/js/jquery.dataTables.min.js"></script>
 		<script src="../../dist/js/jquery.dataTables.bootstrap.min.js"></script>
 		<script src="../../dist/js/dataTables.tableTools.min.js"></script>
@@ -540,12 +417,6 @@
 		<script src="../../dist/js/bootbox.min.js"></script>
 		<script src="../../dist/js/bootstrap-editable.min.js"></script>
 		<script src="../../dist/js/ace-editable.min.js"></script>
-		<script src="../../dist/js/jquery.autosize.min.js"></script>
-		<script src="../../dist/js/jquery.inputlimiter.1.3.1.min.js"></script>
-		<script src="../../dist/js/jquery.maskedinput.min.js"></script>
-		<script src="../../dist/js/bootstrap-tag.min.js"></script>
-
-
 
 		<!-- ace scripts -->
 		<script src="../../dist/js/ace-elements.min.js"></script>
@@ -593,6 +464,3 @@
 		</script>	
 	</body>
 </html>
-<style type="text/css">
-	#modal-editar .modal-dialog  {width:90%;}
-</style>

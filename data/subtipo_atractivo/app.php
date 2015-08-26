@@ -10,9 +10,15 @@ $class=new constante();
 	 	}
 	}
 
+	if(isset($_POST['nombre_categoria_tipo'])) {
+		$resultado = $class->consulta("SELECT * FROM categoria_atractivo_turistico WHERE ESTADO=1 and codigo='$_POST[id]'");	
+		while ($row=$class->fetch_array($resultado)) {					
+			print $row[1];
+	 	}
+	}
 	// buscar categoria atractivos2
 	if(isset($_POST['llenar_categoria2'])) {
-	$resultado = $class->consulta("SELECT * FROM categoria_atractivo_turistico WHERE ESTADO=1");	
+		$resultado = $class->consulta("SELECT * FROM categoria_atractivo_turistico WHERE ESTADO=1");
 		$acu;
 		while ($row=$class->fetch_array($resultado)) {		
 			$arr = array('id' => $row[0], 'text' => $row[1]);
@@ -22,17 +28,12 @@ $class=new constante();
 	}
 	// buscar categoria atractivos2
 	if(isset($_POST['llenar_tipo2'])) {
-		$resultado = $class->consulta(" SELECT C.* FROM tipo_atractivo_turistico P, categoria_atractivo_turistico C, subtipo_atractivo_turistico S 
-										WHERE S.ESTADO='1' AND P.id_categoria=C.CODIGO AND S.id_tipo=P.codigo AND S.CODIGO='$_POST[id]'");
-		$acu;
-		while ($row1=$class->fetch_array($resultado)) {	
-			$dcacu=$row1[0];
-			$res = $class->consulta("SELECT * FROM TIPO_ATRACTIVO_TURISTICO T, CATEGORIA_ATRACTIVO_TURISTICO C WHERE T.ESTADO=1 AND T.ID_CATEGORIA=C.CODIGO AND C.CODIGO='$dcacu'");
+		
+			$res =$class->consulta("SELECT t.codigo,t.nombre from tipo_atractivo_turistico T, categoria_atractivo_turistico C where t.estado=1 and t.id_categoria=c.codigo and t.id_categoria='$_POST[id]'");
 			while ($row=$class->fetch_array($res)) {
 				$arr = array('id' => $row[0], 'text' => $row[1]);
 				$acu[]=$arr;
 			}
-		}
 		print_r(json_encode($acu));
 	}
 	// buscar categoria atractivos2

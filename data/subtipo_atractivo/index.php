@@ -200,8 +200,9 @@
 									<div class="profile-info-name"> Categoría </div>
 
 									<div class="profile-info-value">
-										<input type="hidden" id="txt_id_subtipo_atractivo">
+										<input type="hidden" id="txt_id_subtipo_atractivo">										
 										<span class="editable" id="select_categoria">Categoria</span>
+										<input type="hidden" id="txt_id_categoria">
 									</div>
 								</div>
 								

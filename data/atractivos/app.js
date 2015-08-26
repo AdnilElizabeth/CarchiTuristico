@@ -1,11 +1,12 @@
-// funcion llenar data table
+	// funcion llenar data table
 		function llenar(){
 			$.ajax({
 				url:'app.php',
 				type:'POST',
 				dataType:'json',
 				data:{llenar:'ok'},
-				success:function(data){											    
+				async:false,
+				success:function(data){		
 					$('#tabla-informacion').DataTable().clear().draw();		
 					var a=0;		
 					for (var i = 0; i<data.length; i=i+4) {
@@ -22,6 +23,9 @@
 								+'<a href="#" class="red"  onclick=eliminar("'+data[i+3]+'")>'
 									+'<i class="ace-icon fa fa-trash-o bigger-130"></i>'
 								+'</a>'
+								+'<a href="#" class="blue"  onclick=mostrar_info("'+data[i+3]+'")>'
+									+'<i class="ace-icon fa fa-eye bigger-130"></i>'
+								+'</a>'
 							+'</div>'
 				        ] ).draw();		
 					};		        		   
@@ -31,7 +35,7 @@
 	// proceso tabla configuracion
 		// edicion de registro
 			function editar(id){				
-				$('#txt_id_parroquia').val(id)
+				$('#txt_id_atractivo').val(id)
 				// edicion
 				$.ajax({
 					url:'app.php',
@@ -39,9 +43,46 @@
 					dataType:'json',
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
-						$('#modal-editar').modal('show');	
-						$('#select_tipo').text(data[0])				
-						$('#lbl_nombre').text(data[1])				
+						$('#modal-editar').modal('show');
+						$('#select_categoria').text(data[0]);	
+						$('#select_tipo').text(data[0]);
+						$('#select_subtipo').text(data[0]);				
+						$('#lbl_nombre').text(data[1]);	
+						$('#lbl_propietario').text(data[2]);	
+						$('#select_canton').text(data[3]);	
+						$('#select_parroquia').text(data[4]);	
+						$('#lbl_direccion').text(data[5]);								
+						$('#lbl_latitud').text(data[6]);	
+						$('#lbl_longitud').text(data[7]);
+						$('#select_clima').text(data[8]);							
+						$('#lbl_telefono').text(data[11]);	
+						$('#lbl_correo').text(data[12]);	
+						$('#lbl_web').text(data[13]);	
+						$('#lbl_descripcion').text(data[14]);	
+						$('#lbl_foto').text(data[15]);	
+
+
+						$('#select_categoria').editable('setValue', data[0]);
+						$('#select_tipo').editable('setValue', data[0]);
+						$('#select_subtipo').editable('setValue', data[0]);
+						$('#lbl_nombre').editable('setValue', data[1]);
+						$('#lbl_propietario').editable('setValue', data[2]);
+						$('#select_canton').editable('setValue', data[3]);
+						$('#select_parroquia').editable('setValue', data[4]);
+						$('#lbl_direccion').editable('setValue', data[5]);						
+						$('#lbl_latitud').editable('setValue', data[6]);
+						$('#lbl_longitud').editable('setValue', data[7]);
+						$('#select_clima').editable('setValue', data[8]);
+						$('#lbl_telefono').editable('setValue', data[11]);
+						$('#lbl_correo').editable('setValue', data[12]);
+						$('#lbl_web').editable('setValue', data[13]);
+						$('#lbl_descripcion').editable('setValue', data[14]);
+						$('#lbl_foto').editable('setValue', data[15]);
+
+
+
+						// procesos
+						
 					}
 				})
 			}
@@ -65,12 +106,28 @@
 						})
 					}
 				});
-				
 			}
 	// fin proceso tabla configuracion
 
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
+
+		// proceso subir imagenes
+	$('#txt_fotos').ace_file_input({
+		style:'well',
+		btn_choose:'Soltar archivos aquí o hager clic para elegir',
+		btn_change:null,
+		no_icon:'ace-icon fa fa-cloud-upload',
+		droppable:true,
+		thumbnail:'small',
+		preview_error : function(filename, error_code) {
+			
+		}
+
+	}).on('change', function(){
+		//console.log($(this).data('ace_input_files'));
+		//console.log($(this).data('ace_input_method'));
+	});
 		// inicializacion de procesos con nuevos frameworks nativos
 	//editables on first profile page
 	$.fn.editable.defaults.mode = 'inline';
@@ -79,9 +136,28 @@ $(function(){
                                 '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';    
 	
 	//editables 
-	
 	//text editable
-    $('#lbl_parroquia').editable({
+    $('#select_tipo').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite tipo, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_tipo:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+	//text editable
+    $('#lbl_nombre').editable({
 		type: 'text',
 		name: 'username',
 		validate: function(value) {
@@ -90,7 +166,7 @@ $(function(){
 		    }		    
 		},
 		success: function(response, newValue) {	
-			var id=$('#txt_id_parroquia').val();			
+			var id=$('#txt_id_atractivo').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -99,7 +175,28 @@ $(function(){
 	    	});
 		}
     });
-    // select editabl
+
+    	//text editable
+    $('#lbl_propietario').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite propietario, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_propietario:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+	  // select editabl
     $('#select_canton').editable({
 		type:'select2',
 		select2:{
@@ -110,16 +207,219 @@ $(function(){
 		value : 'NL',
 		source: select_canton(),
 		success: function(response, newValue) {						
-			var id=$('#txt_id_parroquia').val();			
+			var id=$('#txt_id_atractivo').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {editar_tipo_alojamiento:'ok',id:id,valor:newValue}	            		                
+	            data: {editar_canton:'ok',id:id,valor:newValue}	            		                
 	    	});
 			
 		}		
     });
+
+
+    	//text editable
+    $('#select_parroquia').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite parroquia, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_parroquia:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+	//text editable
+    $('#lbl_direccion').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite dirección, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_direccion:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+    	//text editable
+    $('#lbl_longitud').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite longitud, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_longitud:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+ 	//text editable
+    $('#lbl_latitud').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite latitud, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_latitud:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+     	//text editable
+    $('#select_clima').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, seleccione categoría, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_clima:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+ 
+	//text editable
+    $('#lbl_telefono').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite teléfono, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_telefono:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+    	//text editable
+    $('#lbl_correo').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite correo, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_correo:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+ 	//text editable
+    $('#lbl_web').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite Sitio Web, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_web:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+     	//text editable
+    $('#lbl_descripcion').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite descripcion, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_descripcion:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+ 	//text editable
+    $('#lbl_foto').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite correo, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_foto:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+
+
     function select_canton(){
 		var b="source";
 		var result;
@@ -135,8 +435,8 @@ $(function(){
                   result=response;
             },
             error:function (xhr, ajaxOptions, thrownError){
-                    alert(xhr.status);
-                    alert(thrownError);
+                    console.log(xhr.status);
+                    console.log(thrownError);
             }
 		});  
 		 return result;
@@ -146,14 +446,14 @@ $(function(){
 	// llamando funciones
 		llenar();		
 	// funcion de validar registros existentes
-
+	
 	function buscando(registro,r,reg1,reg2){			
 		var result = "" ; 					
 		$.ajax({
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {existencia_atractivo:'ok',reg:registro,reg1:reg1,reg2:reg2},       
+	            data: {existencia_atractivo:'ok',reg:registro,reg1:reg1,reg2:reg2},        
 	            success : function ( data )  {
 	            	console.log(data)
 			         result = data ;  
@@ -173,7 +473,7 @@ $(function(){
 		if(buscando(reg,0,reg1,reg2)!=0){						
 			return false;
 		};
-	}, "El registro ya existe!!!.");	
+	}, "El registro ya existe!!!.");
 
 	// validacion de formulario
 	$('#form-guardar').validate({
@@ -317,27 +617,15 @@ $(function(){
 
 		submitHandler: function (form) {
 			// envio datos a app.php para guardar
+			var formObj = new FormData(form);
 			$.ajax({
-				url:'app.php',
-				type:'POST',
-				data:{
-					guardar:'ok',
-					txt_1:$('#txt_nombre').val().toUpperCase(),
-					txt_2:$('#txt_propietario').val().toUpperCase(),
-					txt_3:$('#txt_direccion').val().toUpperCase(),
-					txt_4:$('#txt_latitud').val(),
-					txt_5:$('#txt_longitud').val(),					
-					txt_6:$('#txt_telf').val(),
-					txt_7:$('#txt_correo').val(),
-					txt_8:$('#txt_web').val(),
-					txt_9:$('#sel_clima').val(),
-					txt_10:$('#descripcion').val(),
-					txt_11:$('#txt_fotos').val(),
-					txt_12:$('#sel_subtipo').val(),
-					txt_13:$('#sel_parroquia').val()
-				},
-				success:function(data){
-					console.log(data)
+				url: "app.php", // Url to which the request is send
+				type: "POST", 
+				contentType: false,       // The content type used when sending data to the server.
+				processData:false,              // Type of request to be send, called as method
+				data:formObj, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+				success: function(data){
+					var data=parseInt(data);
 					if (data==0) {
 						$.gritter.add({						
 							title: '..Mensaje..!',						
@@ -347,9 +635,8 @@ $(function(){
 							time: 2000,
 							class_name: 'gritter-info gritter-center'
 						});
-						$('#form-guardar').each (function(){
-							this.reset();
-						})
+						$('#form-guardar').each (function(){this.reset();});
+						$('#txt_fotos').ace_file_input('reset_input');
 					}
 					if (data!=0) {
 						$.gritter.add({						
@@ -360,7 +647,7 @@ $(function(){
 							time: 2000,
 							class_name: 'gritter-error gritter-center'
 						});
-					};
+					};					
 				}
 			});
 		},
@@ -400,15 +687,15 @@ $(function(){
 		$('#sel_subtipo').show();
 		var id_tipo_a=$('#sel_tipo_a'). val();
 		$.ajax({
-		url:'app.php',
-		type:'POST',
-		data:{llenar_subtipo:':)', id:id_tipo_a},
-		success:function(data){
-			$('#sel_subtipo').html(data);
-			console.log(data);
-		}
-	})
-	})
+			url:'app.php',
+			type:'POST',
+			data:{llenar_subtipo:':)', id:id_tipo_a},
+			success:function(data){
+				$('#sel_subtipo').html(data);
+				console.log(data);
+			}
+		});
+	});
 
 	//llenar clima
 	$.ajax({
@@ -438,14 +725,13 @@ $(function(){
 		$('#sel_parroquia').show();
 		var id_canton=$('#sel_canton'). val();
 		$.ajax({
-		url:'app.php',
-		type:'POST',
-		data:{llenar_parroquia:':)', id:id_canton},
-		success:function(data){
-			$('#sel_parroquia').html(data);
-			console.log(data);
-		}
-	})
+			url:'app.php',
+			type:'POST',
+			data:{llenar_parroquia:':)', id:id_canton},
+			success:function(data){
+				$('#sel_parroquia').html(data);
+			}
+		});
 	})
 
 });

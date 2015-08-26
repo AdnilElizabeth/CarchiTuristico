@@ -155,7 +155,7 @@ function menu_lateral(){
 							</li>
 
 							<li class="">
-								<a href="">
+								<a href="../tipo_comidas_bebidas/">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Tipo, Comidas y bebidas
 								</a>
@@ -163,7 +163,7 @@ function menu_lateral(){
 								<b class="arrow"></b>
 							</li>
 							<li class="">
-								<a href="">
+								<a href="../tipo_atractivo/">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Tipo, Atractivos
 								</a>
