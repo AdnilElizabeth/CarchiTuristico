@@ -2,6 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+			<!-- Start WOWSlider.com HEAD section -->
+		<link rel="stylesheet" type="text/css" href="engine1/style.css" />
+		<script type="text/javascript" src="engine1/jquery.js"></script>
+		<!-- End WOWSlider.com HEAD section -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
 		<title>Administrador</title>
@@ -69,7 +73,7 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="#">Home</a>
 							</li>
-							<li class="active">Dashboard</li>
+							<li class="active">Carchi Turístico</li>
 						</ul><!-- /.breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -88,24 +92,37 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								<div id="test">
-							<script type="text/javascript">
-							
-							var datos=[["rojo","red"],["verde","green"],["azul","blue"]];
-							var div = document.getElementById("test");
-
-							function cambiar(i){         
-							    i=(i+Math.floor(Math.random()*(datos.length-1)+1))%datos.length;
-							    div.style.background=datos[i][1];
-							    div.innerHTML=datos[i][0];
-							    
-							    setTimeout(function(){cambiar(i);},1000);
-							}
-							        
-							cambiar(0);
-							
-          				</script>
-          				</div>
+								
+<!-- Start WOWSlider.com BODY section -->
+<div id="wowslider-container1">
+<div class="ws_images"><ul>
+		<li><img src="data1/images/1_8.jpg" alt="1_8" title="1_8" id="wows1_0"/></li>
+		<li><img src="data1/images/1_9.jpg" alt="1_9" title="1_9" id="wows1_1"/></li>
+		<li><img src="data1/images/1_10.jpg" alt="1_10" title="1_10" id="wows1_2"/></li>
+		<li><img src="data1/images/1_12.jpg" alt="1_12" title="1_12" id="wows1_3"/></li>
+		<li><img src="data1/images/1_13.jpg" alt="1_13" title="1_13" id="wows1_4"/></li>
+		<li><img src="data1/images/1_14.jpg" alt="1_14" title="1_14" id="wows1_5"/></li>
+		<li><img src="data1/images/560459.jpg" alt="560459" title="560459" id="wows1_6"/></li>
+		<li><img src="data1/images/45489426.jpg" alt="45489426" title="45489426" id="wows1_7"/></li>
+		<li><img src="data1/images/6804748226_95262bcb2a_b.jpg" alt="6804748226_95262bcb2a_b" title="6804748226_95262bcb2a_b" id="wows1_8"/></li>
+		<li><img src="data1/images/artesanias_jade.jpg" alt="artesanias_jade" title="artesanias_jade" id="wows1_9"/></li>
+		<li><img src="data1/images/cascada_duende.jpg" alt="cascada_duende" title="cascada_duende" id="wows1_10"/></li>
+		<li><img src="data1/images/cementerio_tulcan.jpg" alt="cementerio_tulcan" title="cementerio_tulcan" id="wows1_11"/></li>
+		<li><img src="data1/images/figuras_precolombinas.jpg" alt="figuras_precolombinas" title="figuras_precolombinas" id="wows1_12"/></li>
+		<li><img src="data1/images/iglesia_sfrancisco.jpg" alt="iglesia_sfrancisco" title="iglesia_sfrancisco" id="wows1_13"/></li>
+		<li><img src="data1/images/museo_arqueologico.jpg" alt="museo_arqueologico" title="museo_arqueologico" id="wows1_14"/></li>
+		<li><img src="data1/images/museo1_g.jpg" alt="museo1_g" title="museo1_g" id="wows1_15"/></li>
+		<li><img src="data1/images/parque_ayora.jpg" alt="parque_ayora" title="parque_ayora" id="wows1_16"/></li>
+		<li><img src="data1/images/1_2.jpg" alt="1_2" title="1_2" id="wows1_17"/></li>
+		<li><img src="data1/images/1_3.jpg" alt="1_3" title="1_3" id="wows1_18"/></li>
+		<li><a href="http://wowslider.net"><img src="data1/images/1_4.jpg" alt="jquery carousel" title="1_4" id="wows1_19"/></a></li>
+		<li><img src="data1/images/1_6.jpg" alt="1_6" title="1_6" id="wows1_20"/></li>
+	</ul></div>
+<div class="ws_script" style="position:absolute;left:-99%"><a href="http://wowslider.net">http://wowslider.net/</a> by WOWSlider.com v8.5</div>
+<div class="ws_shadow"></div>
+</div>	
+<script type="text/javascript" src="engine1/wowslider.js"></script>
+<script type="text/javascript" src="engine1/script.js"></script>
 
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->

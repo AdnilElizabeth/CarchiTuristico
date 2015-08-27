@@ -17,9 +17,6 @@
 		<link rel="stylesheet" href="../../dist/css/select2.min.css" />
 		<link rel="stylesheet" href="../../dist/css/jquery.gritter.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-editable.min.css" />
-		<link rel="stylesheet" href="../../dist/css/colorbox.min.css" />
-		<link rel="stylesheet" href="../../dist/fonts/fonts.googleapis.com.css" />
-
 
 		<!-- text fonts -->
 		<link rel="stylesheet" href="../../dist/fonts/fonts.googleapis.com.css" />
@@ -75,7 +72,7 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="#">Carchi</a>
 							</li>
-							<li class="active">Alojamiento</li>
+							<li class="active">Atractivos Turísticos</li>
 						</ul><!-- /.breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -93,7 +90,7 @@
 								<!-- PAGE CONTENT BEGINS -->
 								<div class="widget-box">
 									<div class="widget-header">
-										<h5 class="widget-title">Registro Alojamiento</h5>
+										<h5 class="widget-title">Registro Atractivos Turísticos</h5>
 
 										<div class="widget-toolbar">
 											<div class="widget-menu">
@@ -117,13 +114,31 @@
 											<form class="form-horizontal" name="form-guardar" id="form-guardar" enctype="multipart/form-data">
 												<h4 class="header orange">Información General</h4>
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Tipo:</label>
+												
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Categoría:</label>
+
 													<div class="col-xs-12 col-sm-9">
-														<select id="sel_tipo" name="sel_tipo" data-placeholder="Seleccione Tipo">
-															
+														<select id="sel_categoria" name="sel_categoria">								
 														</select>
-													</div>
-												</div>
+													</div>													
+											</div>
+											<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Tipo:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<select id="sel_tipo_a" name="sel_tipo_a"></select>
+													</div>													
+											</div>
+
+											<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Subtipo:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<select id="sel_subtipo" name="sel_subtipo"></select>
+													</div>													
+											</div>
+
+
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Nombre:</label>
 
@@ -142,6 +157,7 @@
 														</div>
 													</div>
 												</div>
+
 												<h4 class="header orange">Ubicación</h4>
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Cantón:</label>
@@ -185,38 +201,13 @@
 														</div>
 													</div>
 												</div>
-												<h4 class="header orange">Detalles</h4>
+															<h4 class="header orange">Detalles</h4>
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Categoría:</label>
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Clima:</label>
 
 													<div class="col-xs-12 col-sm-9">
-														<select id="sel_categoria" name="sel_categoria">
-															<option value="">Seleccionar</option>
-															<option value="UNA ESTRELLAS">UNA ESTRELLA</option>
-															<option value="DOS ESTRELLAS">DOS ESTRELLAS</option>
-															<option value="TRES ESTRELLAS">TRES ESTRELLAS</option>
-															<option value="CUATRO ESTRELLAS">CUATRO ESTRELLAS</option>
-															<option value="CINCO ESTRELLAS">CINCO ESTELLAS</option>
-														</select>
+														<select id="sel_clima" name="sel_clima"></select>
 													</div>													
-												</div>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">N° habitaciones:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<input type="number" name="txt_nhab" id="txt_nhab" class="col-xs-12 col-sm-10">
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">N° plazas:</label>
-
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<input type="number" name="txt_nplazas" id="txt_nplazas" class="col-xs-12 col-sm-10">
-														</div>
-													</div>
 												</div>
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Teléfono:</label>
@@ -250,7 +241,7 @@
 
 													<div class="col-xs-12 col-sm-9">
 														<div class="clearfix">
-															<textarea class="col-xs-12 col-sm-10" name="descripcion" id="descripcion" ></textarea>
+															<textarea class="col-xs-12 col-sm-10" name="descripcion" id="descripcion"></textarea>
 														</div>
 													</div>
 												</div>	
@@ -314,7 +305,7 @@
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									<span class="white">&times;</span>
 								</button>
-								Actualizar Alojamiento
+								Actualizar Atractivos Turísticos
 							</div>
 						</div>
 						<div class="modal-body padding">
@@ -322,20 +313,35 @@
 								<div class="col-xs-6">
 									<h4 class="header orange">Información General</h4>
 									<div class="profile-user-info no-padding">
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Categoría: </div>											
+
+											<div class="profile-info-value">
+												<input type="hidden" id="txt_id_atractivo">
+												<span class="editable" id="select_categoria">Categoria</span>
+											</div>
+										</div>
 
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Tipo: </div>											
 
-											<div class="profile-info-value">
-												<input type="hidden" id="txt_id_alojamiento">
+											<div class="profile-info-value">												
 												<span class="editable" id="select_tipo">Tipo</span>
+											</div>
+										</div>
+
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Subtipo: </div>											
+
+											<div class="profile-info-value">												
+												<span class="editable" id="select_subtipo">Subtipo</span>
 											</div>
 										</div>
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Nombre: </div>
 
 											<div class="profile-info-value" >
-												<span class="editable" id="lbl_nombre" >..</span>
+												<span class="editable" id="lbl_nombre">..</span>
 												
 											</div>
 										</div>
@@ -400,28 +406,13 @@
 									<div class="profile-user-info no-padding">
 										<div class="profile-user-info">
 											<div class="profile-info-row">
-											<div class="profile-info-name"> Categoría: </div>
+												<div class="profile-info-name"> Clima: </div>
 
-											<div class="profile-info-value">										
-												<span class="editable" id="select_categoria">Categoría</span>
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> N° Hab.: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_habitaciones">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> N° Plazas: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_plazas">..</span>
-												
-											</div>
-										</div>
+												<div class="profile-info-value">										
+												<span class="editable" id="select_clima">Clima</span>
+												</div>
+											</div>										
+										
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Teléfono: </div>
 
@@ -480,213 +471,8 @@
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->
 			</div>
-			<div id="img_nuevo" class="modal fade" tabindex="-1">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header no-padding">
-							<div class="table-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									<span class="white">&times;</span>
-								</button>
-								Registro imagenes
-							</div>
-						</div>
-						<div class="modal-body padding">
-							<form class="form-horizontal" name="form-guardar_nuevo" id="form-guardar_nuevo" enctype="multipart/form-data">
-								<div class="form-group">
-									<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Fotografia:</label>
-									<div class="col-xs-12 col-sm-9">
-										<div class="clearfix">
-											<input type="hidden" name="txt_id_alojamiento_img" id="txt_id_alojamiento_img">
-											<input multiple="multiple" type="file" id="txt_fotos2" name="txt_fotos2[]" accept="image/*" />
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment"></label>
-									<input type="hidden" name="obj_guardar_nuevo">
-									<div class="col-xs-12 col-sm-9">
-										<button class="btn btn-inverse btn-next" data-last="Finish">
-											Guardar
-											<i class="ace-icon fa fa-save icon-save"></i>
-										</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
 
-				<div id="modal-ver" class="modal fade" tabindex="-1">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header no-padding">
-							<div class="table-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									<span class="white">&times;</span>
-								</button>
-								Alojamiento
-							</div>
-						</div>
-						<div class="modal-body padding">
-							<div class="row">
-								<div class="col-xs-6">
-									<h4 class="header orange">Información General</h4>
-									<div class="profile-user-info no-padding">
 
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Tipo: </div>											
-
-											<div class="profile-info-value">
-												<input type="hidden" id="txt_id_alojamiento1">
-												<span class="editable" id="select_tipo1">Tipo</span>
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Nombre: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_nombre1" >..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Propietario: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_propietario1">..</span>
-												
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xs-6">
-									<h4 class="header orange">Ubicación</h4>
-									<div class="profile-user-info no-padding">
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Canton: </div>
-
-											<div class="profile-info-value">										
-												<span class="editable" id="select_canton1">Cantón</span>
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Parroquia: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="select_parroquia1">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Dirección: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_direccion1">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Longitud: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_longitud1">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Latitud: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_latitud1">..</span>
-												
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-6">
-									<h4 class="header orange">Detalles</h4>
-									<div class="profile-user-info no-padding">
-										<div class="profile-user-info">
-											<div class="profile-info-row">
-											<div class="profile-info-name"> Categoría: </div>
-
-											<div class="profile-info-value">										
-												<span class="editable" id="select_categoria1">Categoría</span>
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> N° Hab.: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_habitaciones1">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> N° Plazas: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_plazas1">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Teléfono: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_telefono1">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Correo: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_correo1">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Sitio Web: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_web1">..</span>
-												
-											</div>
-										</div>
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Descripción: </div>
-
-											<div class="profile-info-value" >
-												<span class="editable" id="lbl_descripcion1">..</span>
-												
-											</div>
-										</div>
-									</div>
-
-									</div>
-								</div>
-								<div class="col-xs-6">
-									<h3 class="row header smaller lighter orange">
-											<span class="col-sm-8">
-												<i class="ace-icon fa fa-camera"></i>
-												Fotografías
-											</span><!-- /.col -->
-
-										</h3>
-
-									<div id="obj_img1"></div>
-								</div>
-							</div>							
-						</div>
-						
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div>
 			<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
@@ -763,9 +549,6 @@
 		<script src="../../dist/js/jquery.inputlimiter.1.3.1.min.js"></script>
 		<script src="../../dist/js/jquery.maskedinput.min.js"></script>
 		<script src="../../dist/js/bootstrap-tag.min.js"></script>
-		<script src="../../dist/js/jquery.colorbox.min.js"></script>
-
-
 
 
 
@@ -812,45 +595,9 @@
 
 			    });
 			});			
-
-			jQuery(function($) {
-				var $overflow = '';
-				var colorbox_params = {
-					rel: 'colorbox',
-					reposition:true,
-					scalePhotos:true,
-					scrolling:false,
-					previous:'<i class="ace-icon fa fa-arrow-left"></i>',
-					next:'<i class="ace-icon fa fa-arrow-right"></i>',
-					close:'&times;',
-					current:'{current} of {total}',
-					maxWidth:'100%',
-					maxHeight:'100%',
-					onOpen:function(){
-						$overflow = document.body.style.overflow;
-						document.body.style.overflow = 'hidden';
-					},
-					onClosed:function(){
-						document.body.style.overflow = $overflow;
-					},
-					onComplete:function(){
-						$.colorbox.resize();
-					}
-				};
-
-				$('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
-				$("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
-				
-				
-				$(document).one('ajaxloadstart.page', function(e) {
-					$('#colorbox, #cboxOverlay').remove();
-			   });
-			})
-
 		</script>	
 	</body>
 </html>
 <style type="text/css">
 	#modal-editar .modal-dialog  {width:90%;}
-	#modal-ver .modal-dialog  {width:90%;}
 </style>

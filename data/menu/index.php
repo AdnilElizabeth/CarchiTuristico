@@ -103,7 +103,7 @@ function menu_lateral(){
 
 				<ul class="nav nav-list">
 					<li class="">
-						<a href="gallery.html">
+						<a href="../inicio/index.php">
 							<i class="menu-icon fa fa-dashboard"></i>
 							<span class="menu-text"> Carchi </span>
 						</a>

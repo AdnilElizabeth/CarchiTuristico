@@ -9,6 +9,53 @@ $class=new constante();
 			print'<option value="'.$row[0].'">'.$row[1].'</option>';
 	 	}
 	}
+	if(isset($_POST['llenar_tipo_alojamiento_select'])) {
+		$resultado = $class->consulta("SELECT * FROM tipo_comidas_bebidas WHERE ESTADO=1");
+		$acu;
+		while ($row=$class->fetch_array($resultado)) {		
+			$arr = array('id' => $row[0], 'text' => $row[1]);
+			$acu[]=$arr;
+		}
+		print_r(json_encode($acu));
+	}
+	if(isset($_POST['edicion_imagenes1'])) {
+		$resultado = $class->consulta("SELECT F.* FROM COMIDAS_BEBIDAS A, FOTOGRAFIAS_COMIDAS_BEBIDAS F WHERE F.ESTADO=1 AND F.ID_COMIDAS_BEBIDAS=A.CODIGO AND F.ID_COMIDAS_BEBIDAS='$_POST[id]'");
+		$acu=0;
+		print'<ul class="ace-thumbnails clearfix">';
+		while ($row=$class->fetch_array($resultado)) {		
+			print'
+				<li>
+					<div>
+						<img width="100" height="100" alt="150x150" src="'.$row[1].'" />
+						
+					</div>
+				</li>
+			';
+		}
+		print'</ul>';
+	}
+
+	if(isset($_POST['edicion_imagenes'])) {
+		$resultado = $class->consulta("SELECT F.* FROM COMIDAS_BEBIDAS A, FOTOGRAFIAS_COMIDAS_BEBIDAS F WHERE F.ESTADO=1 AND F.ID_COMIDAS_BEBIDAS=A.CODIGO AND F.ID_COMIDAS_BEBIDAS='$_POST[id]'");
+		$acu=0;
+		print'<ul class="ace-thumbnails clearfix">';
+		while ($row=$class->fetch_array($resultado)) {		
+			print'
+				<li>
+					<div>
+						<img width="100" height="100" alt="150x150" src="'.$row[1].'" />
+						<div class="text">
+							<div class="inner" id="default-button">
+								<button class="btn btn-white btn-yellow btn-sm btn-round" onclick=eliminar_img("'.$row[0].'")><i class="ace-icon fa fa-times bigger-120 blue"></i></button>
+							</div>
+						</div>
+					</div>
+				</li>
+			';
+		}
+		print'</ul>';
+	}
+
 	if (isset($_POST['obj_guardar'])) {
 		$carpeta = 'img/';
 		if (!file_exists($carpeta)) {
@@ -16,7 +63,7 @@ $class=new constante();
 		}
 		$id=$class->idz();
 		$fecha=$class->fecha_hora();
-		$resultado = $class->consulta("INSERT INTO comidas_bebidas VALUES('$id','$_POST[sel_tipo]',upper('$_POST[txt_nombre]'),'$_POST[txt_propietario]','$_POST[txt_direccion]','$_POST[txt_latitud]','$_POST[txt_longitud]','$_POST[sel_categoria]','$_POST[txt_nhab]','$_POST[txt_nplazas]','$_POST[txt_telf]','$_POST[txt_correo]','$_POST[txt_web]','$_POST[descripcion]','img','$_POST[sel_parroquia]',1,'$fecha')");	
+		$resultado = $class->consulta("INSERT INTO COMIDAS_BEBIDAS VALUES('$id','$_POST[sel_tipo]',upper('$_POST[txt_nombre]'),upper('$_POST[txt_propietario]'),upper('$_POST[txt_direccion]'),'$_POST[txt_latitud]','$_POST[txt_longitud]','$_POST[sel_categoria]','$_POST[txt_nhab]','$_POST[txt_nplazas]','$_POST[txt_telf]','$_POST[txt_correo]','$_POST[txt_web]','$_POST[descripcion]','img','$_POST[sel_parroquia]',1,'$fecha')");	
 		if (!$resultado) {
 			print('1');
 		}else{
@@ -36,7 +83,39 @@ $class=new constante();
             if(@move_uploaded_file($origen, $destino))
             {
             	//guardando
-            	$resultado = $class->consulta("INSERT INTO FOTOGRAFIAS_comidas_bebidas VALUES('$id_img','$destino','$id','1','$fecha')");	
+            	$resultado = $class->consulta("INSERT INTO FOTOGRAFIAS_COMIDAS_BEBIDAS VALUES('$id_img','$destino','$id','1','$fecha')");	
+				if (!$resultado) {
+					print('1');
+				}else{
+					print('0');
+				}
+
+            }
+        }
+
+
+	}
+	if (isset($_POST['obj_guardar_nuevo'])) {
+		$carpeta = 'img/';
+		if (!file_exists($carpeta)) {
+		    mkdir($carpeta, 0777, true);
+		}
+		$carpetaDestino=$carpeta;
+		for($i=0;$i<count($_FILES['txt_fotos2']['name']);$i++)
+        { 
+        	$extension=$_FILES["txt_fotos2"]["name"][$i];
+        	$extension=(string)$extension;
+        	$e=explode('.', $extension);
+        	$id_img=$class->idz();
+        	$fecha=$class->fecha_hora();
+
+            $origen=$_FILES["txt_fotos2"]["tmp_name"][$i];
+            $destino=$carpetaDestino.$id_img.'.'.$e[1];				
+            # movemos el archivo
+            if(@move_uploaded_file($origen, $destino))
+            {
+            	//guardando
+            	$resultado = $class->consulta("INSERT INTO FOTOGRAFIAS_COMIDAS_BEBIDAS VALUES('$id_img','$destino','$_POST[txt_id_alojamiento_img]','1','$fecha')");	
 				if (!$resultado) {
 					print('1');
 				}else{
@@ -120,9 +199,19 @@ $class=new constante();
 			print('1');
 		}		
 	}
+	if(isset($_POST['eliminar_imgs'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+			$resultado = $class->consulta("UPDATE fotografias_comidas_bebidas SET estado=0 WHERE codigo='$_POST[id]'");	
+		if (!$resultado) {
+			print('0');
+		}else{
+			print('1');
+		}		
+	}
 
 		// editar comidas_bebidas tipo
-	if(isset($_POST['editar_tipo_alojamiento'])) {
+	if(isset($_POST['editar_tipo'])) {
 		$id=$class->idz();
 		$fecha=$class->fecha_hora();
 			$resultado = $class->consulta("UPDATE comidas_bebidas SET tipo_comidas_bebidas='$_POST[valor]' WHERE codigo='$_POST[id]'");	
@@ -276,6 +365,7 @@ $class=new constante();
 			print('1');
 		}		
 	}
+
 	// llenar tabla
 	if (isset($_POST['llenar'])) {
 		$resultado = $class->consulta("SELECT T.NOMBRE, A.NOMBRE, P.NOMBRE, A.CODIGO FROM COMIDAS_BEBIDAS A, TIPO_COMIDAS_BEBIDAS T, PARROQUIAS P WHERE A.ESTADO=1 AND A.TIPO= T.CODIGO AND A.ID_PARROQUIA=P.CODIGO");	

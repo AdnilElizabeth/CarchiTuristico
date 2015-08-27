@@ -5,36 +5,34 @@
 				type:'POST',
 				dataType:'json',
 				data:{llenar:'ok'},
-				success:function(data){		
-					$('#tabla-informacion').DataTable().clear().draw();		
-					var a=0;		
-					for (var i = 0; i<data.length; i=i+4) {
+				success:function(data){
+					$('#tabla-informacion').DataTable().clear().draw();
+					var a=0;
+					for (var i = 0; i<data.length; i=i+4){
 						a++;
-						$('#tabla-informacion').DataTable().row.add( [
+						$('#tabla-informacion').DataTable().row.add([
 							a,
 				            data[i+0],
 				            data[i+1],
 				            data[i+2],
-				            '<div class="hidden-sm hidden-xs action-buttons">'	
+				            '<div class="hidden-sm hidden-xs action-buttons">'
 								+'<a href="#" class="green" onclick=editar("'+data[i+3]+'")>'
-									+'<i class="ace-icon fa fa-pencil bigger-130"></i>'
+								+'<i class="ace-icon fa fa-pencil bigger-130"></i>'
 								+'</a>'
 								+'<a href="#" class="red"  onclick=eliminar("'+data[i+3]+'")>'
-									+'<i class="ace-icon fa fa-trash-o bigger-130"></i>'
+								+'<i class="ace-icon fa fa-trash-o bigger-130"></i>'
 								+'</a>'
 								+'<a href="#" class="blue"  onclick=mostrar_info("'+data[i+3]+'")>'
-									+'<i class="ace-icon fa fa-eye bigger-130"></i>'
+								+'<i class="ace-icon fa fa-eye bigger-130"></i>'
 								+'</a>'
 							+'</div>'
-				        ] ).draw();		
+				        ] ).draw();
 					};
 				}
 			});
 		}
 	// proceso tabla configuracion
-
-	function mostrar_info(id){				
-				
+	function mostrar_info(id){
 				$('#txt_id_alojamiento_img').val(id)
 				$('#txt_id_alojamiento').val(id)
 				// edicion
@@ -44,51 +42,30 @@
 					dataType:'json',
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
-						$('#modal-ver').modal('show');	
-						$('#select_tipo').text(data[0]);				
-						$('#lbl_nombre').text(data[1]);	
-						$('#lbl_propietario').text(data[2]);	
-						$('#select_canton').text(data[3]);	
-						$('#select_parroquia').text(data[4]);	
-						$('#lbl_direccion').text(data[5]);								
-						$('#lbl_latitud').text(data[6]);	
-						$('#lbl_longitud').text(data[7]);
-						$('#select_categoria').text(data[8]);	
-						$('#lbl_habitaciones').text(data[9]);	
-						$('#lbl_plazas').text(data[10]);	
-						$('#lbl_telefono').text(data[11]);	
-						$('#lbl_correo').text(data[12]);	
-						$('#lbl_web').text(data[13]);	
-						$('#lbl_descripcion').text(data[14]);	
-						$('#lbl_foto').text(data[15]);	
-
-
-						// $('#select_tipo').editable('setValue', data[0]);
-						$('#lbl_nombre').editable('setValue', data[1]);
-						$('#lbl_propietario').editable('setValue', data[2]);
-						$('#select_canton').editable('setValue', data[3]);
-						$('#select_parroquia').editable('setValue', data[4]);
-						$('#lbl_direccion').editable('setValue', data[5]);						
-						$('#lbl_latitud').editable('setValue', data[6]);
-						$('#lbl_longitud').editable('setValue', data[7]);
-						$('#select_categoria').editable('setValue', data[8]);
-						$('#lbl_habitaciones').editable('setValue', data[9]);
-						$('#lbl_plazas').editable('setValue', data[10]);
-						$('#lbl_telefono').editable('setValue', data[11]);
-						$('#lbl_correo').editable('setValue', data[12]);
-						$('#lbl_web').editable('setValue', data[13]);
-						$('#lbl_descripcion').editable('setValue', data[14]);
-						$('#lbl_foto').editable('setValue', data[15]);
+						$('#modal-ver').modal('show');
+						$('#select_tipo1').text(data[0]);
+						$('#lbl_nombre1').text(data[1]);
+						$('#lbl_propietario1').text(data[2]);
+						$('#select_canton1').text(data[3]);
+						$('#select_parroquia1').text(data[4]);
+						$('#lbl_direccion1').text(data[5]);
+						$('#lbl_latitud1').text(data[6]);
+						$('#lbl_longitud1').text(data[7]);
+						$('#select_categoria1').text(data[8]);
+						$('#lbl_habitaciones1').text(data[9]);
+						$('#lbl_plazas1').text(data[10]);
+						$('#lbl_telefono1').text(data[11]);
+						$('#lbl_correo1').text(data[12]);
+						$('#lbl_web1').text(data[13]);
+						$('#lbl_descripcion1').text(data[14]);
+						$('#lbl_foto1').text(data[15]);
 					}
 				})
-
 				// edicion de imagenes
-				mostrar_img(id);
-		
+				mostrar_img1(id);
 			}
 		// edicion de registro
-			function editar(id){				
-				
+			function editar(id){
 				$('#txt_id_alojamiento_img').val(id)
 				$('#txt_id_alojamiento').val(id)
 				// edicion
@@ -98,31 +75,30 @@
 					dataType:'json',
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
-						$('#modal-editar').modal('show');	
-						$('#select_tipo').text(data[0]);				
-						$('#lbl_nombre').text(data[1]);	
-						$('#lbl_propietario').text(data[2]);	
-						$('#select_canton').text(data[3]);	
-						$('#select_parroquia').text(data[4]);	
-						$('#lbl_direccion').text(data[5]);								
-						$('#lbl_latitud').text(data[6]);	
+						$('#modal-editar').modal('show');
+						$('#select_tipo').text(data[0]);
+						$('#lbl_nombre').text(data[1]);
+						$('#lbl_propietario').text(data[2]);
+						$('#select_canton').text(data[3]);
+						$('#select_parroquia').text(data[4]);
+						$('#lbl_direccion').text(data[5]);
+						$('#lbl_latitud').text(data[6]);
 						$('#lbl_longitud').text(data[7]);
-						$('#select_categoria').text(data[8]);	
-						$('#lbl_habitaciones').text(data[9]);	
-						$('#lbl_plazas').text(data[10]);	
-						$('#lbl_telefono').text(data[11]);	
-						$('#lbl_correo').text(data[12]);	
-						$('#lbl_web').text(data[13]);	
-						$('#lbl_descripcion').text(data[14]);	
-						$('#lbl_foto').text(data[15]);	
-
+						$('#select_categoria').text(data[8]);
+						$('#lbl_habitaciones').text(data[9]);
+						$('#lbl_plazas').text(data[10]);
+						$('#lbl_telefono').text(data[11]);
+						$('#lbl_correo').text(data[12]);
+						$('#lbl_web').text(data[13]);
+						$('#lbl_descripcion').text(data[14]);
+						$('#lbl_foto').text(data[15]);
 
 						// $('#select_tipo').editable('setValue', data[0]);
 						$('#lbl_nombre').editable('setValue', data[1]);
 						$('#lbl_propietario').editable('setValue', data[2]);
 						$('#select_canton').editable('setValue', data[3]);
 						$('#select_parroquia').editable('setValue', data[4]);
-						$('#lbl_direccion').editable('setValue', data[5]);						
+						$('#lbl_direccion').editable('setValue', data[5]);
 						$('#lbl_latitud').editable('setValue', data[6]);
 						$('#lbl_longitud').editable('setValue', data[7]);
 						$('#select_categoria').editable('setValue', data[8]);
@@ -135,10 +111,18 @@
 						$('#lbl_foto').editable('setValue', data[15]);
 					}
 				})
-
 				// edicion de imagenes
 				mostrar_img(id);
-		
+			}
+			function mostrar_img1(id){
+				$.ajax({
+					url: 'app.php',
+					type: 'POST',
+					data: {edicion_imagenes1: 'ok',id:id},
+					success:function(data){
+						$('#obj_img1').html(data)
+					}
+				});
 			}
 			function mostrar_img(id){
 				$.ajax({
@@ -161,22 +145,19 @@
 							success:function(data){
 								if (data==1){
 									bootbox.alert("Registro eliminado");
-									llenar();														
+									llenar();
 								}
 								else{
-									bootbox.alert("Tenemos inconvenientes intente mas tarde");	
-								}								
+									bootbox.alert("Tenemos inconvenientes intente mas tarde");
+								}
 							}
 						})
 					}
 				});
-				
 			}
 	// fin proceso tabla configuracion
-
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
-
 		// proceso subir imagenes
 	$('#txt_fotos').ace_file_input({
 		style:'well',
@@ -186,9 +167,7 @@ $(function(){
 		droppable:true,
 		thumbnail:'small',
 		preview_error : function(filename, error_code) {
-			
 		}
-
 	}).on('change', function(){
 		//console.log($(this).data('ace_input_files'));
 		//console.log($(this).data('ace_input_method'));
@@ -202,7 +181,6 @@ $(function(){
 		droppable:true,
 		thumbnail:'small',
 		preview_error : function(filename, error_code) {
-			
 		}
 
 	}).on('change', function(){
@@ -214,7 +192,7 @@ $(function(){
 	$.fn.editable.defaults.mode = 'inline';
 	$.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-blue'></i></div>";
     $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>'+
-                                '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';    
+                                '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';
 	$('#btn_nuevo').click(function(){
 		$('#img_nuevo').modal('show');
 	});
@@ -231,21 +209,21 @@ $(function(){
 		validate: function(value) {
 		    if($.trim(value) == '') {
 		        return 'Por favor, digite tipo, campo requerido';
-		    }		    
+		    }
 		},
-		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+		success: function(response, newValue) {
+			var id=$('#txt_id_alojamiento').val();
 			$.ajax({
-	            url:'app.php',
-	            async :  false ,   
-	            type:  'post',
-	            data: {editar_tipo_alojamiento:'ok',id:id,valor:newValue},
-	            success:function(){
-	            	llenar();
-	            }
-	    	});
+				url:'app.php',
+				async: false ,
+				type: 'post',
+				data: {editar_tipo_alojamiento:'ok',id:id,valor:newValue},
+				success:function(){
+				llenar();
+				}
+			});
 		}
-    });
+	});
 
 	//text editable
     $('#lbl_nombre').editable({
@@ -254,10 +232,10 @@ $(function(){
 		validate: function(value) {
 		    if($.trim(value) == '') {
 		        return 'Por favor, digite nombre, campo requerido';
-		    }		    
+		    }
 		},
-		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+		success: function(response, newValue) {
+			var id=$('#txt_id_alojamiento').val();
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -265,7 +243,7 @@ $(function(){
 	            data: {editar_nombre:'ok',id:id,valor:newValue},
 	            success:function(){
 	            	llenar();
-	            }    		                
+	            }
 	    	});
 		}
     });
@@ -282,8 +260,8 @@ $(function(){
 		    if(!reg.test(value))
 			    return 'Por favor, digite solo letras, campo requerido';
 		},
-		success: function(response, newValue) {	
-			var id=$('#txt_id_alojamiento').val();			
+		success: function(response, newValue) {
+			var id=$('#txt_id_alojamiento').val();
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -291,7 +269,7 @@ $(function(){
 	            data: {editar_propietario:'ok',id:id,valor:newValue},
 	            success:function(){
 	            	llenar();
-	            }    		                     		                
+	            }
 	    	});
 		}
     });
@@ -306,8 +284,8 @@ $(function(){
 		},		
 		value : 'NL',
 		source: select_canton(),
-		success: function(response, newValue) {						
-			var id=$('#txt_id_alojamiento').val();			
+		success: function(response, newValue) {
+			var id=$('#txt_id_alojamiento').val();
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -315,7 +293,7 @@ $(function(){
 	            data: {editar_canton:'ok',id:id,valor:newValue},
 	            success:function(){
 	            	llenar();
-	            }    		                	            		                
+	            }
 	    	});
 			
 		}		
