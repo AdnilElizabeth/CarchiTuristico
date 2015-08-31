@@ -393,7 +393,6 @@ $class=new constante();
 			$acu[]=$row[12];
 			$acu[]=$row[13];
 			$acu[]=$row[14];
-			$acu[]=$row[15];
 	 	}
 	 	print_r(json_encode($acu));
 	}
