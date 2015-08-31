@@ -4,13 +4,13 @@ $class=new constante();
 		// busqueda categoria atractivos
 	if(isset($_POST['llenar_categoria_atractivo'])) {
 		$resultado = $class->consulta("SELECT * FROM categoria_atractivo_turistico WHERE ESTADO=1");	
-		print'<option value="">Seleccionar</option>';	
-		while ($row=$class->fetch_array($resultado)) {					
+		print'<option value="">Seleccionar</option>';
+		while ($row=$class->fetch_array($resultado)) {
 			print'<option value="'.$row[0].'">'.$row[1].'</option>';
 	 	}
-	}	
+	}
 
-	// busqueda tipo atractivo	
+	// busqueda tipo atractivo
 	if(isset($_POST['llenar_tipo_a'])) {
 		$id_categoria=$_POST['id'];
 		$resultado = $class->consulta("SELECT * FROM tipo_atractivo_turistico WHERE ESTADO=1 and id_categoria='$id_categoria'");	
@@ -19,7 +19,7 @@ $class=new constante();
 			print'<option value="'.$row[0].'">'.$row[1].'</option>';
 	 	}
 	}
-	
+
 
 		// busqueda subtipo atractivo	
 	if(isset($_POST['llenar_subtipo'])) {
@@ -60,9 +60,9 @@ $class=new constante();
 
 		// busqueda canton
 	if(isset($_POST['llenar_canton'])) {
-		$resultado = $class->consulta("SELECT * FROM cantones WHERE ESTADO=1");	
-		print'<option value="">Seleccionar</option>';	
-		while ($row=$class->fetch_array($resultado)) {					
+		$resultado = $class->consulta("SELECT * FROM cantones WHERE ESTADO=1");
+		print'<option value="">Seleccionar</option>';
+		while ($row=$class->fetch_array($resultado)) {
 			print'<option value="'.$row[0].'">'.$row[1].'</option>';
 	 	}
 	}
@@ -70,9 +70,9 @@ $class=new constante();
 	// busqueda parroquia
 	if(isset($_POST['llenar_parroquia'])) {
 		$id_canton=$_POST['id'];
-		$resultado = $class->consulta("SELECT * FROM parroquias WHERE ESTADO=1 and cod_canton='$id_canton'");	
-		print'<option value="">Seleccionar</option>';	
-		while ($row=$class->fetch_array($resultado)) {					
+		$resultado = $class->consulta("SELECT * FROM parroquias WHERE ESTADO=1 and cod_canton='$id_canton'");
+		print'<option value="">Seleccionar</option>';
+		while ($row=$class->fetch_array($resultado)) {
 			print'<option value="'.$row[0].'">'.$row[1].'</option>';
 	 	}
 	}
@@ -81,7 +81,7 @@ $class=new constante();
 	if(isset($_POST['existencia_atractivo'])) {
 		$resultado = $class->consulta("SELECT * FROM atractivo_turistico WHERE ESTADO=1 and nombre='$_POST[reg]' and id_subtipo='$_POST[reg1]' and id_parroquia='$_POST[reg2]'");
 		$acu=0;
-		while ($row=$class->fetch_array($resultado)) {					
+		while ($row=$class->fetch_array($resultado)) {
 			$acu=1;
 	 	}
 	 	print$acu;
@@ -90,7 +90,7 @@ $class=new constante();
 	if(isset($_POST['llenar_tipo_alojamiento_select'])) {
 		$resultado = $class->consulta("SELECT * FROM tipo_alojamiento WHERE ESTADO=1");
 		$acu;
-		while ($row=$class->fetch_array($resultado)) {		
+		while ($row=$class->fetch_array($resultado)) {
 			$arr = array('id' => $row[0], 'text' => $row[1]);
 			$acu[]=$arr;
 		}
@@ -100,12 +100,11 @@ $class=new constante();
 		$resultado = $class->consulta("SELECT F.* FROM atractivo_turistico A, FOTOGRAFIAS_atractivos F WHERE F.ESTADO=1 AND F.ID_atractivo=A.CODIGO AND F.ID_atractivo='$_POST[id]'");
 		$acu=0;
 		print'<ul class="ace-thumbnails clearfix">';
-		while ($row=$class->fetch_array($resultado)) {		
+		while ($row=$class->fetch_array($resultado)) {
 			print'
 				<li>
 					<div>
 						<img width="100" height="100" alt="150x150" src="'.$row[1].'" />
-						
 					</div>
 				</li>
 			';
@@ -117,7 +116,7 @@ $class=new constante();
 		$resultado = $class->consulta("SELECT F.* FROM atractivo_turistico A, FOTOGRAFIAS_atractivos F WHERE F.ESTADO=1 AND F.ID_atractivo=A.CODIGO AND F.ID_atractivo='$_POST[id]'");
 		$acu=0;
 		print'<ul class="ace-thumbnails clearfix">';
-		while ($row=$class->fetch_array($resultado)) {		
+		while ($row=$class->fetch_array($resultado)) {
 			print'
 				<li>
 					<div>
@@ -141,22 +140,24 @@ $class=new constante();
 		}
 		$id=$class->idz();
 		$fecha=$class->fecha_hora();
-		$resultado = $class->consulta("INSERT INTO atractivo_turistico VALUES('$id','$_POST[sel_tipo]',upper('$_POST[txt_nombre]'),upper('$_POST[txt_propietario]'),upper('$_POST[txt_direccion]'),'$_POST[txt_latitud]','$_POST[txt_longitud]','$_POST[sel_categoria]','$_POST[txt_nhab]','$_POST[txt_nplazas]','$_POST[txt_telf]','$_POST[txt_correo]','$_POST[txt_web]','$_POST[descripcion]','img','$_POST[sel_parroquia]',1,'$fecha')");	
+		$resultado = $class->consulta("INSERT INTO atractivo_turistico VALUES('$id',upper('$_POST[txt_nombre]'),upper('$_POST[txt_propietario]'),upper('$_POST[txt_direccion]'),'$_POST[txt_latitud]','$_POST[txt_longitud]','$_POST[txt_telf]','$_POST[txt_correo]','$_POST[txt_web]','$_POST[sel_clima]','$_POST[descripcion]','img','$_POST[sel_subtipo]','$_POST[sel_parroquia]',1,'$fecha')");	
 		if (!$resultado) {
 			print('1');
 		}else{
 			print('0');
-		}			
+		}
 		$carpetaDestino=$carpeta;
+		$smd=$_FILES['txt_fotos']['name'][0];
+		if($smd!='')
 		for($i=0;$i<count($_FILES['txt_fotos']['name']);$i++)
-        { 
+        {
         	$extension=$_FILES["txt_fotos"]["name"][$i];
         	$extension=(string)$extension;
         	$e=explode('.', $extension);
         	$id_img=$class->idz();
 
             $origen=$_FILES["txt_fotos"]["tmp_name"][$i];
-            $destino=$carpetaDestino.$id_img.'.'.$e[1];				
+            $destino=$carpetaDestino.$id_img.'.'.$e[1];
             # movemos el archivo
             if(@move_uploaded_file($origen, $destino))
             {
@@ -358,7 +359,7 @@ $class=new constante();
 			print('0');
 		}else{
 			print('1');
-		}		
+		}
 	}
 	// llenar tabla
 	if (isset($_POST['llenar'])) {

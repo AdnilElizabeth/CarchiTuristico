@@ -5,9 +5,9 @@
 				type:'POST',
 				dataType:'json',
 				data:{llenar:'ok'},
-				success:function(data){		
-					$('#tabla-informacion').DataTable().clear().draw();		
-					var a=0;		
+				success:function(data){
+					$('#tabla-informacion').DataTable().clear().draw();
+					var a=0;
 					for (var i = 0; i<data.length; i=i+4) {
 						a++;
 						$('#tabla-informacion').DataTable().row.add( [
@@ -15,7 +15,7 @@
 				            data[i+0],
 				            data[i+1],
 				            data[i+2],
-				            '<div class="hidden-sm hidden-xs action-buttons">'	
+				            '<div class="hidden-sm hidden-xs action-buttons">'
 								+'<a href="#" class="green" onclick=editar("'+data[i+3]+'")>'
 									+'<i class="ace-icon fa fa-pencil bigger-130"></i>'
 								+'</a>'
@@ -26,15 +26,14 @@
 									+'<i class="ace-icon fa fa-eye bigger-130"></i>'
 								+'</a>'
 							+'</div>'
-				        ] ).draw();		
+				        ] ).draw();
 					};
 				}
 			});
 		}
 	// proceso tabla configuracion
 
-	function mostrar_info(id){				
-				
+	function mostrar_info(id){
 				$('#txt_id_alojamiento_img').val(id)
 				$('#txt_id_alojamiento').val(id)
 				// edicion
@@ -44,7 +43,7 @@
 					dataType:'json',
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
-						$('#modal-ver').modal('show');	
+						$('#modal-ver').modal('show');
 						$('#select_tipo1').text(data[0]);
 						$('#lbl_nombre1').text(data[1]);
 						$('#lbl_propietario1').text(data[2]);
@@ -65,11 +64,9 @@
 				})
 				// edicion de imagenes
 				mostrar_img1(id);
-		
 			}
 		// edicion de registro
-			function editar(id){				
-				
+			function editar(id){
 				$('#txt_id_alojamiento_img').val(id)
 				$('#txt_id_alojamiento').val(id)
 				// edicion
@@ -92,10 +89,10 @@
 						$('#lbl_longitud').text(data[7]);
 						$('#select_clima').text(data[8]);							
 						$('#lbl_telefono').text(data[11]);	
-						$('#lbl_correo').text(data[12]);	
-						$('#lbl_web').text(data[13]);	
-						$('#lbl_descripcion').text(data[14]);	
-						$('#lbl_foto').text(data[15]);	
+						$('#lbl_correo').text(data[12]);
+						$('#lbl_web').text(data[13]);
+						$('#lbl_descripcion').text(data[14]);
+						$('#lbl_foto').text(data[15]);
 
 
 						$('#select_categoria').editable('setValue', data[0]);
@@ -151,11 +148,11 @@
 							success:function(data){
 								if (data==1){
 									bootbox.alert("Registro eliminado");
-									llenar();														
+									llenar();
 								}
 								else{
-									bootbox.alert("Tenemos inconvenientes intente mas tarde");	
-								}								
+									bootbox.alert("Tenemos inconvenientes intente mas tarde");
+								}
 							}
 						})
 					}
@@ -175,7 +172,6 @@ $(function(){
 		droppable:true,
 		thumbnail:'small',
 		preview_error : function(filename, error_code) {
-			
 		}
 
 	}).on('change', function(){
@@ -191,7 +187,6 @@ $(function(){
 		droppable:true,
 		thumbnail:'small',
 		preview_error : function(filename, error_code) {
-			
 		}
 
 	}).on('change', function(){
@@ -203,11 +198,11 @@ $(function(){
 	$.fn.editable.defaults.mode = 'inline';
 	$.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-blue'></i></div>";
     $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>'+
-                                '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';    
+                                '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';
 	$('#btn_nuevo').click(function(){
 		$('#img_nuevo').modal('show');
 	});
-	//editables 
+	//editables
 	//text editable
     $('#select_tipo').editable({
 		type: 'text',
@@ -215,15 +210,15 @@ $(function(){
 		validate: function(value) {
 		    if($.trim(value) == '') {
 		        return 'Por favor, digite tipo, campo requerido';
-		    }		    
+		    }
 		},
-		success: function(response, newValue) {	
-			var id=$('#txt_id_atractivo').val();			
+		success: function(response, newValue) {
+			var id=$('#txt_id_atractivo').val();
 			$.ajax({
 	            url:'app.php',
-	            async :  false ,   
+	            async :  false ,
 	            type:  'post',
-	            data: {editar_tipo:'ok',id:id,valor:newValue}          		                
+	            data: {editar_tipo:'ok',id:id,valor:newValue}
 	    	});
 		}
     });
@@ -235,13 +230,13 @@ $(function(){
 		validate: function(value) {
 		    if($.trim(value) == '') {
 		        return 'Por favor, digite nombre, campo requerido';
-		    }		    
+		    }
 		},
-		success: function(response, newValue) {	
-			var id=$('#txt_id_atractivo').val();			
+		success: function(response, newValue) {
+			var id=$('#txt_id_atractivo').val();
 			$.ajax({
 	            url:'app.php',
-	            async :  false ,   
+	            async :  false ,
 	            type:  'post',
 	            data: {editar_nombre:'ok',id:id,valor:newValue},
 	             success:function(){
@@ -559,21 +554,21 @@ $(function(){
 	            data: {existencia_atractivo:'ok',reg:registro,reg1:reg1,reg2:reg2},        
 	            success : function ( data )  {
 	            	console.log(data)
-			         result = data ;  
-			    } 		                
+			         result = data ;
+			    }
 	    	});
-		return result ; 
+		return result ;
 	}
-	jQuery.validator.addMethod("existe_atractivo", function (value, element) {
+	jQuery.validator.addMethod("existe_alojamiento", function (value, element) {
 		var a=value;
 		var reg=$('#txt_nombre').val().toUpperCase();
 		var reg1=$('#sel_subtipo').val();
 		var reg2=$('#sel_parroquia').val();
 
-		if (buscando(reg,0,reg1,reg2)==0) {						
+		if (buscando(reg,0,reg1,reg2)==0) {
 			return true;
 		};
-		if(buscando(reg,0,reg1,reg2)!=0){						
+		if(buscando(reg,0,reg1,reg2)!=0){
 			return false;
 		};
 	}, "El registro ya existe!!!.");
@@ -651,11 +646,11 @@ $(function(){
 							title: '..Mensaje..!',						
 							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos no fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
 							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
-							sticky: false,						
+							sticky: false,
 							time: 2000,
 							class_name: 'gritter-error gritter-center'
 						});
-					};					
+					};
 				}
 			});
 		}
@@ -670,13 +665,13 @@ $(function(){
 		rules: {
 			sel_tipo: {
 				required: true
-			},			
+			},
 			txt_nombre: {
 				required: true,
 				existe_alojamiento: true
 			},
 			txt_propietario: {
-				required: true				 
+				required: true
 			},
 			sel_canton: {
 				required: true
@@ -698,9 +693,8 @@ $(function(){
 			sel_categoria: {
 				required: true
 			},
-			txt_nhab: {
-				required: true,
-				number: true
+			sel_clima: {
+				required: true
 			},
 			txt_nplazas: {
 				required: true,
@@ -719,7 +713,7 @@ $(function(){
 				required: "Este campo es requerido."
 			},
 			txt_propietario:{
-				required: "Este campo es requerido.",				
+				required: "Este campo es requerido."
 			},
 			sel_canton: {
 				required: "Este campo es requerido."
@@ -741,18 +735,17 @@ $(function(){
 			sel_categoria: {
 				required: "Este campo es requerido."
 			},
-			txt_nhab: {
+			sel_clima: {
 				required: "Este campo es requerido.",
-				number: "Ingrese solo números."
 			},
 			txt_nplazas: {
 				required: "Este campo es requerido.",
 				number: "Ingrese solo números."
 			},
-			txt_telf: {				
+			txt_telf: {
 				number: "Ingrese solo números."
 			},
-			txt_correo: {				
+			txt_correo: {
 				email: "Ingrese una dirección de correo electrónico válida."
 			},
 			txt_web:{
@@ -801,11 +794,11 @@ $(function(){
 				success: function(data){
 					var data=parseInt(data);
 					if (data==0) {
-						$.gritter.add({						
-							title: '..Mensaje..!',						
+						$.gritter.add({
+							title: '..Mensaje..!',
 							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
-							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
-							sticky: false,						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',
+							sticky: false,
 							time: 2000,
 							class_name: 'gritter-info gritter-center'
 						});
@@ -813,15 +806,15 @@ $(function(){
 						$('#txt_fotos').ace_file_input('reset_input');
 					}
 					if (data!=0) {
-						$.gritter.add({						
-							title: '..Mensaje..!',						
-							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos no fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
-							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
-							sticky: false,						
+						$.gritter.add({
+							title: '..Mensaje..!',
+							text: 'RESULTADO:<i class="icon-cloud purple bigger-230"></i>  Sus datos no fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',
+							sticky: false,
 							time: 2000,
 							class_name: 'gritter-error gritter-center'
 						});
-					};					
+					};
 				}
 			});
 		}

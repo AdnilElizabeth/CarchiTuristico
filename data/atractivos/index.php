@@ -1,6 +1,6 @@
 <?php require('../menu/index.php');?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
@@ -49,7 +49,7 @@
 	</head>
 
 	<body class="no-skin">
-		
+
 		<div id="navbar" class="navbar navbar-default">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -99,7 +99,7 @@
 											<div class="widget-menu">
 												<a href="#" data-action="settings" data-toggle="dropdown">
 													<i class="ace-icon fa fa-bars"></i>
-												</a>											
+												</a>
 											</div>
 
 											<a href="#" data-action="fullscreen" class="orange2">
@@ -108,7 +108,7 @@
 
 											<a href="#" data-action="reload">
 												<i class="ace-icon fa fa-refresh"></i>
-											</a>									
+											</a>
 										</div>
 									</div>
 									<div class="widget-body">
@@ -117,20 +117,20 @@
 											<form class="form-horizontal" name="form-guardar" id="form-guardar" enctype="multipart/form-data">
 												<h4 class="header orange">Información General</h4>
 												<div class="form-group">
-												
+
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Categoría:</label>
 
 													<div class="col-xs-12 col-sm-9">
-														<select id="sel_categoria" name="sel_categoria">								
+														<select id="sel_categoria" name="sel_categoria">
 														</select>
-													</div>													
+													</div>
 											</div>
 											<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Tipo:</label>
 
 													<div class="col-xs-12 col-sm-9">
 														<select id="sel_tipo_a" name="sel_tipo_a"></select>
-													</div>													
+													</div>
 											</div>
 
 											<div class="form-group">
@@ -138,7 +138,7 @@
 
 													<div class="col-xs-12 col-sm-9">
 														<select id="sel_subtipo" name="sel_subtipo"></select>
-													</div>													
+													</div>
 											</div>
 
 
@@ -166,16 +166,16 @@
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Cantón:</label>
 
 													<div class="col-xs-12 col-sm-9">
-														<select id="sel_canton" name="sel_canton">								
+														<select id="sel_canton" name="sel_canton">
 														</select>
-													</div>													
-												</div>	
+													</div>
+												</div>
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Parroquia:</label>
 
 													<div class="col-xs-12 col-sm-9">
 														<select id="sel_parroquia" name="sel_parroquia"></select>
-													</div>													
+													</div>
 												</div>
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Dirección:</label>
@@ -210,7 +210,7 @@
 
 													<div class="col-xs-12 col-sm-9">
 														<select id="sel_clima" name="sel_clima"></select>
-													</div>													
+													</div>
 												</div>
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Teléfono:</label>
@@ -247,7 +247,7 @@
 															<textarea class="col-xs-12 col-sm-10" name="descripcion" id="descripcion"></textarea>
 														</div>
 													</div>
-												</div>	
+												</div>
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Fotografia:</label>
 
@@ -266,16 +266,15 @@
 															<i class="ace-icon fa fa-save icon-save"></i>
 														</button>
 													</div>
-												</div>										
+												</div>
 											</form>
 										</div>
 									</div>
-								</div>								
+								</div>
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 							<div class="col-xs-6">
 								<!-- PAGE CONTENT BEGINS -->
-								
 								<table id="tabla-informacion" class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
@@ -318,7 +317,7 @@
 									<div class="profile-user-info no-padding">
 
 										<div class="profile-info-row">
-											<div class="profile-info-name"> Categoría: </div>											
+											<div class="profile-info-name"> Categoría: </div>
 
 											<div class="profile-info-value">
 												<input type="hidden" id="txt_id_atractivo">
@@ -326,14 +325,14 @@
 											</div>
 										</div>
 										<div class="profile-info-row">
-											<div class="profile-info-name"> Tipo: </div>											
+											<div class="profile-info-name"> Tipo: </div>
 
-											<div class="profile-info-value">												
+											<div class="profile-info-value">
 												<span class="editable" id="select_tipo">Tipo</span>
 											</div>
 										</div>
 										<div class="profile-info-row">
-											<div class="profile-info-name"> Subipo: </div>											
+											<div class="profile-info-name"> Subipo: </div>
 
 											<div class="profile-info-value">
 												<span class="editable" id="select_subtipo">Sibtipo</span>
@@ -344,7 +343,6 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_nombre" >..</span>
-												
 											</div>
 										</div>
 										<div class="profile-info-row">
@@ -352,7 +350,6 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_propietario">..</span>
-												
 											</div>
 										</div>
 									</div>
@@ -363,7 +360,7 @@
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Canton: </div>
 
-											<div class="profile-info-value">										
+											<div class="profile-info-value">
 												<span class="editable" id="select_canton">Cantón</span>
 											</div>
 										</div>
@@ -372,7 +369,6 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="select_parroquia">..</span>
-												
 											</div>
 										</div>
 										<div class="profile-info-row">
@@ -380,7 +376,6 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_direccion">..</span>
-												
 											</div>
 										</div>
 										<div class="profile-info-row">
@@ -388,7 +383,6 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_longitud">..</span>
-												
 											</div>
 										</div>
 										<div class="profile-info-row">
@@ -396,7 +390,6 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_latitud">..</span>
-												
 											</div>
 										</div>
 									</div>
@@ -419,7 +412,6 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_telefono">..</span>
-												
 											</div>
 										</div>
 										<div class="profile-info-row">
@@ -427,7 +419,6 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_correo">..</span>
-												
 											</div>
 										</div>
 										<div class="profile-info-row">
@@ -435,7 +426,6 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_web">..</span>
-												
 											</div>
 										</div>
 										<div class="profile-info-row">
@@ -443,7 +433,6 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_descripcion">..</span>
-												
 											</div>
 										</div>
 									</div>
@@ -466,9 +455,8 @@
 
 									<div id="obj_img"></div>
 								</div>
-							</div>							
+							</div>
 						</div>
-						
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->
 			</div>
@@ -550,7 +538,6 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_nombre1" >..</span>
-												
 											</div>
 										</div>
 										<div class="profile-info-row">
@@ -558,7 +545,7 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_propietario1">..</span>
-												
+
 											</div>
 										</div>
 									</div>
@@ -569,7 +556,7 @@
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Canton: </div>
 
-											<div class="profile-info-value">										
+											<div class="profile-info-value">
 												<span class="editable" id="select_canton1">Cantón</span>
 											</div>
 										</div>
@@ -578,7 +565,7 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="select_parroquia1">..</span>
-												
+
 											</div>
 										</div>
 										<div class="profile-info-row">
@@ -758,7 +745,7 @@
 		<script src="../../dist/js/ace.min.js"></script>
 		<script src="app.js"></script>
 
-		<!-- inline scripts related to this page -->	
+		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			// abriendo acceso y manipulacion del dom
 			$(function(){
@@ -766,8 +753,8 @@
 				$(".select2").css('width','200px').select2({allowClear:true})
 				.on('change', function(){
 					$(this).closest('form').validate().element($(this));
-				}); 
-				// inicializando tabla, cambiando el idioma 
+				});
+				// inicializando tabla, cambiando el idioma
 				$('#tabla-informacion').dataTable( {
 			        language: {
 					    "sProcessing":     "Procesando...",
@@ -792,10 +779,10 @@
 					        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
 					        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 					    }
-					}	 
+					}
 
 			    });
-			});			
+			});
 
 			jQuery(function($) {
 				var $overflow = '';
@@ -824,14 +811,12 @@
 
 				$('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
 				$("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
-				
-				
 				$(document).one('ajaxloadstart.page', function(e) {
 					$('#colorbox, #cboxOverlay').remove();
 			   });
 			})
 
-		</script>	
+		</script>
 	</body>
 </html>
 <style type="text/css">
