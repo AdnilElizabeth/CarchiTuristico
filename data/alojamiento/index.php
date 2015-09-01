@@ -166,6 +166,13 @@
 													</div>
 												</div>
 												<div class="form-group">
+													<center><div class="hidden-sm hidden-xs action-buttons">
+															<a href="#" class="blue"  onclick=mostrarmapa()>
+															<i class="ace-icon fa fa-globe bigger-130"> Mapa</i>
+															</a>
+													</div></center>
+												</div>
+												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Longitud:</label>
 
 													<div class="col-xs-12 col-sm-9">
@@ -685,6 +692,20 @@
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->
 			</div>
+
+			<div id="modal-mapa" class="modal fade" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header no-padding">
+							
+						</div>
+						<div class="modal-body padding">
+
+						</div>
+						
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
 			<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
@@ -851,4 +872,15 @@
 <style type="text/css">
 	#modal-editar .modal-dialog  {width:90%;}
 	#modal-ver .modal-dialog  {width:90%;}
+	#modal-mapa .modal-dialog  {width:90%;}
 </style>
+<script type="text/javascript">
+		function mostrarmapa(){
+					url:'app.php',
+					type:'POST',
+					dataType:'json',
+					success:function(data){
+						$('#modal-mapa').modal('show');
+					}
+				})
+</script>

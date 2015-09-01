@@ -38,6 +38,13 @@ $class=new constante();
 			print'<option value="'.$row[0].'">'.$row[1].'</option>';
 	 	}
 	}
+		if(isset($_POST['llenar_clima_select'])) {
+		$resultado = $class->consulta("SELECT * FROM clima WHERE ESTADO=1");	
+		print'<option value="">Seleccionar</option>';	
+		while ($row=$class->fetch_array($resultado)) {					
+			print'<option value="'.$row[0].'">'.$row[1].'</option>';
+	 	}
+	}
 		if(isset($_POST['llenar_canton2'])) {
 		$resultado = $class->consulta("SELECT * FROM cantones WHERE ESTADO=1");	
 		$acu;

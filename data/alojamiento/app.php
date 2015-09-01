@@ -212,7 +212,7 @@ $class=new constante();
 	}
 
 		// editar alojamiento tipo
-	if(isset($_POST['editar_tipo_alojamiento'])) {
+	if(isset($_POST['editar_tipo'])) {
 		$id=$class->idz();
 		$fecha=$class->fecha_hora();
 			$resultado = $class->consulta("UPDATE alojamiento SET tipo_alojamiento='$_POST[valor]' WHERE codigo='$_POST[id]'");	
