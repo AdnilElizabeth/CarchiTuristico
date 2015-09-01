@@ -168,6 +168,12 @@
 													</div>
 												</div>
 												<div class="form-group">
+													<center><button class="btn btn-sm btn-primary"  id="btn_mapa">
+														<i class="ace-icon fa fa-binoculars bigger-110"></i>
+														<span class="bigger-110 no-text-shadow">Mapa</span>
+													</button></center>
+												</div>
+												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Longitud:</label>
 
 													<div class="col-xs-12 col-sm-9">
