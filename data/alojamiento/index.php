@@ -49,7 +49,6 @@
 	</head>
 
 	<body class="no-skin">
-		
 		<div id="navbar" class="navbar navbar-default">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -99,7 +98,7 @@
 											<div class="widget-menu">
 												<a href="#" data-action="settings" data-toggle="dropdown">
 													<i class="ace-icon fa fa-bars"></i>
-												</a>											
+												</a>
 											</div>
 
 											<a href="#" data-action="fullscreen" class="orange2">
@@ -108,7 +107,7 @@
 
 											<a href="#" data-action="reload">
 												<i class="ace-icon fa fa-refresh"></i>
-											</a>									
+											</a>
 										</div>
 									</div>
 									<div class="widget-body">
@@ -120,7 +119,6 @@
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Tipo:</label>
 													<div class="col-xs-12 col-sm-9">
 														<select id="sel_tipo" name="sel_tipo" data-placeholder="Seleccione Tipo">
-															
 														</select>
 													</div>
 												</div>
