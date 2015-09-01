@@ -5,17 +5,17 @@
 				type:'POST',
 				dataType:'json',
 				data:{llenar:'ok'},
-				success:function(data){
-					$('#tabla-informacion').DataTable().clear().draw();
-					var a=0;
-					for (var i = 0; i<data.length; i=i+4){
+				success:function(data){		
+					$('#tabla-informacion').DataTable().clear().draw();		
+					var a=0;		
+					for (var i = 0; i<data.length; i=i+4) {
 						a++;
-						$('#tabla-informacion').DataTable().row.add([
+						$('#tabla-informacion').DataTable().row.add( [
 							a,
 				            data[i+0],
 				            data[i+1],
 				            data[i+2],
-				            '<div class="hidden-sm hidden-xs action-buttons">'
+				            '<div class="hidden-sm hidden-xs action-buttons">'	
 								+'<a href="#" class="green" onclick=editar("'+data[i+3]+'")>'
 								+'<i class="ace-icon fa fa-pencil bigger-130"></i>'
 								+'</a>'
@@ -26,13 +26,15 @@
 								+'<i class="ace-icon fa fa-eye bigger-130"></i>'
 								+'</a>'
 							+'</div>'
-				        ] ).draw();
+				        ] ).draw();		
 					};
 				}
 			});
 		}
 	// proceso tabla configuracion
-	function mostrar_info(id){
+
+	function mostrar_info(id){				
+				
 				$('#txt_id_alojamiento_img').val(id)
 				$('#txt_id_alojamiento').val(id)
 				// edicion
@@ -42,7 +44,7 @@
 					dataType:'json',
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
-						$('#modal-ver').modal('show');
+						$('#modal-ver').modal('show');	
 						$('#select_tipo1').text(data[0]);
 						$('#lbl_nombre1').text(data[1]);
 						$('#lbl_propietario1').text(data[2]);
@@ -63,9 +65,11 @@
 				})
 				// edicion de imagenes
 				mostrar_img1(id);
+		
 			}
 		// edicion de registro
-			function editar(id){$('#txt_id_alojamiento_img').val(id)
+			function editar(id){				
+				$('#txt_id_alojamiento_img').val(id)
 				$('#txt_id_alojamiento').val(id)
 				// edicion
 				$.ajax({
@@ -74,30 +78,31 @@
 					dataType:'json',
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
-						$('#modal-editar').modal('show');
-						$('#select_tipo').text(data[0]);
-						$('#lbl_nombre').text(data[1]);
-						$('#lbl_propietario').text(data[2]);
-						$('#select_canton').text(data[3]);
-						$('#select_parroquia').text(data[4]);
-						$('#lbl_direccion').text(data[5]);
-						$('#lbl_latitud').text(data[6]);
+						$('#modal-editar').modal('show');	
+						$('#select_tipo').text(data[0]);				
+						$('#lbl_nombre').text(data[1]);	
+						$('#lbl_propietario').text(data[2]);	
+						$('#select_canton').text(data[3]);	
+						$('#select_parroquia').text(data[4]);	
+						$('#lbl_direccion').text(data[5]);								
+						$('#lbl_latitud').text(data[6]);	
 						$('#lbl_longitud').text(data[7]);
-						$('#select_categoria').text(data[8]);
-						$('#lbl_habitaciones').text(data[9]);
-						$('#lbl_plazas').text(data[10]);
-						$('#lbl_telefono').text(data[11]);
-						$('#lbl_correo').text(data[12]);
-						$('#lbl_web').text(data[13]);
-						$('#lbl_descripcion').text(data[14]);
-						$('#lbl_foto').text(data[15]);
+						$('#select_categoria').text(data[8]);	
+						$('#lbl_habitaciones').text(data[9]);	
+						$('#lbl_plazas').text(data[10]);	
+						$('#lbl_telefono').text(data[11]);	
+						$('#lbl_correo').text(data[12]);	
+						$('#lbl_web').text(data[13]);	
+						$('#lbl_descripcion').text(data[14]);	
+						$('#lbl_foto').text(data[15]);	
+
 
 						// $('#select_tipo').editable('setValue', data[0]);
 						$('#lbl_nombre').editable('setValue', data[1]);
 						$('#lbl_propietario').editable('setValue', data[2]);
-						$('#select_canton').editable('setValue', data[3]);
+						//$('#select_canton').editable('setValue', data[3]);
 						$('#select_parroquia').editable('setValue', data[4]);
-						$('#lbl_direccion').editable('setValue', data[5]);
+						$('#lbl_direccion').editable('setValue', data[5]);						
 						$('#lbl_latitud').editable('setValue', data[6]);
 						$('#lbl_longitud').editable('setValue', data[7]);
 						$('#select_categoria').editable('setValue', data[8]);
@@ -110,9 +115,12 @@
 						$('#lbl_foto').editable('setValue', data[15]);
 					}
 				})
+
 				// edicion de imagenes
 				mostrar_img(id);
+		
 			}
+
 			function mostrar_img1(id){
 				$.ajax({
 					url: 'app.php',
@@ -144,19 +152,22 @@
 							success:function(data){
 								if (data==1){
 									bootbox.alert("Registro eliminado");
-									llenar();
+									llenar();														
 								}
 								else{
-									bootbox.alert("Tenemos inconvenientes intente mas tarde");
-								}
+									bootbox.alert("Tenemos inconvenientes intente mas tarde");	
+								}								
 							}
 						})
 					}
 				});
+				
 			}
 	// fin proceso tabla configuracion
+
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
+
 		// proceso subir imagenes
 	$('#txt_fotos').ace_file_input({
 		style:'well',
@@ -166,7 +177,9 @@ $(function(){
 		droppable:true,
 		thumbnail:'small',
 		preview_error : function(filename, error_code) {
+			
 		}
+
 	}).on('change', function(){
 		//console.log($(this).data('ace_input_files'));
 		//console.log($(this).data('ace_input_method'));
@@ -180,6 +193,7 @@ $(function(){
 		droppable:true,
 		thumbnail:'small',
 		preview_error : function(filename, error_code) {
+			
 		}
 
 	}).on('change', function(){
@@ -191,7 +205,7 @@ $(function(){
 	$.fn.editable.defaults.mode = 'inline';
 	$.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-blue'></i></div>";
     $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>'+
-                                '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';
+                                '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';    
 	$('#btn_nuevo').click(function(){
 		$('#img_nuevo').modal('show');
 	});
@@ -208,21 +222,21 @@ $(function(){
 		validate: function(value) {
 		    if($.trim(value) == '') {
 		        return 'Por favor, digite tipo, campo requerido';
-		    }
+		    }		    
 		},
-		success: function(response, newValue) {
-			var id=$('#txt_id_alojamiento').val();
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
 			$.ajax({
-				url:'app.php',
-				async: false ,
-				type: 'post',
-				data: {editar_tipo_alojamiento:'ok',id:id,valor:newValue},
-				success:function(){
-				llenar();
-				}
-			});
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_tipo:'ok',id:id,valor:newValue},
+	            success:function(){
+	            	llenar();
+	            }
+	    	});
 		}
-	});
+    });
 
 	//text editable
     $('#lbl_nombre').editable({
@@ -231,10 +245,10 @@ $(function(){
 		validate: function(value) {
 		    if($.trim(value) == '') {
 		        return 'Por favor, digite nombre, campo requerido';
-		    }
+		    }		    
 		},
-		success: function(response, newValue) {
-			var id=$('#txt_id_alojamiento').val();
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -242,7 +256,7 @@ $(function(){
 	            data: {editar_nombre:'ok',id:id,valor:newValue},
 	            success:function(){
 	            	llenar();
-	            }
+	            }    		                
 	    	});
 		}
     });
@@ -259,8 +273,8 @@ $(function(){
 		    if(!reg.test(value))
 			    return 'Por favor, digite solo letras, campo requerido';
 		},
-		success: function(response, newValue) {
-			var id=$('#txt_id_alojamiento').val();
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -268,7 +282,7 @@ $(function(){
 	            data: {editar_propietario:'ok',id:id,valor:newValue},
 	            success:function(){
 	            	llenar();
-	            }
+	            }    		                     		                
 	    	});
 		}
     });
@@ -283,8 +297,8 @@ $(function(){
 		},		
 		value : 'NL',
 		source: select_canton(),
-		success: function(response, newValue) {
-			var id=$('#txt_id_alojamiento').val();
+		success: function(response, newValue) {						
+			var id=$('#txt_id_alojamiento').val();			
 			$.ajax({
 	            url:'app.php',
 	            async :  false ,   
@@ -292,7 +306,7 @@ $(function(){
 	            data: {editar_canton:'ok',id:id,valor:newValue},
 	            success:function(){
 	            	llenar();
-	            }
+	            }    		                	            		                
 	    	});
 			
 		}		
@@ -424,7 +438,7 @@ $(function(){
 		name: 'username',
 		validate: function(value) {
 		    if($.trim(value) == '') {
-		        return 'Por favor, digite num de habitaciones, campo requerido';
+		        return 'Por favor, digite num de mesas, campo requerido';
 		    }
 		    // validar solo numero
 		    if (!/^([0-9])*$/.test(value)){
@@ -586,133 +600,131 @@ $(function(){
             global:false,
             async: false,
             dataType: "json",
-            success: function(response) {
+            success: function(response) {                             
                   result=response;
             },
             error:function (xhr, ajaxOptions, thrownError){
                     console.log(xhr.status);
                     console.log(thrownError);
             }
-		});
+		});  
 		 return result;
 	}
 
 
 	// llamando funciones
-		llenar();
+		llenar();		
 	// funcion de validar registros existentes
-	function buscando(registro,r,reg1,reg2){
-		var result = "" ;
+	function buscando(registro,r,reg1,reg2){			
+		var result = "" ; 					
 		$.ajax({
 	            url:'app.php',
-	            async :  false ,
+	            async :  false ,   
 	            type:  'post',
-	            data: {existencia_atractivo:'ok',reg:registro,reg1:reg1,reg2:reg2},
+	            data: {existencia_alojamiento:'ok',reg:registro,reg1:reg1,reg2:reg2},
 	            success : function ( data )  {
 	            	console.log(data)
-	            	alert(data)
 			         result = data ;
 			    }
 	    	});
-		return result ;
+		return result ; 
 	}
 	jQuery.validator.addMethod("existe_alojamiento", function (value, element) {
-		// var a=value;
-		// var reg=$('#txt_nombre').val().toUpperCase();
-		// var reg1=$('#sel_tipo').val();
-		// var reg2=$('#sel_parroquia').val();
+		var a=value;
+		var reg=$('#txt_nombre').val().toUpperCase();
+		var reg1=$('#sel_tipo').val();
+		var reg2=$('#sel_parroquia').val();
 
-		// if (buscando(reg,0,reg1,reg2)==0) {
-		// 	return true;
-		// };
-		// if(buscando(reg,0,reg1,reg2)!=0){
-		// 	return false;
-		// };
-		return false;
+		if (buscando(reg,0,reg1,reg2)==0) {
+			return true;
+		};
+		if(buscando(reg,0,reg1,reg2)!=0){
+			return false;
+		};
 	}, "El registro ya existe!!!.");
 
 
-	// $('#form-guardar_nuevo').validate({
-	// 	errorElement: 'div',
-	// 	errorClass: 'help-block',
-	// 	focusInvalid: false,
-	// 	ignore: "",
-	// 	rules: {
-	// 		txt_fotos2:{
-	// 			required:false
-	// 		}
-	// 	},
+	$('#form-guardar_nuevo').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			txt_fotos2:{
+				required:false
+			}
+		},
 
-	// 	messages: {
-	// 		txt_fotos2:{
-	// 			required:'sdfds'
-	// 		}
-	// 	},
+		messages: {
+			txt_fotos2:{
+				required:'sdfds'
+			}
+		},
 
 
-	// 	highlight: function (e) {
-	// 		$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-	// 	},
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
 
-	// 	success: function (e) {
-	// 		$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-	// 		$(e).remove();
-	// 	},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
 
-	// 	errorPlacement: function (error, element) {
-	// 		if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
-	// 			var controls = element.closest('div[class*="col-"]');
-	// 			if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
-	// 			else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-	// 		}
-	// 		else if(element.is('.select2')) {
-	// 			error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-	// 		}
-	// 		else if(element.is('.chosen-select')) {
-	// 			error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
-	// 		}
-	// 		else error.insertAfter(element.parent());
-	// 	},
+		errorPlacement: function (error, element) {
+			if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+				var controls = element.closest('div[class*="col-"]');
+				if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+				else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+			}
+			else if(element.is('.select2')) {
+				error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+			}
+			else if(element.is('.chosen-select')) {
+				error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+			}
+			else error.insertAfter(element.parent());
+		},
 
-	// 	submitHandler: function (form) {
-	// 		// envio datos a app.php para guardar
-	// 		// var formObj = new FormData(form);
-	// 		// $.ajax({
-	// 		// 	url: "app.php", // Url to which the request is send
-	// 		// 	type: "POST",
-	// 		// 	contentType: false,       // The content type used when sending data to the server.
-	// 		// 	processData:false,              // Type of request to be send, called as method
-	// 		// 	data:formObj, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-	// 		// 	success: function(data){
-	// 		// 		var data=parseInt(data);
-	// 		// 		if (data==0) {
-	// 		// 			$.gritter.add({
-	// 		// 				title: '..Mensaje..!',
-	// 		// 				text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
-	// 		// 				//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',
-	// 		// 				sticky: false,
-	// 		// 				time: 2000,
-	// 		// 				class_name: 'gritter-info gritter-center'
-	// 		// 			});
-	// 		// 			$('#form-guardar').each (function(){this.reset();});
-	// 		// 			$('#txt_fotos2').ace_file_input('reset_input');
-	// 		// 			mostrar_img($('#txt_id_alojamiento_img').val());
-	// 		// 			$('#img_nuevo').modal('hide')
-	// 		// 		}
-	// 		// 		if (data!=0) {
-	// 		// 			$.gritter.add({
-	// 		// 				title: '..Mensaje..!',
-	// 		// 				text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos no fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
-	// 		// 				//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',
-	// 		// 				sticky: false,
-	// 		// 				time: 2000,
-	// 		// 				class_name: 'gritter-error gritter-center'
-	// 		// 			});
-	// 		// 		};
-	// 		// 	}
-	// 		// });
-	// 	}
-	// });
+		submitHandler: function (form) {
+			// envio datos a app.php para guardar
+			var formObj = new FormData(form);
+			$.ajax({
+				url: "app.php", // Url to which the request is send
+				type: "POST", 
+				contentType: false,       // The content type used when sending data to the server.
+				processData:false,              // Type of request to be send, called as method
+				data:formObj, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+				success: function(data){
+					var data=parseInt(data);
+					if (data==0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-info gritter-center'
+						});
+						$('#form-guardar').each (function(){this.reset();});
+						$('#txt_fotos2').ace_file_input('reset_input');
+						mostrar_img($('#txt_id_alojamiento_img').val());
+						$('#img_nuevo').modal('hide')
+					}
+					if (data!=0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos no fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-error gritter-center'
+						});
+					};					
+				}
+			});
+		}
+	});
 
 	// validacion de formulario
 	$('#form-guardar').validate({
@@ -723,13 +735,13 @@ $(function(){
 		rules: {
 			sel_tipo: {
 				required: true
-			},
+			},			
 			txt_nombre: {
 				required: true,
 				existe_alojamiento: true
 			},
 			txt_propietario: {
-				required: true
+				required: true				 
 			},
 			sel_canton: {
 				required: true
@@ -772,7 +784,7 @@ $(function(){
 				required: "Este campo es requerido."
 			},
 			txt_propietario:{
-				required: "Este campo es requerido.",
+				required: "Este campo es requerido.",				
 			},
 			sel_canton: {
 				required: "Este campo es requerido."
@@ -802,10 +814,10 @@ $(function(){
 				required: "Este campo es requerido.",
 				number: "Ingrese solo números."
 			},
-			txt_telf: {
+			txt_telf: {				
 				number: "Ingrese solo números."
 			},
-			txt_correo: {
+			txt_correo: {				
 				email: "Ingrese una dirección de correo electrónico válida."
 			},
 			txt_web:{
@@ -844,39 +856,40 @@ $(function(){
 
 		submitHandler: function (form) {
 			// envio datos a app.php para guardar
-			// var formObj = new FormData(form);
-			// $.ajax({
-			// 	url: "app.php", // Url to which the request is send
-			// 	type: "POST", 
-			// 	contentType: false,       // The content type used when sending data to the server.
-			// 	processData:false,              // Type of request to be send, called as method
-			// 	data:formObj, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-			// 	success: function(data){
-			// 		var data=parseInt(data);
-			// 		if (data==0) {
-			// 			$.gritter.add({
-			// 				title: '..Mensaje..!',
-			// 				text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
-			// 				//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',
-			// 				sticky: false,
-			// 				time: 2000,
-			// 				class_name: 'gritter-info gritter-center'
-			// 			});
-			// 			$('#form-guardar').each (function(){this.reset();});
-			// 			$('#txt_fotos').ace_file_input('reset_input');
-			// 		}
-			// 		if (data!=0) {
-			// 			$.gritter.add({
-			// 				title: '..Mensaje..!',
-			// 				text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos no fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
-			// 				//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',
-			// 				sticky: false,
-			// 				time: 2000,
-			// 				class_name: 'gritter-error gritter-center'
-			// 			});
-			// 		};
-			// 	}
-			// });
+			var formObj = new FormData(form);
+			$.ajax({
+				url: "app.php", // Url to which the request is send
+				type: "POST", 
+				contentType: false,       // The content type used when sending data to the server.
+				processData:false,              // Type of request to be send, called as method
+				data:formObj, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+				success: function(data){
+					var data=parseInt(data);
+					if (data==0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-info gritter-center'
+						});
+						llenar();
+						$('#form-guardar').each (function(){this.reset();});
+						$('#txt_fotos').ace_file_input('reset_input');
+					}
+					if (data!=0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos no fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-error gritter-center'
+						});
+					};					
+				}
+			});
 		}
 	});
 	// llenar select tipo alojamiento
@@ -927,7 +940,7 @@ $(function(){
             type: "POST",
             url:"app.php",
             data:{llenar_tipo_alojamiento_select:'ok'},
-            contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+            contentType:"application/x-www-form-urlencoded; charset=UTF-8", 
             global:false,
             async: false,
             dataType: "json",
@@ -938,26 +951,26 @@ $(function(){
                     console.log(xhr.status);
                     console.log(thrownError);
             }
-		});
+		});  
 		 return result;
 	}
-	function eliminar_img(id){
+	function eliminar_img(id){    	
 		bootbox.confirm("Esta seguro que desea eliminar el registro..?", function(result) {
 			if(result) {
 				$.ajax({
 					url:'app.php',
 					type:'POST',
-					data: {eliminar_imgs:'ok', id:id},
+					data: {eliminar_imgs:'ok', id:id},        
 					success:function(data){
 						var id=$('#txt_id_alojamiento_img').val();
 	        			mostrar_img(id)
 						if (data==1){
 							bootbox.alert("Registro eliminado");
-							llenar();
+							llenar();														
 						}
 						else{
-							bootbox.alert("Tenemos inconvenientes intente mas tarde");
-						}
+							bootbox.alert("Tenemos inconvenientes intente mas tarde");	
+						}								
 					}
 				})
 			}

@@ -214,7 +214,7 @@ $class=new constante();
 	if(isset($_POST['editar_tipo'])) {
 		$id=$class->idz();
 		$fecha=$class->fecha_hora();
-			$resultado = $class->consulta("UPDATE comidas_bebidas SET tipo_comidas_bebidas='$_POST[valor]' WHERE codigo='$_POST[id]'");	
+			$resultado = $class->consulta("UPDATE comidas_bebidas SET tipo='$_POST[valor]' WHERE codigo='$_POST[id]'");	
 		if (!$resultado) {
 			print('0');
 		}else{

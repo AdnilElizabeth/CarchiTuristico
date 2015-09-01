@@ -163,9 +163,49 @@ function menu_lateral(){
 								<b class="arrow"></b>
 							</li>
 							<li class="">
+								<a href="../atractivos_categoria/">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Categoría Atractivos
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="">
 								<a href="../tipo_atractivo/">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Tipo, Atractivos
+									Tipo Atractivos
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="../subtipo_atractivo/">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Subtipo Atractivos
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="../cantones/">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Cantones
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="../parroquias/">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Parroquias
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="../clima/">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Clima
 								</a>
 
 								<b class="arrow"></b>

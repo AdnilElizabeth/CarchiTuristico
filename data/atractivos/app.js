@@ -35,7 +35,7 @@
 
 	function mostrar_info(id){
 				$('#txt_id_alojamiento_img').val(id)
-				$('#txt_id_alojamiento').val(id)
+				$('#txt_id_atractivo').val(id)
 				// edicion
 				$.ajax({
 					url:'app.php',
@@ -44,17 +44,17 @@
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
 						$('#modal-ver').modal('show');
-						$('#select_tipo1').text(data[0]);
-						$('#lbl_nombre1').text(data[1]);
-						$('#lbl_propietario1').text(data[2]);
-						$('#select_canton1').text(data[3]);
-						$('#select_parroquia1').text(data[4]);
-						$('#lbl_direccion1').text(data[5]);
-						$('#lbl_latitud1').text(data[6]);
-						$('#lbl_longitud1').text(data[7]);
-						$('#select_categoria1').text(data[8]);
-						$('#lbl_habitaciones1').text(data[9]);
-						$('#lbl_plazas1').text(data[10]);
+						$('#select_cat1').text(data[0]);
+						$('#select_tipo1').text(data[1]);
+						$('#select_subtipo1').text(data[2]);
+						$('#lbl_nombre1').text(data[3]);
+						$('#lbl_propietario1').text(data[4]);
+						$('#select_canton1').text(data[5]);
+						$('#select_parroquia1').text(data[6]);
+						$('#lbl_direccion1').text(data[7]);
+						$('#lbl_latitud1').text(data[8]);
+						$('#lbl_longitud1').text(data[9]);
+						$('#select_clima1').text(data[10]);
 						$('#lbl_telefono1').text(data[11]);
 						$('#lbl_correo1').text(data[12]);
 						$('#lbl_web1').text(data[13]);
@@ -68,7 +68,7 @@
 		// edicion de registro
 			function editar(id){
 				$('#txt_id_alojamiento_img').val(id)
-				$('#txt_id_alojamiento').val(id)
+				$('#txt_id_atractivo').val(id)
 				// edicion
 				$.ajax({
 					url:'app.php',
@@ -77,18 +77,18 @@
 					data:{datos_editar:'ok',id:id},
 					success:function(data){
 						$('#modal-editar').modal('show');
-						$('#select_categoria').text(data[0]);	
-						$('#select_tipo').text(data[0]);
-						$('#select_subtipo').text(data[0]);				
-						$('#lbl_nombre').text(data[1]);	
-						$('#lbl_propietario').text(data[2]);	
-						$('#select_canton').text(data[3]);	
-						$('#select_parroquia').text(data[4]);	
-						$('#lbl_direccion').text(data[5]);								
-						$('#lbl_latitud').text(data[6]);	
-						$('#lbl_longitud').text(data[7]);
-						$('#select_clima').text(data[8]);							
-						$('#lbl_telefono').text(data[11]);	
+						$('#select_categoria').text(data[0]);
+						$('#select_tipo').text(data[1]);
+						$('#select_subtipo').text(data[2]);
+						$('#lbl_nombre').text(data[3]);
+						$('#lbl_propietario').text(data[4]);
+						$('#select_canton').text(data[5]);
+						$('#select_parroquia').text(data[6]);
+						$('#lbl_direccion').text(data[7]);
+						$('#lbl_latitud').text(data[8]);
+						$('#lbl_longitud').text(data[9]);
+						$('#select_clima').text(data[10]);
+						$('#lbl_telefono').text(data[11]);
 						$('#lbl_correo').text(data[12]);
 						$('#lbl_web').text(data[13]);
 						$('#lbl_descripcion').text(data[14]);
@@ -96,16 +96,16 @@
 
 
 						$('#select_categoria').editable('setValue', data[0]);
-						$('#select_tipo').editable('setValue', data[0]);
-						$('#select_subtipo').editable('setValue', data[0]);
-						$('#lbl_nombre').editable('setValue', data[1]);
-						$('#lbl_propietario').editable('setValue', data[2]);
-						$('#select_canton').editable('setValue', data[3]);
-						$('#select_parroquia').editable('setValue', data[4]);
-						$('#lbl_direccion').editable('setValue', data[5]);						
-						$('#lbl_latitud').editable('setValue', data[6]);
-						$('#lbl_longitud').editable('setValue', data[7]);
-						$('#select_clima').editable('setValue', data[8]);
+						$('#select_tipo').editable('setValue', data[1]);
+						$('#select_subtipo').editable('setValue', data[2]);
+						$('#lbl_nombre').editable('setValue', data[3]);
+						$('#lbl_propietario').editable('setValue', data[4]);
+						//$('#select_canton').editable('setValue', data[5]);
+						$('#select_parroquia').editable('setValue', data[6]);
+						$('#lbl_direccion').editable('setValue', data[7]);						
+						$('#lbl_latitud').editable('setValue', data[8]);
+						$('#lbl_longitud').editable('setValue', data[9]);
+						//$('#select_clima').editable('setValue', data[10]);
 						$('#lbl_telefono').editable('setValue', data[11]);
 						$('#lbl_correo').editable('setValue', data[12]);
 						$('#lbl_web').editable('setValue', data[13]);
@@ -390,12 +390,18 @@ $(function(){
     });
 
      	//text editable
-    $('#select_clima').editable({
-		type: 'text',
-		name: 'username',
+
+        $('#select_clima').editable({
+		type:'select2',
+		select2:{
+			placeholder: "Selec. clima",
+			'width': 200
+		},
+		value : 'NL',
+		source:llenar_clima(),
 		validate: function(value) {
 		    if($.trim(value) == '') {
-		        return 'Por favor, seleccione categoría, campo requerido';
+		        return 'Por favor, seleccione clima, campo requerido';
 		    }		    
 		},
 		success: function(response, newValue) {	
@@ -404,12 +410,14 @@ $(function(){
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {editar_clima:'ok',id:id,valor:newValue}          		                
+	            data: {editar_tipo:'ok',id:id,valor:newValue},
+	            success:function(){
+	            	llenar();
+	            }
 	    	});
 		}
     });
   
-
 	//text editable
     $('#lbl_telefono').editable({
 		type: 'text',
@@ -636,6 +644,7 @@ $(function(){
 							time: 2000,
 							class_name: 'gritter-info gritter-center'
 						});
+
 						$('#form-guardar').each (function(){this.reset();});
 						$('#txt_fotos2').ace_file_input('reset_input');
 						mostrar_img($('#txt_id_alojamiento_img').val());
@@ -802,6 +811,7 @@ $(function(){
 							time: 2000,
 							class_name: 'gritter-info gritter-center'
 						});
+						llenar();
 						$('#form-guardar').each (function(){this.reset();});
 						$('#txt_fotos').ace_file_input('reset_input');
 					}
@@ -901,7 +911,27 @@ $(function(){
 
 });
 // funciones generales
-
+	function llenar_clima(id){
+		var b="source";
+		var result;
+		$.ajax({
+            type: "POST",
+            url:"app.php",
+            data:{llenar_clima_select:'ok'},
+            contentType:"application/x-www-form-urlencoded; charset=UTF-8", 
+            global:false,
+            async: false,
+            dataType: "json",
+            success: function(response) {
+                  result=response;
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                    console.log(xhr.status);
+                    console.log(thrownError);
+            }
+		});  
+		 return result;
+	}
 	function llenar_tipo_alojamiento(id){
 		var b="source";
 		var result;
