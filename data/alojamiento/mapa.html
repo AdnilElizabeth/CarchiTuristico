@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>Ejemplo de Mapa OpenLayers OSM</title>
+<body>
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+  <div id="divMapa" style="width:512px;height:256px;" ></div>
+  <script>
+    mapa = new OpenLayers.Map("divMapa");
+    mapa.addLayer(new OpenLayers.Layer.OSM());
+    mapa.zoomToMaxExtent();
+  </script>
+
+</body>
+</html>

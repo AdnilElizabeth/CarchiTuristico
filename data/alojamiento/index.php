@@ -169,9 +169,11 @@
 												</div>
 												<div class="form-group">
 													<center><div class="hidden-sm hidden-xs action-buttons">
-															<a href="#" class="blue"  onclick=mostrarmapa()>
-															<i class="ace-icon fa fa-globe bigger-130"> Mapa</i>
-															</a>
+														<button class="btn btn-white btn-info btn-bold" type="button" id="btn_mapa">
+															<i class="ace-icon fa fa-globe bigger-120 blue"></i>
+															Mapa
+														</button>
+
 													</div></center>
 												</div>
 												<div class="form-group">
@@ -398,6 +400,11 @@
 												
 											</div>
 										</div>
+										<span class="col-sm-4">
+												<label class="pull-right inline">
+													<button type="button" class="btn btn-white btn-primary" id="btn_mapa_editar">Mapa</button>
+												</label>
+										</span><!-- /.col -->
 									</div>
 								</div>
 							</div>
@@ -699,10 +706,17 @@
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header no-padding">
-							
+							<div class="table-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="white">&times;</span>
+								</button>
+								Mapa
+							</div>
 						</div>
 						<div class="modal-body padding">
-
+							<div id="obj_mapa" style="width:1180px;height:500px;">
+								
+							</div>
 						</div>
 						
 					</div><!-- /.modal-content -->
@@ -785,6 +799,7 @@
 		<script src="../../dist/js/jquery.maskedinput.min.js"></script>
 		<script src="../../dist/js/bootstrap-tag.min.js"></script>
 		<script src="../../dist/js/jquery.colorbox.min.js"></script>
+		<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 
 
 
@@ -876,13 +891,3 @@
 	#modal-ver .modal-dialog  {width:90%;}
 	#modal-mapa .modal-dialog  {width:90%;}
 </style>
-<script type="text/javascript">
-		function mostrarmapa(){
-					url:'app.php',
-					type:'POST',
-					dataType:'json',
-					success:function(data){
-						$('#modal-mapa').modal('show');
-					}
-				})
-</script>

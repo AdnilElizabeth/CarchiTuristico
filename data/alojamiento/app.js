@@ -164,10 +164,144 @@
 				
 			}
 	// fin proceso tabla configuracion
+// procesando mapas
+var centerWGS84, centerOSM;
+var projWGS84, projSphericalMercator;
+function iniciar()
+{
 
+	 // layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
+            // map.addLayer(layer);
+            // map.setCenter(
+            //     new OpenLayers.LonLat(-71.147, 42.472).transform(
+            //         new OpenLayers.Projection("EPSG:4326"),
+            //         map.getProjectionObject()
+            //     ), 12
+            // );    
+	//Para tener coordenadas estandar
+	projWGS84 = new OpenLayers.Projection("EPSG:4326");
+	projSphericalMercator = new OpenLayers.Projection("EPSG:900913");
+	//Centrar el mapa en el punto dado	
+	centerWGS84=new OpenLayers.LonLat(-77.9137,0.6502);
+	//Transformar coordenadas anteriores
+	centerOSM = transformToSphericalMercator(centerWGS84);
+	//Creacion del mapa
+	$('#obj_mapa').html('')
+	mapa=new OpenLayers.Map("obj_mapa");
+	//Creacion de capas
+	capa=new OpenLayers.Layer.OSM("Simple OSM Map");
+
+	//Adicion de capas al mapa
+	mapa.addLayer(capa);
+
+	//Centro el mapa en la posicion dada
+	mapa.setCenter(centerOSM, 15);
+	//Adicion de controles al mapa	
+	//Evento para el movimiento del mouse
+	mapa.events.register("mousemove", mapa, mouseMoveHandler);
+	//Control para el click del mouse en el mapa
+	var click = new OpenLayers.Control.Click();
+    mapa.addControl(click);
+    click.activate();
+}
+//Funcion que registrar el movimiento del mouse
+function mouseMoveHandler(e) 
+{
+    var position = this.events.getMousePosition(e);
+    var lonlat = mapa.getLonLatFromPixel(position);
+	//alert(lonlat);
+    $("#coordenadas").attr('value','Evento MouseMove: '+transformMouseCoords(lonlat));
+}
+
+function transformMouseCoords(lonlat) 
+{
+        	var newlonlat=transformToWGS84(lonlat);
+			var x = Math.round(newlonlat.lon*10000)/10000;
+			var y = Math.round(newlonlat.lat*10000)/10000;
+			newlonlat = new OpenLayers.LonLat(x,y);
+			return newlonlat;
+}
+function transformToWGS84( sphMercatorCoords) 
+{
+        	// Transforma desde SphericalMercator a WGS84
+        	// Devuelve un OpenLayers.LonLat con el pto transformado
+        	var clon = sphMercatorCoords.clone(); // Si no uso un clon me transforma el punto original
+        	var pointWGS84= clon.transform(
+                    new OpenLayers.Projection("EPSG:900913"), // to Spherical Mercator Projection;
+        			new OpenLayers.Projection("EPSG:4326")); // transform from WGS 1984
+        	return pointWGS84;
+}
+function transformToSphericalMercator( wgs84LonLat) 
+{
+        	// Transforma desde SphericalMercator a WGS84
+        	// Devuelve un OpenLayers.LonLat con el pto transformado
+        	var clon = wgs84LonLat.clone(); // Si no uso un clon me transforma el punto original
+        	var pointSphMerc= clon.transform(
+                    new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                    new OpenLayers.Projection("EPSG:900913")); // to Spherical Mercator Projection;
+        	return pointSphMerc;
+}
+//Es un evento que se activa cuando se da clic sobre el mapa
+OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, 
+{                
+     defaultHandlerOptions: 
+	 {
+        'single': true,
+        'double': false,
+        'pixelTolerance': 0,
+        'stopSingle': false,
+        'stopDouble': false
+     },
+	initialize: function(options) 
+	{
+        this.handlerOptions = OpenLayers.Util.extend({}, this.defaultHandlerOptions);
+        OpenLayers.Control.prototype.initialize.apply(this, arguments); 
+        this.handler = new OpenLayers.Handler.Click(this,{'click': this.trigger}, this.handlerOptions);
+    }, 
+	trigger: function(e) 
+	{
+        //Convierto la posicion del mouse, a coordenadas
+		var lonlat = mapa.getLonLatFromPixel(e.xy);
+		var acu=transformMouseCoords(lonlat);
+		var longitud=acu.lon;
+		var latitud=acu.lat;
+		// console.log("Evento MouseClick: "+transformMouseCoords(C))	
+
+		bootbox.confirm("Esta seguro que desea seleccionar esta ubicación", function(result) {
+					if(result) {
+						$('#modal-mapa').modal('hide');
+						$('#txt_longitud').val(longitud);
+						$('#txt_latitud').val(latitud);
+						success: function(response, newValue) {
+							var id=$('#txt_id_alojamiento').val();			
+							$.ajax({
+					            url:'app.php',
+					            async :  false ,   
+					            type:  'post',
+					            data: {editar_lon_lat:'ok',id:id,valor:longitud, valor:latitud}
+					    	});
+						};
+						// $('#lbl_longitud').text(longitud);
+						// $('#lbl_latitud').text(latitud);
+					}
+				});
+    }
+});
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
 
+	// evento click boton mapa
+	$('#btn_mapa').click(function(){
+		$('#modal-mapa').modal('show')
+		iniciar();
+
+	});
+// evento click boton mapa editar
+	$('#btn_mapa_editar').click(function(){
+		$('#modal-mapa').modal('show')
+		iniciar();
+
+	});
 		// proceso subir imagenes
 	$('#txt_fotos').ace_file_input({
 		style:'well',
