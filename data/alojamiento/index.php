@@ -1,6 +1,6 @@
 <?php require('../menu/index.php');?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
@@ -874,8 +874,6 @@
 
 				$('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
 				$("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
-				
-				
 				$(document).one('ajaxloadstart.page', function(e) {
 					$('#colorbox, #cboxOverlay').remove();
 			   });

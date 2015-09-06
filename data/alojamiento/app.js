@@ -161,24 +161,12 @@
 						})
 					}
 				});
-				
 			}
 	// fin proceso tabla configuracion
 // procesando mapas
 var centerWGS84, centerOSM;
 var projWGS84, projSphericalMercator;
-function iniciar()
-{
-
-	 // layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
-            // map.addLayer(layer);
-            // map.setCenter(
-            //     new OpenLayers.LonLat(-71.147, 42.472).transform(
-            //         new OpenLayers.Projection("EPSG:4326"),
-            //         map.getProjectionObject()
-            //     ), 12
-            // );    
-	//Para tener coordenadas estandar
+function iniciar(){
 	projWGS84 = new OpenLayers.Projection("EPSG:4326");
 	projSphericalMercator = new OpenLayers.Projection("EPSG:900913");
 	//Centrar el mapa en el punto dado	
@@ -196,11 +184,11 @@ function iniciar()
 
 	//Centro el mapa en la posicion dada
 	mapa.setCenter(centerOSM, 15);
-	//Adicion de controles al mapa	
+	//Adicion de controles al mapa
 	//Evento para el movimiento del mouse
 	mapa.events.register("mousemove", mapa, mouseMoveHandler);
 	//Control para el click del mouse en el mapa
-	var click = new OpenLayers.Control.Click();
+	var click = new O_();
     mapa.addControl(click);
     click.activate();
 }
@@ -242,8 +230,8 @@ function transformToSphericalMercator( wgs84LonLat)
         	return pointSphMerc;
 }
 //Es un evento que se activa cuando se da clic sobre el mapa
-OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, 
-{                
+O_ = OpenLayers.Class(OpenLayers.Control,
+{
      defaultHandlerOptions: 
 	 {
         'single': true,
@@ -257,32 +245,31 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control,
         this.handlerOptions = OpenLayers.Util.extend({}, this.defaultHandlerOptions);
         OpenLayers.Control.prototype.initialize.apply(this, arguments); 
         this.handler = new OpenLayers.Handler.Click(this,{'click': this.trigger}, this.handlerOptions);
-    }, 
-	trigger: function(e) 
+    },
+	trigger: function(e)
 	{
         //Convierto la posicion del mouse, a coordenadas
 		var lonlat = mapa.getLonLatFromPixel(e.xy);
 		var acu=transformMouseCoords(lonlat);
 		var longitud=acu.lon;
 		var latitud=acu.lat;
-		// console.log("Evento MouseClick: "+transformMouseCoords(C))	
+		// console.log("Evento MouseClick: "+transformMouseCoords(C))
 
 		bootbox.confirm("Esta seguro que desea seleccionar esta ubicación", function(result) {
 					if(result) {
 						$('#modal-mapa').modal('hide');
 						$('#txt_longitud').val(longitud);
 						$('#txt_latitud').val(latitud);
-						success: function(response, newValue) {
-							var id=$('#txt_id_alojamiento').val();			
+							var id=$('#txt_id_alojamiento').val();
 							$.ajax({
 					            url:'app.php',
-					            async :  false ,   
+					            async :  false ,
 					            type:  'post',
-					            data: {editar_lon_lat:'ok',id:id,valor:longitud, valor:latitud}
+					            data: {editar_lon_lat:'ok',id:id,valor1:longitud, valor2:latitud},
+					            success:function(){
+					            	alert('datos actualizados')
+					            }
 					    	});
-						};
-						// $('#lbl_longitud').text(longitud);
-						// $('#lbl_latitud').text(latitud);
 					}
 				});
     }
@@ -311,7 +298,6 @@ $(function(){
 		droppable:true,
 		thumbnail:'small',
 		preview_error : function(filename, error_code) {
-			
 		}
 
 	}).on('change', function(){
@@ -327,7 +313,6 @@ $(function(){
 		droppable:true,
 		thumbnail:'small',
 		preview_error : function(filename, error_code) {
-			
 		}
 
 	}).on('change', function(){
