@@ -159,10 +159,217 @@
 				});
 			}
 	// fin proceso tabla configuracion
+// procesando mapas
+var centerWGS84, centerOSM;
+var projWGS84, projSphericalMercator;
+function iniciar_mapa()
+{
+	 // layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
+            // map.addLayer(layer);
+            // map.setCenter(
+            //     new OpenLayers.LonLat(-71.147, 42.472).transform(
+            //         new OpenLayers.Projection("EPSG:4326"),
+            //         map.getProjectionObject()
+            //     ), 12
+            // );    
+	//Para tener coordenadas estandar
+		var lon=document.getElementById("lbl_longitud1").innerHTML;
+		var lat=document.getElementById("lbl_latitud1").innerHTML;
+		
+	projWGS84 = new OpenLayers.Projection("EPSG:4326");
+	projSphericalMercator = new OpenLayers.Projection("EPSG:900913");
+	//Centrar el mapa en el punto dado	
+	centerWGS84=new OpenLayers.LonLat(lon,lat);
+	//Transformar coordenadas anteriores
+	centerOSM = transformToSphericalMercator(centerWGS84);
+	//Creacion del mapa
+	$('#obj_mapa').html('')
+	mapa=new OpenLayers.Map("obj_mapa");
+	//Creacion de capas
+	capa=new OpenLayers.Layer.OSM("Simple OSM Map");
+
+	//Adicion de capas al mapa
+	mapa.addLayer(capa);
+
+	//Centro el mapa en la posicion dada
+	mapa.setCenter(centerOSM, 18);
+	//Adicion de controles al mapa	
+	//Evento para el movimiento del mouse
+	mapa.events.register("mousemove", mapa, mouseMoveHandler);
+	//Control para el click del mouse en el mapa
+	// var click = new OpenLayers.Control.Click();
+ //    mapa.addControl(click);
+ //    click.activate();
+}
+
+function iniciar()
+{
+
+	 // layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
+            // map.addLayer(layer);
+            // map.setCenter(
+            //     new OpenLayers.LonLat(-71.147, 42.472).transform(
+            //         new OpenLayers.Projection("EPSG:4326"),
+            //         map.getProjectionObject()
+            //     ), 12
+            // );    
+	//Para tener coordenadas estandar
+	projWGS84 = new OpenLayers.Projection("EPSG:4326");
+	projSphericalMercator = new OpenLayers.Projection("EPSG:900913");
+	//Centrar el mapa en el punto dado	
+	centerWGS84=new OpenLayers.LonLat(-77.7196,0.8100);
+	//Transformar coordenadas anteriores
+	centerOSM = transformToSphericalMercator(centerWGS84);
+	//Creacion del mapa
+	$('#obj_mapa').html('')
+	mapa=new OpenLayers.Map("obj_mapa");
+	//Creacion de capas
+	capa=new OpenLayers.Layer.OSM("Simple OSM Map");
+
+	//Adicion de capas al mapa
+	mapa.addLayer(capa);
+
+	//Centro el mapa en la posicion dada
+	mapa.setCenter(centerOSM, 15);
+	//Adicion de controles al mapa	
+	//Evento para el movimiento del mouse
+	mapa.events.register("mousemove", mapa, mouseMoveHandler);
+	//Control para el click del mouse en el mapa
+	var click = new OpenLayers.Control.Click();
+    mapa.addControl(click);
+    click.activate();
+}
+//Funcion que registrar el movimiento del mouse
+function mouseMoveHandler(e) 
+{
+    var position = this.events.getMousePosition(e);
+    var lonlat = mapa.getLonLatFromPixel(position);
+	//alert(lonlat);
+    $("#coordenadas").attr('value','Evento MouseMove: '+transformMouseCoords(lonlat));
+}
+
+function transformMouseCoords(lonlat) 
+{
+        	var newlonlat=transformToWGS84(lonlat);
+			var x = Math.round(newlonlat.lon*10000)/10000;
+			var y = Math.round(newlonlat.lat*10000)/10000;
+			newlonlat = new OpenLayers.LonLat(x,y);
+			return newlonlat;
+}
+function transformToWGS84( sphMercatorCoords) 
+{
+        	// Transforma desde SphericalMercator a WGS84
+        	// Devuelve un OpenLayers.LonLat con el pto transformado
+        	var clon = sphMercatorCoords.clone(); // Si no uso un clon me transforma el punto original
+        	var pointWGS84= clon.transform(
+                    new OpenLayers.Projection("EPSG:900913"), // to Spherical Mercator Projection;
+        			new OpenLayers.Projection("EPSG:4326")); // transform from WGS 1984
+        	return pointWGS84;
+}
+function transformToSphericalMercator( wgs84LonLat) 
+{
+        	// Transforma desde SphericalMercator a WGS84
+        	// Devuelve un OpenLayers.LonLat con el pto transformado
+        	var clon = wgs84LonLat.clone(); // Si no uso un clon me transforma el punto original
+        	var pointSphMerc= clon.transform(
+                    new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                    new OpenLayers.Projection("EPSG:900913")); // to Spherical Mercator Projection;
+        	return pointSphMerc;
+}
+//Es un evento que se activa cuando se da clic sobre el mapa
+OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, 
+{                
+     defaultHandlerOptions: 
+	 {
+        'single': true,
+        'double': false,
+        'pixelTolerance': 0,
+        'stopSingle': false,
+        'stopDouble': false
+     },
+	initialize: function(options) 
+	{
+        this.handlerOptions = OpenLayers.Util.extend({}, this.defaultHandlerOptions);
+        OpenLayers.Control.prototype.initialize.apply(this, arguments); 
+        this.handler = new OpenLayers.Handler.Click(this,{'click': this.trigger}, this.handlerOptions);
+    }, 
+	trigger: function(e) 
+	{
+        //Convierto la posicion del mouse, a coordenadas
+		var lonlat = mapa.getLonLatFromPixel(e.xy);
+		var acu=transformMouseCoords(lonlat);
+		var longitud=acu.lon;
+		var latitud=acu.lat;
+		// console.log("Evento MouseClick: "+transformMouseCoords(C))	
+
+		bootbox.confirm("Esta seguro que desea seleccionar esta ubicación", function(result) {
+					if(result) {
+						$('#modal-mapa').modal('hide');
+						$('#txt_longitud').val(longitud);
+						$('#txt_latitud').val(latitud);
+						$('#lbl_longitud').text(longitud);
+						$('#lbl_latitud').text(latitud);
+					}
+				});
+    }
+});
 
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
 
+	// evento click boton mas tipo
+	$('#btn_mas_clima').click(function(){
+		$('#modal-clima').modal('show')
+		iniciar();
+	});
+
+	$('#btn_mas_categoria').click(function(){
+		$('#modal-categoria').modal('show')
+		iniciar();
+	});
+	$('#btn_mas_subtipo').click(function(){
+		$('#modal-subtipo').modal('show')
+		$.ajax({
+		url:'app.php',
+		type:'POST',
+		data:{llenar_categoria_atractivo:':)'},
+		success:function(data){
+			$('#sel_categoria3').html(data);
+			$('#sel_tipo_a3').hide();
+		}
+	})
+		iniciar();
+	});
+		// evento click boton mas tipo
+	$('#btn_mas_tipo').click(function(){
+		$('#modal-tipo').modal('show')
+		$.ajax({
+		url:'app.php',
+		type:'POST',
+		data:{llenar_categoria_atractivo:':)'},
+		success:function(data){
+			$('#sel_categoria2').html(data);
+		}
+	})
+		iniciar();
+	});
+	// evento click boton mapa
+	$('#btn_mapa').click(function(){
+		$('#modal-mapa').modal('show')
+		iniciar();
+	});
+// evento click boton mapa editar
+	$('#btn_mapa_editar').click(function(){
+		$('#modal-mapa').modal('show')
+		iniciar();
+
+	});
+	// evento click boton mapa ver
+	$('#btn_mapa_ver').click(function(){
+		$('#modal-mapa').modal('show')
+		iniciar_mapa();
+
+	});
 		// proceso subir imagenes
 	$('#txt_fotos').ace_file_input({
 		style:'well',
@@ -831,6 +1038,7 @@ $(function(){
 	});
 //ocultar select tipo atractivo y subtipo
 	$('#sel_tipo_a').hide();
+	//$('btn_mas_tipo').hide();
 	$('#sel_subtipo').hide();
 
 //llenar categoria
@@ -846,6 +1054,7 @@ $(function(){
 	//llenar tipo atractivo
 	$('#sel_categoria').change(function(){
 		$('#sel_tipo_a').show();
+		//$('btn_mas_tipo')
 		var id_categoria=$('#sel_categoria'). val();
 		$.ajax({
 		url:'app.php',
@@ -853,6 +1062,20 @@ $(function(){
 		data:{llenar_tipo_a:':)', id:id_categoria},
 		success:function(data){
 			$('#sel_tipo_a').html(data);
+			console.log(data);
+		}
+	})
+	})
+		$('#sel_categoria3').change(function(){
+		$('#sel_tipo_a3').show();
+		//$('btn_mas_tipo')
+		var id_categoria=$('#sel_categoria3'). val();
+		$.ajax({
+		url:'app.php',
+		type:'POST',
+		data:{llenar_tipo_a:':)', id:id_categoria},
+		success:function(data){
+			$('#sel_tipo_a3').html(data);
 			console.log(data);
 		}
 	})
@@ -975,3 +1198,479 @@ $(function(){
 			}
 		});
     }
+
+    	function buscando1(registro){			
+		var result = "" ; 					
+		$.ajax({
+	            url:'../atractivos_categoria/app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {existencia_categoria:'ok',reg:registro},            
+	            success : function ( data )  {
+	            	console.log(data)
+			         result = data ;  
+			    } 		                
+	    	});
+		return result ; 
+	}
+	jQuery.validator.addMethod("existe_categoria", function (value, element) {
+		var a=value;
+		var reg=$('#txt_nombre1').val().toUpperCase();					
+		if (buscando1(reg,0)==0) {						
+			return true;
+		};
+		if(buscando1(reg,0)!=0){						
+			return false;
+		};
+	}, "El registro ya existe!!!.");
+    $('#form-guardar1').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			txt_nombre1: {
+				required: true,
+				existe_categoria:true
+			}
+		},
+
+		messages: {
+			txt_nombre1: {
+				required: "Este campo es requerido."
+			}
+		},
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		errorPlacement: function (error, element) {
+			if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+				var controls = element.closest('div[class*="col-"]');
+				if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+				else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+			}
+			else if(element.is('.select2')) {
+				error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+			}
+			else if(element.is('.chosen-select')) {
+				error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+			}
+			else error.insertAfter(element.parent());
+		},
+
+		submitHandler: function (form) {
+			// envio datos a app.php para guardar
+			$.ajax({
+				url:'../atractivos_categoria/app.php',
+				type:'POST',
+				data:{
+					guardar:'ok',
+					txt_1:$('#txt_nombre1').val().toUpperCase()
+				},
+				success:function(data){
+					console.log(data)
+					if (data==0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-info gritter-center'
+						});
+						llenar();
+						$('#form-guardar1').each (function(){
+							this.reset();
+							$('#modal-categoria').modal('hide');
+							$.ajax({
+								url:'app.php',
+								type:'POST',
+								data:{llenar_categoria_atractivo:':)'},
+								success:function(data){
+									$('#sel_categoria').html(data);
+								}
+							})
+						})
+					}
+					if (data!=0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos no fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-error gritter-center'
+						});
+						
+					};
+				}
+			});
+		}		
+	});
+		function buscando2(registro){			
+		var result = "" ; 					
+		$.ajax({
+	            url:'../tipo_atractivo/app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {existencia_tipo_atractivo:'ok',reg:registro},            
+	            success : function ( data )  {
+	            	console.log(data)
+			         result = data ;  
+			    } 		                
+	    	});
+		return result ; 
+	}
+	jQuery.validator.addMethod("existe_tipo_atractivo", function (value, element) {
+		var a=value;
+		var reg=$('#txt_nombre2').val().toUpperCase();
+		
+		if (buscando2(reg,0)==0) {						
+			return true;
+		};
+		if(buscando2(reg,0)!=0){						
+			return false;
+		};
+	}, "El registro ya existe!!!.");
+	// validacion de formulario
+	$('#form-guardar2').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			sel_categoria2: {
+				required: true
+			},	
+			txt_nombre2: {
+				required: true,
+				existe_tipo_atractivo:true
+			}
+		},
+
+		messages: {
+			sel_categoria2: {
+				required: "Este campo es requerido."
+			},
+			txt_nombre2: {
+				required: "Este campo es requerido."
+			}
+		},
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		errorPlacement: function (error, element) {
+			if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+				var controls = element.closest('div[class*="col-"]');
+				if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+				else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+			}
+			else if(element.is('.select2')) {
+				error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+			}
+			else if(element.is('.chosen-select')) {
+				error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+			}
+			else error.insertAfter(element.parent());
+		},
+
+		submitHandler: function (form) {
+			// envio datos a app.php para guardar
+			$.ajax({
+				url:'../tipo_atractivo/app.php',
+				type:'POST',
+				data:{
+					guardar:'ok',
+					txt_1:$('#txt_nombre2').val().toUpperCase(),
+					txt_2:$('#sel_categoria2').val()
+				},
+				success:function(data){
+					console.log(data)
+					if (data==0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-info gritter-center'
+						});
+						llenar();
+						$('#form-guardar2').each (function(){
+							this.reset();
+							$('#modal-tipo').modal('hide');
+							var id_categoria=$('#sel_categoria'). val();
+							$.ajax({
+								url:'app.php',
+								type:'POST',
+								data:{llenar_tipo_a2:':)',valor:id_categoria},
+								success:function(data){
+									$('#sel_tipo_a').html(data);
+								}
+							})
+						})
+					}
+					if (data!=0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos no fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-error gritter-center'
+						});
+					};
+				}
+			});
+		}		
+	});
+
+function buscando3(registro){			
+		var result = "" ; 					
+		$.ajax({
+	            url:'../subtipo_atractivo/app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {existencia_subtipo_atractivo:'ok',reg:registro},            
+	            success : function ( data )  {
+	            	console.log(data)
+			         result = data ;  
+			    } 		                
+	    	});
+		return result ; 
+	}
+	jQuery.validator.addMethod("existe_subtipo_atractivo", function (value, element) {
+		var a=value;
+		var reg=$('#txt_nombre3').val().toUpperCase();
+		
+		if (buscando3(reg,0)==0) {						
+			return true;
+		};
+		if(buscando3(reg,0)!=0){						
+			return false;
+		};
+	}, "El registro ya existe!!!.");
+	// validacion de formulario
+	$('#form-guardar3').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			sel_categoria3: {
+				required: true
+			},
+			sel_tipo_a3: {
+				required: true
+			},	
+			txt_nombre3: {
+				required: true,
+				existe_subtipo_atractivo:true
+			}
+		},
+
+		messages: {
+			sel_categoria3: {
+				required: "Este campo es requerido."
+			},
+			sel_tipo_a3: {
+				required: "Este campo es requerido."
+			},
+			txt_nombre3: {
+				required: "Este campo es requerido."
+			}
+		},
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		errorPlacement: function (error, element) {
+			if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+				var controls = element.closest('div[class*="col-"]');
+				if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+				else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+			}
+			else if(element.is('.select2')) {
+				error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+			}
+			else if(element.is('.chosen-select')) {
+				error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+			}
+			else error.insertAfter(element.parent());
+		},
+
+		submitHandler: function (form) {
+			// envio datos a app.php para guardar
+			$.ajax({
+				url:'../subtipo_atractivo/app.php',
+				type:'POST',
+				data:{
+					guardar:'ok',
+					txt_1:$('#txt_nombre3').val().toUpperCase(),
+					txt_2:$('#sel_tipo_a3').val()
+				},
+				success:function(data){
+					console.log(data)
+					if (data==0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-info gritter-center'
+						});
+						
+						$('#form-guardar3').each (function(){
+							this.reset();
+							$('#modal-subtipo').modal('hide');
+							var id_categoria=$('#sel_tipo_a'). val();
+							$.ajax({
+								url:'app.php',
+								type:'POST',
+								data:{llenar_subtipo2:':)',valor:id_categoria},
+								success:function(data){
+									$('#sel_subtipo').html(data);
+								}
+							})
+						})
+					}
+					if (data!=0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos no fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-error gritter-center'
+						});
+					};
+				}
+			});
+		}		
+	});
+
+	function buscando4(registro){			
+		var result = "" ; 					
+		$.ajax({
+	            url:'../clima/app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {existencia_clima:'ok',reg:registro},            
+	            success : function ( data )  {
+	            	console.log(data)
+			         result = data ;  
+			    } 		                
+	    	});
+		return result ; 
+	}
+	jQuery.validator.addMethod("existe_clima", function (value, element) {
+		var a=value;
+		var reg=$('#txt_nombre4').val().toUpperCase();
+
+		if (buscando4(reg,0)==0) {						
+			return true;
+		};
+		if(buscando4(reg,0)!=0){						
+			return false;
+		};
+	}, "El registro ya existe!!!.");
+	// validacion de formulario
+	$('#form-guardar4').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			txt_nombre4: {
+				required: true,
+				existe_clima:true
+			}
+		},
+
+		messages: {
+			txt_nombre4: {
+				required: "Este campo es requerido."
+			}
+		},
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		errorPlacement: function (error, element) {
+			if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+				var controls = element.closest('div[class*="col-"]');
+				if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+				else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+			}
+			else if(element.is('.select2')) {
+				error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+			}
+			else if(element.is('.chosen-select')) {
+				error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+			}
+			else error.insertAfter(element.parent());
+		},
+
+		submitHandler: function (form) {
+			// envio datos a app.php para guardar
+			$.ajax({
+				url:'../clima/app.php',
+				type:'POST',
+				data:{
+					guardar:'ok',
+					txt_1:$('#txt_nombre4').val().toUpperCase()
+				},
+				success:function(data){
+					console.log(data)
+					if (data==0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',														
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-info gritter-center'
+						});
+						
+						$('#form-guardar4').each (function(){
+							this.reset();
+							$('#modal-clima').modal('hide');
+							$.ajax({
+								url:'app.php',
+								type:'POST',
+								data:{llenar_clima:':)'},
+								success:function(data){
+									$('#sel_clima').html(data);
+								}
+							})
+						})
+					}
+					if (data!=0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos no fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-error gritter-center'
+						});
+					};
+				}
+			});
+		}		
+	});

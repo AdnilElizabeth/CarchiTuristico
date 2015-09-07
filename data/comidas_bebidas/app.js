@@ -164,10 +164,186 @@
 				
 			}
 	// fin proceso tabla configuracion
+// procesando mapas
+var centerWGS84, centerOSM;
+var projWGS84, projSphericalMercator;
+function iniciar_mapa()
+{
+	 // layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
+            // map.addLayer(layer);
+            // map.setCenter(
+            //     new OpenLayers.LonLat(-71.147, 42.472).transform(
+            //         new OpenLayers.Projection("EPSG:4326"),
+            //         map.getProjectionObject()
+            //     ), 12
+            // );    
+	//Para tener coordenadas estandar
+		var lon=document.getElementById("lbl_longitud1").innerHTML;
+		var lat=document.getElementById("lbl_latitud1").innerHTML;
+		
+	projWGS84 = new OpenLayers.Projection("EPSG:4326");
+	projSphericalMercator = new OpenLayers.Projection("EPSG:900913");
+	//Centrar el mapa en el punto dado	
+	centerWGS84=new OpenLayers.LonLat(lon,lat);
+	//Transformar coordenadas anteriores
+	centerOSM = transformToSphericalMercator(centerWGS84);
+	//Creacion del mapa
+	$('#obj_mapa').html('')
+	mapa=new OpenLayers.Map("obj_mapa");
+	//Creacion de capas
+	capa=new OpenLayers.Layer.OSM("Simple OSM Map");
+
+	//Adicion de capas al mapa
+	mapa.addLayer(capa);
+
+	//Centro el mapa en la posicion dada
+	mapa.setCenter(centerOSM, 18);
+	//Adicion de controles al mapa	
+	//Evento para el movimiento del mouse
+	mapa.events.register("mousemove", mapa, mouseMoveHandler);
+	//Control para el click del mouse en el mapa
+	// var click = new OpenLayers.Control.Click();
+ //    mapa.addControl(click);
+ //    click.activate();
+}
+
+function iniciar()
+{
+
+	 // layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
+            // map.addLayer(layer);
+            // map.setCenter(
+            //     new OpenLayers.LonLat(-71.147, 42.472).transform(
+            //         new OpenLayers.Projection("EPSG:4326"),
+            //         map.getProjectionObject()
+            //     ), 12
+            // );    
+	//Para tener coordenadas estandar
+	projWGS84 = new OpenLayers.Projection("EPSG:4326");
+	projSphericalMercator = new OpenLayers.Projection("EPSG:900913");
+	//Centrar el mapa en el punto dado	
+	centerWGS84=new OpenLayers.LonLat(-77.7196,0.8100);
+	//Transformar coordenadas anteriores
+	centerOSM = transformToSphericalMercator(centerWGS84);
+	//Creacion del mapa
+	$('#obj_mapa').html('')
+	mapa=new OpenLayers.Map("obj_mapa");
+	//Creacion de capas
+	capa=new OpenLayers.Layer.OSM("Simple OSM Map");
+
+	//Adicion de capas al mapa
+	mapa.addLayer(capa);
+
+	//Centro el mapa en la posicion dada
+	mapa.setCenter(centerOSM, 15);
+	//Adicion de controles al mapa	
+	//Evento para el movimiento del mouse
+	mapa.events.register("mousemove", mapa, mouseMoveHandler);
+	//Control para el click del mouse en el mapa
+	var click = new OpenLayers.Control.Click();
+    mapa.addControl(click);
+    click.activate();
+}
+//Funcion que registrar el movimiento del mouse
+function mouseMoveHandler(e) 
+{
+    var position = this.events.getMousePosition(e);
+    var lonlat = mapa.getLonLatFromPixel(position);
+	//alert(lonlat);
+    $("#coordenadas").attr('value','Evento MouseMove: '+transformMouseCoords(lonlat));
+}
+
+function transformMouseCoords(lonlat) 
+{
+        	var newlonlat=transformToWGS84(lonlat);
+			var x = Math.round(newlonlat.lon*10000)/10000;
+			var y = Math.round(newlonlat.lat*10000)/10000;
+			newlonlat = new OpenLayers.LonLat(x,y);
+			return newlonlat;
+}
+function transformToWGS84( sphMercatorCoords) 
+{
+        	// Transforma desde SphericalMercator a WGS84
+        	// Devuelve un OpenLayers.LonLat con el pto transformado
+        	var clon = sphMercatorCoords.clone(); // Si no uso un clon me transforma el punto original
+        	var pointWGS84= clon.transform(
+                    new OpenLayers.Projection("EPSG:900913"), // to Spherical Mercator Projection;
+        			new OpenLayers.Projection("EPSG:4326")); // transform from WGS 1984
+        	return pointWGS84;
+}
+function transformToSphericalMercator( wgs84LonLat) 
+{
+        	// Transforma desde SphericalMercator a WGS84
+        	// Devuelve un OpenLayers.LonLat con el pto transformado
+        	var clon = wgs84LonLat.clone(); // Si no uso un clon me transforma el punto original
+        	var pointSphMerc= clon.transform(
+                    new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                    new OpenLayers.Projection("EPSG:900913")); // to Spherical Mercator Projection;
+        	return pointSphMerc;
+}
+//Es un evento que se activa cuando se da clic sobre el mapa
+OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, 
+{                
+     defaultHandlerOptions: 
+	 {
+        'single': true,
+        'double': false,
+        'pixelTolerance': 0,
+        'stopSingle': false,
+        'stopDouble': false
+     },
+	initialize: function(options) 
+	{
+        this.handlerOptions = OpenLayers.Util.extend({}, this.defaultHandlerOptions);
+        OpenLayers.Control.prototype.initialize.apply(this, arguments); 
+        this.handler = new OpenLayers.Handler.Click(this,{'click': this.trigger}, this.handlerOptions);
+    }, 
+	trigger: function(e) 
+	{
+        //Convierto la posicion del mouse, a coordenadas
+		var lonlat = mapa.getLonLatFromPixel(e.xy);
+		var acu=transformMouseCoords(lonlat);
+		var longitud=acu.lon;
+		var latitud=acu.lat;
+		// console.log("Evento MouseClick: "+transformMouseCoords(C))	
+
+		bootbox.confirm("Esta seguro que desea seleccionar esta ubicación", function(result) {
+					if(result) {
+						$('#modal-mapa').modal('hide');
+						$('#txt_longitud').val(longitud);
+						$('#txt_latitud').val(latitud);
+						$('#lbl_longitud').text(longitud);
+						$('#lbl_latitud').text(latitud);
+					}
+				});
+    }
+});
 
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
 
+	// evento click boton mas tipo
+	$('#btn_mas_tipo').click(function(){
+		$('#modal-tipo').modal('show')
+		iniciar();
+	});
+	// evento click boton mapa
+	$('#btn_mapa').click(function(){
+		$('#modal-mapa').modal('show')
+		iniciar();
+	});
+// evento click boton mapa editar
+	$('#btn_mapa_editar').click(function(){
+		$('#modal-mapa').modal('show')
+		iniciar();
+
+	});
+	// evento click boton mapa ver
+	$('#btn_mapa_ver').click(function(){
+		$('#modal-mapa').modal('show')
+		iniciar_mapa();
+
+	});
 		// proceso subir imagenes
 	$('#txt_fotos').ace_file_input({
 		style:'well',
@@ -976,3 +1152,116 @@ $(function(){
 			}
 		});
     }
+
+    	function buscando1(registro){			
+		var result = "" ; 					
+		$.ajax({
+	            url:'../tipo_comidas_bebidas/app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {existencia_tipo_comidas:'ok',reg:registro},            
+	            success : function ( data )  {
+	            	console.log(data)
+			         result = data ;  
+			    } 		                
+	    	});
+		return result ; 
+	}
+	jQuery.validator.addMethod("existe_comida", function (value, element) {
+		var a=value;
+		var reg=$('#txt_nombre1').val().toUpperCase();					
+		if (buscando1(reg,0)==0) {						
+			return true;
+		};
+		if(buscando1(reg,0)!=0){						
+			return false;
+		};
+	}, "El registro ya existe!!!.");
+    $('#form-guardar1').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			txt_nombre1: {
+				required: true,
+				existe_comida:true
+			}
+		},
+
+		messages: {
+			txt_nombre1: {
+				required: "Este campo es requerido."
+			}
+		},
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		errorPlacement: function (error, element) {
+			if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+				var controls = element.closest('div[class*="col-"]');
+				if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+				else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+			}
+			else if(element.is('.select2')) {
+				error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+			}
+			else if(element.is('.chosen-select')) {
+				error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+			}
+			else error.insertAfter(element.parent());
+		},
+
+		submitHandler: function (form) {
+			// envio datos a app.php para guardar
+			$.ajax({
+				url:'../tipo_comidas_bebidas/app.php',
+				type:'POST',
+				data:{
+					guardar:'ok',
+					txt_1:$('#txt_nombre1').val().toUpperCase()
+				},
+				success:function(data){
+					console.log(data)
+					if (data==0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-info gritter-center'
+						});
+						llenar();
+						$('#form-guardar1').each (function(){
+							this.reset();
+							$('#modal-tipo').modal('hide');
+							$.ajax({
+								url:'app.php',
+								type:'POST',
+								data:{llenar_tipo_comida:':)'},
+								success:function(data){
+									$('#sel_tipo').html(data);
+								}
+							})
+						})
+					}
+					if (data!=0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos no fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-error gritter-center'
+						});
+						
+					};
+				}
+			});
+		}		
+	});

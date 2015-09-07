@@ -103,8 +103,8 @@
 						//$('#select_canton').editable('setValue', data[3]);
 						$('#select_parroquia').editable('setValue', data[4]);
 						$('#lbl_direccion').editable('setValue', data[5]);						
-						$('#lbl_latitud').editable('setValue', data[6]);
-						$('#lbl_longitud').editable('setValue', data[7]);
+						$('#lbl_latitud').editable('setValue', latitud);
+						$('#lbl_longitud').editable('setValue', longitud);
 						$('#select_categoria').editable('setValue', data[8]);
 						$('#lbl_habitaciones').editable('setValue', data[9]);
 						$('#lbl_plazas').editable('setValue', data[10]);
@@ -167,6 +167,46 @@
 // procesando mapas
 var centerWGS84, centerOSM;
 var projWGS84, projSphericalMercator;
+function iniciar_mapa()
+{
+	 // layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
+            // map.addLayer(layer);
+            // map.setCenter(
+            //     new OpenLayers.LonLat(-71.147, 42.472).transform(
+            //         new OpenLayers.Projection("EPSG:4326"),
+            //         map.getProjectionObject()
+            //     ), 12
+            // );    
+	//Para tener coordenadas estandar
+		var lon=document.getElementById("lbl_longitud1").innerHTML;
+		var lat=document.getElementById("lbl_latitud1").innerHTML;
+		
+	projWGS84 = new OpenLayers.Projection("EPSG:4326");
+	projSphericalMercator = new OpenLayers.Projection("EPSG:900913");
+	//Centrar el mapa en el punto dado	
+	centerWGS84=new OpenLayers.LonLat(lon,lat);
+	//Transformar coordenadas anteriores
+	centerOSM = transformToSphericalMercator(centerWGS84);
+	//Creacion del mapa
+	$('#obj_mapa').html('')
+	mapa=new OpenLayers.Map("obj_mapa");
+	//Creacion de capas
+	capa=new OpenLayers.Layer.OSM("Simple OSM Map");
+
+	//Adicion de capas al mapa
+	mapa.addLayer(capa);
+
+	//Centro el mapa en la posicion dada
+	mapa.setCenter(centerOSM, 18);
+	//Adicion de controles al mapa	
+	//Evento para el movimiento del mouse
+	mapa.events.register("mousemove", mapa, mouseMoveHandler);
+	//Control para el click del mouse en el mapa
+	// var click = new OpenLayers.Control.Click();
+ //    mapa.addControl(click);
+ //    click.activate();
+}
+
 function iniciar()
 {
 
@@ -182,7 +222,7 @@ function iniciar()
 	projWGS84 = new OpenLayers.Projection("EPSG:4326");
 	projSphericalMercator = new OpenLayers.Projection("EPSG:900913");
 	//Centrar el mapa en el punto dado	
-	centerWGS84=new OpenLayers.LonLat(-77.9137,0.6502);
+	centerWGS84=new OpenLayers.LonLat(-77.7196,0.8100);
 	//Transformar coordenadas anteriores
 	centerOSM = transformToSphericalMercator(centerWGS84);
 	//Creacion del mapa
@@ -272,17 +312,8 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control,
 						$('#modal-mapa').modal('hide');
 						$('#txt_longitud').val(longitud);
 						$('#txt_latitud').val(latitud);
-						success: function(response, newValue) {
-							var id=$('#txt_id_alojamiento').val();			
-							$.ajax({
-					            url:'app.php',
-					            async :  false ,   
-					            type:  'post',
-					            data: {editar_lon_lat:'ok',id:id,valor:longitud, valor:latitud}
-					    	});
-						};
-						// $('#lbl_longitud').text(longitud);
-						// $('#lbl_latitud').text(latitud);
+						$('#lbl_longitud').text(longitud);
+						$('#lbl_latitud').text(latitud);
 					}
 				});
     }
@@ -290,16 +321,26 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control,
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
 
+	// evento click boton mas tipo
+	$('#btn_mas_tipo').click(function(){
+		$('#modal-tipo').modal('show')
+		iniciar();
+	});
 	// evento click boton mapa
 	$('#btn_mapa').click(function(){
 		$('#modal-mapa').modal('show')
 		iniciar();
-
 	});
 // evento click boton mapa editar
 	$('#btn_mapa_editar').click(function(){
 		$('#modal-mapa').modal('show')
 		iniciar();
+
+	});
+	// evento click boton mapa ver
+	$('#btn_mapa_ver').click(function(){
+		$('#modal-mapa').modal('show')
+		iniciar_mapa();
 
 	});
 		// proceso subir imagenes
@@ -1110,3 +1151,116 @@ $(function(){
 			}
 		});
     }
+
+    	function buscando1(registro){			
+		var result = "" ; 					
+		$.ajax({
+	            url:'../tipo_alojamiento/app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {existencia_tipo_alojamiento:'ok',reg:registro},            
+	            success : function ( data )  {
+	            	console.log(data)
+			         result = data ;  
+			    } 		                
+	    	});
+		return result ; 
+	}
+	jQuery.validator.addMethod("existe_tipo_aloja", function (value, element) {
+		var a=value;
+		var reg=$('#txt_nombre1').val().toUpperCase();					
+		if (buscando1(reg,0)==0) {						
+			return true;
+		};
+		if(buscando1(reg,0)!=0){						
+			return false;
+		};
+	}, "El registro ya existe!!!.");
+    $('#form-guardar1').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			txt_nombre1: {
+				required: true,
+				existe_tipo_aloja:true
+			}
+		},
+
+		messages: {
+			txt_nombre1: {
+				required: "Este campo es requerido."
+			}
+		},
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		errorPlacement: function (error, element) {
+			if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+				var controls = element.closest('div[class*="col-"]');
+				if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+				else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+			}
+			else if(element.is('.select2')) {
+				error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+			}
+			else if(element.is('.chosen-select')) {
+				error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+			}
+			else error.insertAfter(element.parent());
+		},
+
+		submitHandler: function (form) {
+			// envio datos a app.php para guardar
+			$.ajax({
+				url:'../tipo_alojamiento/app.php',
+				type:'POST',
+				data:{
+					guardar:'ok',
+					txt_1:$('#txt_nombre1').val().toUpperCase()
+				},
+				success:function(data){
+					console.log(data)
+					if (data==0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-info gritter-center'
+						});
+						llenar();
+						$('#form-guardar1').each (function(){
+							this.reset();
+							$('#modal-tipo').modal('hide');
+							$.ajax({
+								url:'app.php',
+								type:'POST',
+								data:{llenar_tipo_alojamiento:':)'},
+								success:function(data){
+									$('#sel_tipo').html(data);
+								}
+							})
+						})
+					}
+					if (data!=0) {
+						$.gritter.add({						
+							title: '..Mensaje..!',						
+							text: 'OK: <br><i class="icon-cloud purple bigger-230"></i>  Sus datos no fueron almacenados correctamente. <br><i class="icon-spinner icon-spin green bigger-230"></i>',						
+							//image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',						
+							sticky: false,						
+							time: 2000,
+							class_name: 'gritter-error gritter-center'
+						});
+						
+					};
+				}
+			});
+		}		
+	});

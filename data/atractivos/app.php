@@ -19,12 +19,28 @@ $class=new constante();
 			print'<option value="'.$row[0].'">'.$row[1].'</option>';
 	 	}
 	}
+	
 
-
+if(isset($_POST['llenar_tipo_a2'])) {
+		//$id_categoria=$_POST['id'];
+		$resultado = $class->consulta("SELECT * FROM tipo_atractivo_turistico WHERE ESTADO=1 and id_categoria='$_POST[valor]'");	
+		print'<option value="">Seleccionar</option>';	
+		while ($row=$class->fetch_array($resultado)) {					
+			print'<option value="'.$row[0].'">'.$row[1].'</option>';
+	 	}
+	}
 		// busqueda subtipo atractivo	
 	if(isset($_POST['llenar_subtipo'])) {
 		$id_tipo_a=$_POST['id'];
 		$resultado = $class->consulta("SELECT * FROM subtipo_atractivo_turistico WHERE ESTADO=1 and id_tipo='$id_tipo_a'");	
+		print'<option value="">Seleccionar</option>';	
+		while ($row=$class->fetch_array($resultado)) {					
+			print'<option value="'.$row[0].'">'.$row[1].'</option>';
+	 	}
+	}
+		if(isset($_POST['llenar_subtipo2'])) {
+		//$id_tipo_a=$_POST['id'];
+		$resultado = $class->consulta("SELECT * FROM subtipo_atractivo_turistico WHERE ESTADO=1 and id_tipo='$_POST[valor]'");	
 		print'<option value="">Seleccionar</option>';	
 		while ($row=$class->fetch_array($resultado)) {					
 			print'<option value="'.$row[0].'">'.$row[1].'</option>';

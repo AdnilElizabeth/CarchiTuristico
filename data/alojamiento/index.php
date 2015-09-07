@@ -120,6 +120,9 @@
 													<div class="col-xs-12 col-sm-9">
 														<select id="sel_tipo" name="sel_tipo" data-placeholder="Seleccione Tipo">
 														</select>
+															<a href="#" class="blue">
+															<i class="ace-icon fa fa-plus bigger-130"  type="button" id="btn_mas_tipo"></i>
+															</a>
 													</div>
 												</div>
 												<div class="form-group">
@@ -171,7 +174,6 @@
 															<i class="ace-icon fa fa-globe bigger-120 blue"></i>
 															Mapa
 														</button>
-
 													</div></center>
 												</div>
 												<div class="form-group">
@@ -693,6 +695,14 @@
 
 									<div id="obj_img1"></div>
 								</div>
+								<div class="form-group">
+									<center><div class="hidden-sm hidden-xs action-buttons">
+										<button class="btn btn-white btn-info btn-bold" type="button" id="btn_mapa_ver">
+											<i class="ace-icon fa fa-globe bigger-120 blue"></i>
+											Mapa
+										</button>
+									</div></center>
+								</div>
 							</div>							
 						</div>
 						
@@ -715,6 +725,48 @@
 							<div id="obj_mapa" style="width:1180px;height:500px;">
 								
 							</div>
+						</div>
+						
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+			<div id="modal-tipo" class="modal fade" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header no-padding">
+							<div class="table-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="white">&times;</span>
+								</button>
+								Tipo Alojamiento
+							</div>
+						</div>
+						<div class="modal-body padding">
+							<div class="widget-body">
+										<div class="widget-main">
+											<div></div>
+											<form class="form-horizontal" id="form-guardar1">
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Nombre:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<input type="text" name="txt_nombre1" id="txt_nombre1" style='text-transform:uppercase;' class="col-xs-12 col-sm-10">
+														</div>
+													</div>
+												</div>												
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment"></label>
+													<div class="col-xs-12 col-sm-9">
+														<button class="btn btn-inverse btn-next" data-last="Finish">
+															Guardar
+															<i class="ace-icon fa fa-save icon-save"></i>
+														</button>
+													</div>
+												</div>										
+											</form>
+										</div>
+									</div>
 						</div>
 						
 					</div><!-- /.modal-content -->
@@ -888,10 +940,8 @@
 	#modal-editar .modal-dialog  {width:90%;}
 	#modal-ver .modal-dialog  {width:90%;}
 	#modal-mapa .modal-dialog  {width:90%;}
-<<<<<<< HEAD
 </style>
-=======
-</style>
+
 <script type="text/javascript">
 		function mostrarmapa(){
 					url:'app.php',
@@ -902,4 +952,3 @@
 					}
 				})
 </script>
->>>>>>> 30dfcf974de6f446d0c5ace98f534838f6b52b7a

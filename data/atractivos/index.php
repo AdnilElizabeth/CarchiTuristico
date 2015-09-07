@@ -122,22 +122,29 @@
 
 													<div class="col-xs-12 col-sm-9">
 														<select id="sel_categoria" name="sel_categoria">
-														</select>
+														</select> 
+														<a href="#" class="blue">
+															<i class="ace-icon fa fa-plus bigger-130"  type="button" id="btn_mas_categoria"></i>
+														</a>
 													</div>
 											</div>
 											<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Tipo:</label>
-
 													<div class="col-xs-12 col-sm-9">
 														<select id="sel_tipo_a" name="sel_tipo_a"></select>
+														<a href="#" class="blue" >
+															<i class="ace-icon fa fa-plus bigger-130"  type="button" id="btn_mas_tipo"></i>
+														</a>
 													</div>
 											</div>
 
 											<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Subtipo:</label>
-
 													<div class="col-xs-12 col-sm-9">
 														<select id="sel_subtipo" name="sel_subtipo"></select>
+														<a href="#" class="blue">
+															<i class="ace-icon fa fa-plus bigger-130"  type="button" id="btn_mas_subtipo"></i>
+														</a>
 													</div>
 											</div>
 
@@ -187,6 +194,14 @@
 													</div>
 												</div>
 												<div class="form-group">
+													<center><div class="hidden-sm hidden-xs action-buttons">
+														<button class="btn btn-white btn-info btn-bold" type="button" id="btn_mapa">
+															<i class="ace-icon fa fa-globe bigger-120 blue"></i>
+															Mapa
+														</button>
+													</div></center>
+												</div>
+												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Longitud:</label>
 
 													<div class="col-xs-12 col-sm-9">
@@ -210,6 +225,9 @@
 
 													<div class="col-xs-12 col-sm-9">
 														<select id="sel_clima" name="sel_clima"></select>
+														<a href="#" class="blue">
+															<i class="ace-icon fa fa-plus bigger-130"  type="button" id="btn_mas_clima"></i>
+														</a>
 													</div>
 												</div>
 												<div class="form-group">
@@ -392,6 +410,11 @@
 												<span class="editable" id="lbl_latitud">..</span>
 											</div>
 										</div>
+										<span class="col-sm-4">
+												<label class="pull-right inline">
+													<button type="button" class="btn btn-white btn-primary" id="btn_mapa_editar">Mapa</button>
+												</label>
+										</span><!-- /.col -->
 									</div>
 								</div>
 							</div>
@@ -647,12 +670,229 @@
 												<i class="ace-icon fa fa-camera"></i>
 												Fotografías
 											</span><!-- /.col -->
-
 										</h3>
-
 									<div id="obj_img1"></div>
 								</div>
+								<div class="form-group">
+									<center><div class="hidden-sm hidden-xs action-buttons">
+										<button class="btn btn-white btn-info btn-bold" type="button" id="btn_mapa_ver">
+											<i class="ace-icon fa fa-globe bigger-120 blue"></i>
+											Mapa
+										</button>
+									</div></center>
+								</div>
 							</div>							
+						</div>
+						
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+			<div id="modal-mapa" class="modal fade" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header no-padding">
+							<div class="table-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="white">&times;</span>
+								</button>
+								Mapa
+							</div>
+						</div>
+						<div class="modal-body padding">
+							<div id="obj_mapa" style="width:1180px;height:500px;">
+								
+							</div>
+						</div>
+						
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+			<div id="modal-categoria" class="modal fade" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header no-padding">
+							<div class="table-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="white">&times;</span>
+								</button>
+								Categoría Atractivo
+							</div>
+						</div>
+						<div class="modal-body padding">
+							<div class="widget-body">
+										<div class="widget-main">
+											<div></div>
+											<form class="form-horizontal" id="form-guardar1">
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Nombre:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<input type="text" name="txt_nombre1" id="txt_nombre1" style='text-transform:uppercase;' class="col-xs-12 col-sm-10">
+														</div>
+													</div>
+												</div>												
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment"></label>
+													<div class="col-xs-12 col-sm-9">
+														<button class="btn btn-inverse btn-next" data-last="Finish">
+															Guardar
+															<i class="ace-icon fa fa-save icon-save"></i>
+														</button>
+													</div>
+												</div>										
+											</form>
+										</div>
+									</div>
+						</div>
+						
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+			<div id="modal-tipo" class="modal fade" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header no-padding">
+							<div class="table-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="white">&times;</span>
+								</button>
+								Tipo de Atractivo Turístico
+							</div>
+						</div>
+						<div class="modal-body padding">
+							<div class="widget-body">
+										<div class="widget-main">
+											<div></div>
+											<form class="form-horizontal" id="form-guardar2">
+											<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Categoría:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<select id="sel_categoria2" name="sel_categoria2">								
+														</select>
+													</div>													
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Tipo:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<input type="text" name="txt_nombre2" id="txt_nombre2" style='text-transform:uppercase;' class="col-xs-12 col-sm-10">
+														</div>
+													</div>
+												</div>												
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment"></label>
+													<div class="col-xs-12 col-sm-9">
+														<button class="btn btn-inverse btn-next" data-last="Finish">
+															Guardar
+															<i class="ace-icon fa fa-save icon-save"></i>
+														</button>
+													</div>
+												</div>										
+											</form>
+										</div>
+									</div>
+						</div>
+						
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+			<div id="modal-subtipo" class="modal fade" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header no-padding">
+							<div class="table-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="white">&times;</span>
+								</button>
+								Subipo de Atractivo Turístico
+							</div>
+						</div>
+						<div class="modal-body padding">
+							<div class="widget-body">
+										<div class="widget-main">
+											<div></div>
+											<form class="form-horizontal" id="form-guardar3">
+											<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Categoría:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<select id="sel_categoria3" name="sel_categoria3">								
+														</select>
+													</div>													
+											</div>
+											<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Tipo:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<select id="sel_tipo_a3" name="sel_tipo_a3"></select>
+													</div>													
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Subipo:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<input type="text" name="txt_nombre3" id="txt_nombre3" style='text-transform:uppercase;' class="col-xs-12 col-sm-10">
+														</div>
+													</div>
+												</div>												
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment"></label>
+													<div class="col-xs-12 col-sm-9">
+														<button class="btn btn-inverse btn-next" data-last="Finish">
+															Guardar
+															<i class="ace-icon fa fa-save icon-save"></i>
+														</button>
+													</div>
+												</div>										
+											</form>
+										</div>
+									</div>
+						</div>
+						
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+			<div id="modal-clima" class="modal fade" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header no-padding">
+							<div class="table-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="white">&times;</span>
+								</button>
+								Tipo de Clima
+							</div>
+						</div>
+						<div class="modal-body padding">
+							<div class="widget-body">
+										<div class="widget-main">
+											<div></div>
+											<form class="form-horizontal" id="form-guardar4">
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Nombre:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<input type="text" name="txt_nombre4" id="txt_nombre4" style='text-transform:uppercase;' class="col-xs-12 col-sm-10">
+														</div>
+													</div>
+												</div>												
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment"></label>
+													<div class="col-xs-12 col-sm-9">
+														<button class="btn btn-inverse btn-next" data-last="Finish">
+															Guardar
+															<i class="ace-icon fa fa-save icon-save"></i>
+														</button>
+													</div>
+												</div>										
+											</form>
+										</div>
+									</div>
 						</div>
 						
 					</div><!-- /.modal-content -->
@@ -735,6 +975,7 @@
 		<script src="../../dist/js/jquery.maskedinput.min.js"></script>
 		<script src="../../dist/js/bootstrap-tag.min.js"></script>
 		<script src="../../dist/js/jquery.colorbox.min.js"></script>
+		<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 
 
 
@@ -822,4 +1063,16 @@
 <style type="text/css">
 	#modal-editar .modal-dialog  {width:90%;}
 	#modal-ver .modal-dialog  {width:90%;}
+	#modal-mapa .modal-dialog  {width:90%;}
 </style>
+
+<script type="text/javascript">
+		function mostrarmapa(){
+					url:'app.php',
+					type:'POST',
+					dataType:'json',
+					success:function(data){
+						$('#modal-mapa').modal('show');
+					}
+				})
+</script>

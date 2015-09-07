@@ -287,7 +287,7 @@ $class=new constante();
 		$fecha=$class->fecha_hora();
 		$valor=$_POST['valor'];
 		$valor1=$_POST['valor1'];
-			$resultado = $class->consulta("UPDATE alojamiento SET LONGITUD=upper('$valor'), LATITUD=upper('$valor') WHERE codigo='$_POST[id]'");	
+			$resultado = $class->consulta("UPDATE alojamiento SET LONGITUD=upper('$valor'), LATITUD=upper('$valor1') WHERE codigo='$_POST[id]'");	
 		if (!$resultado) {
 			print('0');
 		}else{
