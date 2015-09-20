@@ -321,7 +321,11 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control,
 
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
-
+	// evento click boton ayuda
+	$('#btn_ayuda').click(function(){
+		$('#modal-ayuda').modal('show')
+		iniciar();
+	});
 	// evento click boton mas tipo
 	$('#btn_mas_tipo').click(function(){
 		$('#modal-tipo').modal('show')

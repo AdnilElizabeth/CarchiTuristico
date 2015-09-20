@@ -718,6 +718,9 @@
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									<span class="white">&times;</span>
 								</button>
+								<a href="#" class="close">
+									<i class="ace-icon fa fa-question bigger-05"  type="button" id="btn_ayuda"></i>
+								</a>
 								Mapa
 							</div>
 						</div>
@@ -767,6 +770,31 @@
 											</form>
 										</div>
 									</div>
+						</div>
+						
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+			<div id="modal-ayuda" class="modal fade" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header no-padding">
+							<div class="table-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="white">&times;</span>
+								</button>
+								Ayuda
+							</div>
+						</div>
+						<div class="modal-body padding">
+						<p align="justify">
+							Utilice el cursor para desplazarse a la ubicacion deseada, tiene las opciones (+ -) que le servirán
+							para acercar o alejar el mapa.
+							Para seleciconar un punto geográfico basta con un click, el doble click se utiliza para acercar. 
+							Si está seguro de seleccionar esa ubicación click en Si, de lo contrario click en Cancelar y puede 
+							volver a buscar otro punto geográfico en el mapa.
+							</p>
+
 						</div>
 						
 					</div><!-- /.modal-content -->

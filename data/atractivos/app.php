@@ -163,7 +163,7 @@ if(isset($_POST['llenar_tipo_a2'])) {
 		}
 		$id=$class->idz();
 		$fecha=$class->fecha_hora();
-		$resultado = $class->consulta("INSERT INTO atractivo_turistico VALUES('$id',upper('$_POST[txt_nombre]'),upper('$_POST[txt_propietario]'),upper('$_POST[txt_direccion]'),'$_POST[txt_latitud]','$_POST[txt_longitud]','$_POST[txt_telf]','$_POST[txt_correo]','$_POST[txt_web]','$_POST[sel_clima]','$_POST[descripcion]','img','$_POST[sel_subtipo]','$_POST[sel_parroquia]',1,'$fecha')");	
+		$resultado = $class->consulta("INSERT INTO atractivo_turistico VALUES('$id',upper('$_POST[txt_nombre]'),upper('$_POST[txt_propietario]'),upper('$_POST[txt_direccion]'),'$_POST[txt_latitud]','$_POST[txt_longitud]','$_POST[txt_telf]','$_POST[txt_correo]','$_POST[txt_web]','$_POST[sel_clima]','$_POST[descripcion]','img','$_POST[sel_subtipo]','$_POST[sel_parroquia]',1,'$fecha','$_POST[txt_actividades]',upper('$_POST[txt_estado]'),'$_POST[txt_rutas]',upper('$_POST[txt_poblado]'),'$_POST[txt_quien]','$_POST[txt_contacto]','$_POST[txt_alojamiento]','$_POST[txt_alimentacion]','$_POST[txt_atractivos_cercanos]','$_POST[txt_precio]')");	
 		if (!$resultado) {
 			print('1');
 		}else{
@@ -372,18 +372,129 @@ if(isset($_POST['llenar_tipo_a2'])) {
 			print('1');
 		}		
 	}
-	// editar atractivo_turistico DESCRIPCION
-	if(isset($_POST['editar_descripcion'])) {
+		if(isset($_POST['editar_para_quien'])) {
 		$id=$class->idz();
 		$fecha=$class->fecha_hora();
 		$valor=$_POST['valor'];
-			$resultado = $class->consulta("UPDATE atractivo_turistico SET DESCRIPCION=upper('$valor') WHERE codigo='$_POST[id]'");	
+			$resultado = $class->consulta("UPDATE atractivo_turistico SET para_quien='$valor' WHERE codigo='$_POST[id]'");	
+		if (!$resultado) {
+			print('0');
+		}else{
+			print('1');
+		}		
+	}
+		if(isset($_POST['editar_contacto'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+		$valor=$_POST['valor'];
+			$resultado = $class->consulta("UPDATE atractivo_turistico SET contacto='$valor' WHERE codigo='$_POST[id]'");	
+		if (!$resultado) {
+			print('0');
+		}else{
+			print('1');
+		}		
+	}
+		if(isset($_POST['editar_alojamiento'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+		$valor=$_POST['valor'];
+			$resultado = $class->consulta("UPDATE atractivo_turistico SET alojamiento='$valor' WHERE codigo='$_POST[id]'");	
+		if (!$resultado) {
+			print('0');
+		}else{
+			print('1');
+		}		
+	}
+		if(isset($_POST['editar_alimentacion'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+		$valor=$_POST['valor'];
+			$resultado = $class->consulta("UPDATE atractivo_turistico SET alimentacion='$valor' WHERE codigo='$_POST[id]'");	
+		if (!$resultado) {
+			print('0');
+		}else{
+			print('1');
+		}		
+	}
+		if(isset($_POST['editar_atractivos_cercanos'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+		$valor=$_POST['valor'];
+			$resultado = $class->consulta("UPDATE atractivo_turistico SET atractivos_cercanos='$valor' WHERE codigo='$_POST[id]'");	
+		if (!$resultado) {
+			print('0');
+		}else{
+			print('1');
+		}		
+	}
+		if(isset($_POST['editar_precio'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+		$valor=$_POST['valor'];
+			$resultado = $class->consulta("UPDATE atractivo_turistico SET precio='$valor' WHERE codigo='$_POST[id]'");	
+		if (!$resultado) {
+			print('0');
+		}else{
+			print('1');
+		}		
+	}
+	if(isset($_POST['editar_poblado'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+		$valor=$_POST['valor'];
+			$resultado = $class->consulta("UPDATE atractivo_turistico SET poblado=upper('$valor') WHERE codigo='$_POST[id]'");	
+		if (!$resultado) {
+			print('0');
+		}else{
+			print('1');
+		}		
+	}
+	if(isset($_POST['editar_estado'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+		$valor=$_POST['valor'];
+			$resultado = $class->consulta("UPDATE atractivo_turistico SET ESTADO_CONSERVACION='$valor' WHERE codigo='$_POST[id]'");	
 		if (!$resultado) {
 			print('0');
 		}else{
 			print('1');
 		}
 	}
+	if(isset($_POST['editar_rutas'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+		$valor=$_POST['valor'];
+			$resultado = $class->consulta("UPDATE atractivo_turistico SET RUTAS='$valor' WHERE codigo='$_POST[id]'");	
+		if (!$resultado) {
+			print('0');
+		}else{
+			print('1');
+		}
+	}
+		if(isset($_POST['editar_actividades'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+		$valor=$_POST['valor'];
+			$resultado = $class->consulta("UPDATE atractivo_turistico SET actividades='$valor' WHERE codigo='$_POST[id]'");	
+		if (!$resultado) {
+			print('0');
+		}else{
+			print('1');
+		}
+	}
+	// editar atractivo_turistico DESCRIPCION
+	if(isset($_POST['editar_descripcion'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+		$valor=$_POST['valor'];
+			$resultado = $class->consulta("UPDATE atractivo_turistico SET DESCRIPCION='$valor' WHERE codigo='$_POST[id]'");	
+		if (!$resultado) {
+			print('0');
+		}else{
+			print('1');
+		}
+	}
+
 	// llenar tabla
 	if (isset($_POST['llenar'])) {
 		$resultado = $class->consulta("SELECT S.NOMBRE, A.NOMBRE, P.NOMBRE, A.CODIGO  from ATRACTIVO_TURISTICO A, SUBTIPO_ATRACTIVO_TURISTICO S, PARROQUIAS P WHERE A.ESTADO=1 AND A.ID_SUBTIPO=S.CODIGO AND A.ID_PARROQUIA=P.CODIGO");	
@@ -398,7 +509,7 @@ if(isset($_POST['llenar_tipo_a2'])) {
 	}
 	// llenar tabla
 	if (isset($_POST['datos_editar'])) {
-		$resultado = $class->consulta("SELECT C.NOMBRE, T.NOMBRE, S.NOMBRE, A.NOMBRE, A.PROPIETARIO, CT.NOMBRE, P.NOMBRE, A.DIRECCION, A.LATITUD, A.LONGITUD, CL.NOMBRE, A.TELEFONO, A.CORREO, A.SITIO_WEB, A.DESCRIPCION FROM ATRACTIVO_TURISTICO A, SUBTIPO_ATRACTIVO_TURISTICO S, TIPO_ATRACTIVO_TURISTICO T, CATEGORIA_ATRACTIVO_TURISTICO C, PARROQUIAS P, CANTONES CT, CLIMA CL WHERE A.ESTADO=1 AND A.ID_SUBTIPO=S.CODIGO AND S.ID_TIPO=T.CODIGO AND T.ID_CATEGORIA=C.CODIGO AND A.ID_PARROQUIA=P.CODIGO AND P.COD_CANTON=CT.CODIGO AND A.ID_CLIMA=CL.CODIGO AND A.CODIGO='$_POST[id]'");	
+		$resultado = $class->consulta("SELECT C.NOMBRE, T.NOMBRE, S.NOMBRE, A.NOMBRE, A.PROPIETARIO, CT.NOMBRE, P.NOMBRE, A.DIRECCION, A.LATITUD, A.LONGITUD, CL.NOMBRE, A.TELEFONO, A.CORREO, A.SITIO_WEB, A.DESCRIPCION, A.ACTIVIDADES, A.ESTADO_CONSERVACION, A.RUTAS, A.POBLADO, A.PARA_QUIEN, A.CONTACTO, A.ALOJAMIENTO, A.ALIMENTACION, A.ATRACTIVOS_CERCANOS, A.PRECIO FROM ATRACTIVO_TURISTICO A, SUBTIPO_ATRACTIVO_TURISTICO S, TIPO_ATRACTIVO_TURISTICO T, CATEGORIA_ATRACTIVO_TURISTICO C, PARROQUIAS P, CANTONES CT, CLIMA CL WHERE A.ESTADO=1 AND A.ID_SUBTIPO=S.CODIGO AND S.ID_TIPO=T.CODIGO AND T.ID_CATEGORIA=C.CODIGO AND A.ID_PARROQUIA=P.CODIGO AND P.COD_CANTON=CT.CODIGO AND A.ID_CLIMA=CL.CODIGO AND A.CODIGO='$_POST[id]'");	
 		$acu;
 		while ($row=$class->fetch_array($resultado)) {					
 			$acu[]=$row[0];
@@ -416,6 +527,16 @@ if(isset($_POST['llenar_tipo_a2'])) {
 			$acu[]=$row[12];
 			$acu[]=$row[13];
 			$acu[]=$row[14];
+			$acu[]=$row[15];
+			$acu[]=$row[16];
+			$acu[]=$row[17];
+			$acu[]=$row[18];
+			$acu[]=$row[19];
+			$acu[]=$row[20];
+			$acu[]=$row[21];
+			$acu[]=$row[22];
+			$acu[]=$row[23];
+			$acu[]=$row[24];
 	 	}
 	 	print_r(json_encode($acu));
 	}

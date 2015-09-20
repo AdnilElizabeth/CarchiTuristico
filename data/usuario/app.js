@@ -1,24 +1,29 @@
 // funcion llenar data table
-		function llenar(){
+function llenar(){
 			$.ajax({
 				url:'app.php',
 				type:'POST',
 				dataType:'json',
 				data:{llenar:'ok'},
-				success:function(data){											    
+				success:function(data){	
 					$('#tabla-informacion').DataTable().clear().draw();		
 					var a=0;		
-					for (var i = 0; i<data.length; i=i+2) {
+					for (var i = 0; i<data.length; i=i+4) {
 						a++;
 						$('#tabla-informacion').DataTable().row.add( [
 							a,
 				            data[i+0],
+				            data[i+1],
+				            data[i+2],
 				            '<div class="hidden-sm hidden-xs action-buttons">'	
-								+'<a href="#" class="green" onclick=editar("'+data[i+1]+'")>'
+								+'<a href="#" class="green" onclick=editar("'+data[i+3]+'")>'
 									+'<i class="ace-icon fa fa-pencil bigger-130"></i>'
 								+'</a>'
-								+'<a href="#" class="red"  onclick=eliminar("'+data[i+1]+'")>'
+								+'<a href="#" class="red"  onclick=eliminar("'+data[i+3]+'")>'
 									+'<i class="ace-icon fa fa-trash-o bigger-130"></i>'
+								+'</a>'
+								+'<a href="#" class="blue"  onclick=privilegios("'+data[i+3]+'")>'
+									+'<i class="ace-icon fa fa-lock bigger-130"></i>'
 								+'</a>'
 							+'</div>'
 				        ] ).draw();		
@@ -28,6 +33,13 @@
 		}
 	// proceso tabla configuracion
 		// edicion de registro
+
+			function privilegios(id){
+				$('#modal-privilegios').modal('show');
+				
+
+			}
+
 			function editar(id){				
 				$('#txt_id_usuario').val(id)
 				// edicion
@@ -39,20 +51,20 @@
 					success:function(data){
 						$('#modal-editar').modal('show');										
 						$('#lbl_nombre').text(data[0]);
-						$('#lbl_telefono').text(data[0]);
-						$('#lbl_direccion').text(data[0]);
-						$('#lbl_nombre_user').text(data[0]);
-						$('#select_user').text(data[0]);
-						$('#lbl_clave').text(data[0]);
-						$('#lbl_clave1').text(data[0]);
+						$('#lbl_telefono').text(data[1]);
+						$('#lbl_direccion').text(data[2]);
+						$('#lbl_nombre_user').text(data[3]);
+						$('#select_user').text(data[5]);
+						$('#lbl_clave').text(data[4]);
+						$('#lbl_clave1').text(data[4]);
 
 						$('#lbl_nombre').editable('setValue', data[0]);
-						$('#lbl_telefono').editable('setValue', data[0]);
-						$('#lbl_direccion').editable('setValue', data[0]);
-						$('#lbl_nombre_user').editable('setValue', data[0]);
+						$('#lbl_telefono').editable('setValue', data[1]);
+						$('#lbl_direccion').editable('setValue', data[2]);
+						$('#lbl_nombre_user').editable('setValue', data[3]);
 						//$('#select_user').editable('setValue', data[0]);
-						$('#lbl_clave').editable('setValue', data[0]);
-						$('#lbl_clave1').editable('setValue', data[0]); //clear values
+						$('#lbl_clave').editable('setValue', data[4]);
+						$('#lbl_clave1').editable('setValue', data[4]); //clear values
 
 						//editables de aka
 						//text editable
@@ -71,7 +83,7 @@
 							success:function(data){
 								if (data==1){
 									bootbox.alert("Registro eliminado");
-									llenar();														
+									llenar();
 								}
 								else{
 									bootbox.alert("Tenemos inconvenientes intente mas tarde");	
@@ -85,6 +97,13 @@
 
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
+
+	// evento click boton ayuda
+	$('#btn_ayuda').click(function(){
+		$('#modal-ayuda').modal('show')
+		iniciar();
+	});
+
 	// inicializacion de procesos con nuevos frameworks nativos
 	//editables on first profile page
 	$.fn.editable.defaults.mode = 'inline';
@@ -198,10 +217,11 @@ $(function(){
 	            data: {editar_tipo_usuario:'ok',id:id,valor:newValue},
 	            success:function(){}
 	    	});
+	    	llenar();
 		}
     });
       	$('#lbl_clave').editable({
-		type: 'text',
+		type: 'password',
 		name: 'username',
 		validate: function(value) {
 		    if($.trim(value) == '') {
@@ -222,31 +242,67 @@ $(function(){
 	// llamando funciones
 		llenar();	
 
-	function buscando(registro){			
+		function buscando(registro,r){			
 		var result = "" ; 					
 		$.ajax({
 	            url:'app.php',
 	            async :  false ,   
 	            type:  'post',
-	            data: {existencia_usuario:'ok',reg:registro},            
+	            data: {existencia_nombre_usuario:'ok',reg:registro},
 	            success : function ( data )  {
 	            	console.log(data)
-			         result = data ;  
-			    } 		                
+			         result = data ;
+			    }
 	    	});
 		return result ; 
 	}
-	jQuery.validator.addMethod("existe_usuario", function (value, element) {
-		var a=value;
-		var reg=$('#txt_nombre').val().toUpperCase();
+	function buscando1(registro,r){			
+		var result = "" ; 					
+		$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {existencia_usuario:'ok',reg1:registro},
+	            success : function ( data )  {
+	            	console.log(data)
+			         result = data ;
+			    }
+	    	});
+		return result ; 
+	}
+	jQuery.validator.addMethod("clave", function (value, element) {
+		var reg=$('#txt_clave').val();
+		var reg1=$('#txt_clave1').val();
 
-		if (buscando(reg,0)==0) {						
+		if (reg==reg1) {						
 			return true;
-		};
-		if(buscando(reg,0)!=0){						
+		}
+		else{
 			return false;
 		};
-	}, "El registro ya existe!!!.");
+	}, "Las contraseñas no coinciden.");
+	jQuery.validator.addMethod("existe_nombre_usuario", function (value, element) {
+		var a=value;
+		var reg=$('#txt_nombre').val().toUpperCase();
+		if (buscando(reg,0)==0) {
+			return true;
+		};
+		if(buscando(reg,0)!=0){
+			return false;
+		};
+	}, "El usuario ya existe!!!.");
+
+	jQuery.validator.addMethod("existe_usuario", function (value, element) {
+		var a=value;
+		var reg1=$('#txt_user').val().toUpperCase();
+
+		if (buscando1(reg1,0)==0) {
+			return true;
+		};
+		if(buscando1(reg1,0)!=0){
+			return false;
+		};
+	}, "El nombre de usuario ya existe!!!.");
 	// validacion de formulario
 	$('#form-guardar').validate({
 		errorElement: 'div',
@@ -256,7 +312,7 @@ $(function(){
 		rules: {
 			txt_nombre: {
 				required: true,
-				existe_usuario:true
+				existe_nombre_usuario:true
 			},
 			txt_telf: {
 				number: true,
@@ -267,6 +323,7 @@ $(function(){
 			},
 			txt_user: {
 				required: true,
+				existe_usuario:true
 			},
 			sel_usuario: {
 				required: true
@@ -275,7 +332,8 @@ $(function(){
 				required: true
 			},
 			txt_clave1: {
-				required: true
+				required: true,
+				clave:true
 			}
 		},
 
@@ -332,7 +390,12 @@ $(function(){
 				type:'POST',
 				data:{
 					guardar:'ok',
-					txt_1:$('#txt_nombre').val().toUpperCase()
+					txt_1:$('#txt_nombre').val().toUpperCase(),
+					txt_2:$('#txt_telf').val(),
+					txt_3:$('#txt_direccion').val().toUpperCase(),
+					txt_4:$('#txt_user').val().toUpperCase(),
+					txt_5:$('#sel_usuario').val(),
+					txt_6:$('#txt_clave').val()
 				},
 				success:function(data){
 					console.log(data)

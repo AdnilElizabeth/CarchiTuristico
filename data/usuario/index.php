@@ -130,7 +130,7 @@
 															<input name="txt_telf" id="txt_telf" type="tel" class="col-xs-12 col-sm-10">
 														</div>
 													</div>
-												</div>>
+												</div>
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Dirección:</label>
 													<div class="col-xs-12 col-sm-9">
@@ -201,8 +201,10 @@
 												<th class="center">
 													<i class="fa fa-list-ol"></i>
 												</th>
-												<th>Tipo</th>												
-												<th><i class="fa fa-cogs"></i></th>
+												<th>Nomnbre</th>
+												<th>Usuario</th>
+												<th>Tipo de Usuario</th>
+												<th width="90"><i class="fa fa-cogs"></i></th>
 											</tr>
 										</thead>
 
@@ -269,9 +271,9 @@
 											</div>
 									</div>
 									<div class="profile-info-row">
-											<div class="profile-info-name"> Conformar vlave: </div>
+											<div class="profile-info-name"> Confirmar clave: </div>
 											<div class="profile-info-value" >
-												<span class="editable" id="lbl_clave1">..</span>
+												<span class="editable" id="lbl_clave1" >..</span>
 											</div>
 									</div>
 
@@ -287,7 +289,28 @@
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->
 			</div>
+			<div id="modal-privilegios" class="modal fade" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header no-padding">
+							<div class="table-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="white">&times;</span>
+								</button>
+								<button type="button" class="close"  aria-hidden="true" id="btn_ayuda">
+									<i class="ace-icon fa fa-question bigger-05"  type="button" ></i>
+								</button>								
+								Privilegios
+							</div>
+						</div>
+						<div class="modal-body padding">
+							
 
+						</div>
+						
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
 			<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">

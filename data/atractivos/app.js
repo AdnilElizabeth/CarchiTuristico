@@ -59,8 +59,19 @@
 						$('#lbl_correo1').text(data[12]);
 						$('#lbl_web1').text(data[13]);
 						$('#lbl_descripcion1').text(data[14]);
-						$('#lbl_foto1').text(data[15]);
+						$('#lbl_foto1').text(data[18]);
+						$('#lbl_actividades1').text(data[15]);
+						$('#lbl_estado1').text(data[16]);
+						$('#lbl_rutas1').text(data[17]);
+						$('#lbl_poblado1').text(data[18]);
+						$('#lbl_quien1').text(data[19]);
+						$('#lbl_contacto1').text(data[20]);
+						$('#lbl_alojamiento1').text(data[21]);
+						$('#lbl_alimentacion1').text(data[22]);
+						$('#lbl_atractivos_cercanos1').text(data[23]);
+						$('#lbl_precio1').text(data[24]);
 					}
+
 				})
 				// edicion de imagenes
 				mostrar_img1(id);
@@ -92,8 +103,17 @@
 						$('#lbl_correo').text(data[12]);
 						$('#lbl_web').text(data[13]);
 						$('#lbl_descripcion').text(data[14]);
-						$('#lbl_foto').text(data[15]);
-
+						$('#lbl_foto').text(data[18]);
+						$('#lbl_actividades').text(data[15]);
+						$('#lbl_estado').text(data[16]);
+						$('#lbl_rutas').text(data[17]);
+						$('#lbl_poblado').text(data[18]);
+						$('#lbl_quien').text(data[19]);
+						$('#lbl_contacto').text(data[20]);
+						$('#lbl_alojamiento').text(data[21]);
+						$('#lbl_alimentacion').text(data[22]);
+						$('#lbl_atractivos_cercanos').text(data[23]);
+						$('#lbl_precio').text(data[24]);
 
 						$('#select_categoria').editable('setValue', data[0]);
 						$('#select_tipo').editable('setValue', data[1]);
@@ -110,7 +130,17 @@
 						$('#lbl_correo').editable('setValue', data[12]);
 						$('#lbl_web').editable('setValue', data[13]);
 						$('#lbl_descripcion').editable('setValue', data[14]);
-						$('#lbl_foto').editable('setValue', data[15]);
+						$('#lbl_foto').editable('setValue', data[18]);
+						$('#lbl_actividades').editable('setValue', data[15]);
+						$('#lbl_estado').editable('setValue', data[16]);
+						$('#lbl_rutas').editable('setValue', data[17]);
+						$('#lbl_poblado').editable('setValue', data[18]);
+						$('#lbl_quien').editable('setValue', data[19]);
+						$('#lbl_contacto').editable('setValue', data[20]);
+						$('#lbl_alojamiento').editable('setValue', data[21]);
+						$('#lbl_alimentacion').editable('setValue', data[22]);
+						$('#lbl_atractivos_cercanos').editable('setValue', data[23]);
+						$('#lbl_precio').editable('setValue', data[24]);
 					}
 				})
 				// edicion de imagenes
@@ -316,6 +346,12 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control,
 
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
+
+	// evento click boton ayuda
+	$('#btn_ayuda').click(function(){
+		$('#modal-ayuda').modal('show')
+		iniciar();
+	});
 
 	// evento click boton mas tipo
 	$('#btn_mas_clima').click(function(){
@@ -527,7 +563,25 @@ $(function(){
 	    	});
 		}
     });
-
+	//text editable
+    $('#lbl_poblado').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite poblado, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_poblado:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
 	//text editable
     $('#lbl_direccion').editable({
 		type: 'text',
@@ -693,7 +747,177 @@ $(function(){
 	    	});
 		}
     });
-
+       	//text editable
+    $('#lbl_estado').editable({
+		type:  'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite estado de conservación, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_estado:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+       	//text editable
+    $('#lbl_quien').editable({
+		type:  'textarea',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite para quien esta dirigido, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_para_quien:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+           	//text editable
+    $('#lbl_contacto').editable({
+		type:  'textarea',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite contacto, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_contacto:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+           	//text editable
+    $('#lbl_alojamiento').editable({
+		type:  'textarea',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite existencia de alojamiento, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_alojamiento:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+           	//text editable
+    $('#lbl_alimentacion').editable({
+		type:  'textarea',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite existencia de alimentación, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_alimentacion:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+       	//text editable
+    $('#lbl_rutas').editable({
+		type:  'textarea',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite rutas de acceso, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_rutas:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+           	//text editable
+    $('#lbl_atractivos_cercanos').editable({
+		type:  'textarea',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, atractivos cercanos, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_atractivos_cercanos:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+           	//text editable
+    $('#lbl_precio').editable({
+		type:  'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite precios, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_precio:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
+     	//text editable
+    $('#lbl_actividades').editable({
+		type:  'textarea',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite actividades, campo requerido';
+		    }		    
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_atractivo').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_actividades:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
      	//text editable
     $('#lbl_descripcion').editable({
 		type:  'textarea',

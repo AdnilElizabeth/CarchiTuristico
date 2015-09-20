@@ -1,0 +1,102 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* ---------- FONTAWESOME ---------- */
+/* ---------- http://fortawesome.github.com/Font-Awesome/ ---------- */
+/* ---------- http://weloveiconfonts.com/ ---------- */
+
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+/* ---------- ERIC MEYER'S RESET CSS ---------- */
+/* ---------- http://meyerweb.com/eric/tools/css/reset/ ---------- */
+
+@import url(http://meyerweb.com/eric/tools/css/reset/reset.css);
+
+/* ---------- FONTAWESOME ---------- */
+
+/* [class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+} */
+/* general */
+body {
+	background-color: #393937;
+	font: 14px/1.5em  Arial, sans-serif;
+}
+input {
+	font-size: 1em;
+	line-height: 1.5em;
+	margin: 0;
+	padding: 0;
+	-webkit-appearance: none;
+  appearance: none;
+}
+
+/* login */
+#login {
+	width: 242px;
+	margin: 50px auto;
+	
+}
+#login label {
+	position: absolute;
+	display: block;
+	width: 36px;
+	height: 48px;
+	line-height: 48px;
+	text-align: center;
+	font-family: 'FontAwesome', sans-serif;
+	color: #676767;
+	text-shadow: 0 1px 0 #fff;
+}
+#login input {
+	border: none;
+	width: 204px;
+	height: 48px;
+  padding-left: 36px;
+	border: 1px solid #000;
+	background-color: #dedede;
+  background: -webkit-linear-gradient(top, #c3c3c3 0%, #eaeaea 100%);	
+	color: #363636;
+	text-shadow: 0 1px 0 #fff;
+	outline: none;
+}
+#login input[type="text"] {
+	border-bottom: none;
+	-webkit-border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+	-webkit-box-shadow:inset 0 -1px 0 rgba(0, 0, 0, .4);
+}
+#login input[type="password"] {
+	border-top:none;
+	-webkit-border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
+	margin-bottom: 20px;
+	-webkit-box-shadow:inset 0 1px 0 rgba(255, 255, 255, .3), 0 1px 1px rgba(0, 0, 0, .2);
+}
+#login input[type="submit"] {
+	margin: 0;
+	padding: 0;
+	width: 240px;
+	background-color: #e14d4d;
+	border: 1px solid #391515;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+	line-height: 48px;
+	text-transform: uppercase;
+	/* background-image: none; */
+	background-image:-webkit-linear-gradient(top, #f15958 0%, #e14d4d 100%);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 1px 1px rgba(0, 0, 0, .2) ;
+	-moz-box-shadow: hoff voff radius color;
+	box-shadow: hoff voff radius color;
+	text-shadow: 0 1px 0 #000;
+}
+#login input[type="submit"]:hover {
+	background-color: #f15958;
+	background-image:-webkit-linear-gradient(top, #e14d4d 0%, #f55b5b 100%);
+}

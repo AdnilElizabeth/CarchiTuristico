@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Carchi Turístico</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Font Awesome CSS -->
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+		
+		<!-- Custom CSS -->
+        <link href="css/animate.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="css/style.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+
+        <!-- Template js -->
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/jquery.appear.js"></script>
+        <script src="js/contact_me.js"></script>
+        <script src="js/jqBootstrapValidation.js"></script>
+        <script src="js/modernizr.custom.js"></script>
+        <script src="js/script.js"></script>
+
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+    
+<body>
+        
+        <!-- Start Logo Section -->
+        <section id="logo-section" class="text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="logo text-right">
+                            <h1><strong>Carchi</strong></h1>
+                            <span>Provincia de hermosos paisajes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Logo Section -->
+        
+        
+        <!-- Start Main Body Section -->
+        <div class="mainbody-section text-center">
+            <div class="container">
+                <div class="row">                    
+                    <div class="col-md-3">
+                        
+                        <div class="menu-item blue">
+                            <a href="#modal-bolivar" data-toggle="modal">
+                                <i class="fa fa-globe"></i>
+                                <p>Cantón Bolívar</p>
+                            </a>
+                        </div>
+                        
+                        <div class="menu-item green">
+                            <a href="#modal-espejo" data-toggle="modal">
+                                <i class="fa fa-file-photo-o"></i>
+                                <p>Cantón Espejo</p>
+                            </a>
+                        </div>
+                        
+                        <div class="menu-item light-red">
+                            <a href="#modal-mira" data-toggle="modal">
+                                <i class="fa fa-camera-retro"></i>
+                                <p>Cantón Mira</p>
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="col-md-6">
+                        
+                        <!-- Start Carousel Section -->
+                        <div class="home-slider">
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="padding-bottom: 30px;">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                	<div class="item">
+                                        <img src="images/about-04.jpg" class="img-responsive" alt="">
+                                    </div>
+                                    <div class="item active">
+                                        <img src="images/about-03.jpg" class="img-responsive" alt="">
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/about-02.jpg" class="img-responsive" alt="">
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/about-01.jpg" class="img-responsive" alt="">
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Start Carousel Section -->
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="menu-item color responsive">
+                                    <a href="#service-modal" data-toggle="modal">
+                                        <i class="fa fa-home"></i>
+                                        <p>Alojamiento</p>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="menu-item light-orange responsive-2">
+                                    <a href="#team-modal" data-toggle="modal">
+                                        <i class="fa fa-cutlery"></i>
+                                        <p>Comidas & Bebidas</p>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="col-md-3">
+                        
+                        <div class="menu-item light-red">
+                            <a href="#modal-montufar" data-toggle="modal" id="btn_modal_montufar">
+                                <i class="fa fa-camera"></i>
+                                <p>Cantón Montúfar</p>
+                            </a>
+                        </div>
+                        
+                        <div class="menu-item color">
+                            <a href="#modal-huaca" data-toggle="modal" >
+                                <i class="fa fa-photo"></i>
+                                <p>Cantón Huaca</p>
+                            </a>
+                        </div>
+                        
+                        <div class="menu-item blue">
+                            <a href="#modal-tulcan" data-toggle="modal" id="btn_modal_tulcan">
+                                <i class="fa fa-map-marker"></i>
+                                <p>Cantón Tulcán</p>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Main Body Section -->
+        
+        <!-- Start Copyright Section -->
+        <div class="copyright text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                       <span class="bigger-120">
+							<span class="">http://www.carchi.gob.ec/</span>
+							 &copy; 2014-2015
+						</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Copyright Section -->
+        
+        
+        <!-- Start Feature Section -->
+        <div class="section-modal modal fade" id="modal-bolivar" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                      <i class="fa fa-times-circle-o fa-3x"></i>
+                </div>
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title text-center">
+                            <h3>Cantón Bolívar</h3>
+                            <p>Un cantón que te hará revivir tiempos prehistóricos</p>
+                            <center><img src="images/bolivar.jpg" class="img-responsive" width="450px"></center>
+                            <br><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                                <a href="#modal-bolivar_ver" data-toggle="modal">
+                                    <i class="fa fa-home"></i>
+                                    <div class="feature-content">
+                                        <h4>Alojamiento</h4>
+                                    </div>
+                                </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="comidas_bebidas">
+                                <i class="fa fa-cutlery"></i>
+                                <div class="feature-content">
+                                    <h4>Comidas & Bebidas</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="atractivos">
+                                <i class="fa fa-picture-o"></i>
+                                <div class="feature-content">
+                                    <h4>Atractivos Turísticos</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                    </div><!-- /.row -->
+                </div>
+                        <!-- Start Copyright Section -->
+                <div class="copyright text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                               <span class="bigger-120">
+                                    <span class="">http://www.carchi.gob.ec/</span>
+                                     &copy; 2014-2015
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-modal modal fade" id="modal-bolivar_ver" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                      <i class="fa fa-times-circle-o fa-3x"></i>
+                </div>
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title text-center">
+                            <h3>Cantón Bolívar Ok</h3>
+                            <p>Un cantón que te hará revivir tiempos prehistóricos</p>
+                            <center><img src="images/bolivar.jpg" class="img-responsive" width="450px"></center>
+                            <br><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                                <a href="#modal-bolivar" data-toggle="modal">
+                                    <i class="fa fa-home"></i>
+                                    <div class="feature-content">
+                                        <h4>Alojamiento</h4>
+                                    </div>
+                                </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="comidas_bebidas">
+                                <i class="fa fa-cutlery"></i>
+                                <div class="feature-content">
+                                    <h4>Comidas & Bebidas</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="atractivos">
+                                <i class="fa fa-picture-o"></i>
+                                <div class="feature-content">
+                                    <h4>Atractivos Turísticos</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                    </div><!-- /.row -->
+                </div>
+                        <!-- Start Copyright Section -->
+                <div class="copyright text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                               <span class="bigger-120">
+                                    <span class="">http://www.carchi.gob.ec/</span>
+                                     &copy; 2014-2015
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Feature Section -->
+        
+        
+        
+        <!-- Start Portfolio Section -->
+        <div class="section-modal modal fade" id="modal-espejo" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                      <i class="fa fa-times-circle-o fa-3x"></i>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title text-center">
+                            <h3>Cantón Espejo</h3>
+                            <p>Un cantón que te hará revivir tiempos prehistóricos</p>
+                            <center><img src="images/espejo.jpg" class="img-responsive" width="450px"></center>
+                            <br><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="alojamiento">
+                                <i class="fa fa-home"></i>
+                                <div class="feature-content">
+                                    <h4>Alojamiento</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="comidas_bebidas">
+                                <i class="fa fa-cutlery"></i>
+                                <div class="feature-content">
+                                    <h4>Comidas & Bebidas</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="atractivos">
+                                <i class="fa fa-picture-o"></i>
+                                <div class="feature-content">
+                                    <h4>Atractivos Turísticos</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                    </div><!-- /.row -->
+                </div>
+                        <!-- Start Copyright Section -->
+                <div class="copyright text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                               <span class="bigger-120">
+                                    <span class="">http://www.carchi.gob.ec/</span>
+                                     &copy; 2014-2015
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Portfolio Section -->
+        
+        
+        <!-- Start About Us Section -->
+        <div class="section-modal modal fade" id="modal-mira" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+               <div class="close-modal" data-dismiss="modal">
+                      <i class="fa fa-times-circle-o fa-3x"></i>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title text-center">
+                            <h3>Cantón Mira</h3>
+                            <p>Un cantón que te hará revivir tiempos prehistóricos</p>
+                            <center><img src="images/bolivar.jpg" class="img-responsive" width="450px"></center>
+                            <br><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="alojamiento">
+                                <i class="fa fa-home"></i>
+                                <div class="feature-content">
+                                    <h4>Alojamiento</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="comidas_bebidas">
+                                <i class="fa fa-cutlery"></i>
+                                <div class="feature-content">
+                                    <h4>Comidas & Bebidas</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="atractivos">
+                                <i class="fa fa-picture-o"></i>
+                                <div class="feature-content">
+                                    <h4>Atractivos Turísticos</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                    </div><!-- /.row -->
+                </div>
+                        <!-- Start Copyright Section -->
+                <div class="copyright text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                               <span class="bigger-120">
+                                    <span class="">http://www.carchi.gob.ec/</span>
+                                     &copy; 2014-2015
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End About Us Section -->
+        
+        
+        <!-- Start Service Section -->
+        <div class="section-modal modal fade" id="service-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title text-center">
+                            <h3>Cantón Mira</h3>
+                            <p>Un cantón que te hará revivir tiempos prehistóricos</p>
+                            <center><img src="images/mira.jpg" class="img-responsive" width="450px"></center>
+                            <br><br>
+                        </div>
+                    </div>
+                   <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                                <div id="btn">
+                                    <i class="fa fa-home"></i>
+                                    <div class="feature-content">
+                                        <h4>Alojamiento</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="comidas_bebidas">
+                                <i class="fa fa-cutlery"></i>
+                                <div class="feature-content">
+                                    <h4>Comidas & Bebidas</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="atractivos">
+                                <i class="fa fa-picture-o"></i>
+                                <div class="feature-content">
+                                    <h4>Atractivos Turísticos</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                    </div><!-- /.row -->
+                </div>
+                        <!-- Start Copyright Section -->
+                <div class="copyright text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                               <span class="bigger-120">
+                                    <span class="">http://www.carchi.gob.ec/</span>
+                                     &copy; 2014-2015
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Service Section -->
+        
+        
+        <!-- Start Team Member Section -->
+        <div class="section-modal modal fade" id="team-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title text-center">
+                            <h3>Our Expert Team</h3>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-md-3 col-sm-6">
+                            <div class="team-member">
+                                <img src="images/team/manage-1.png" class="img-responsive" alt="">
+                                <div class="team-details">
+                                    <h4>John Doe</h4>
+                                    <div class="designation">Senior Web Developer</div>
+                                    <ul style="text-align: center;">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="team-member">
+                                <img src="images/team/manage-2.png" class="img-responsive" alt="">
+                                <div class="team-details">
+                                    <h4>John Doe</h4>
+                                    <div class="designation">Senior Web Developer</div>
+                                    <ul style="text-align: center;">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="team-member">
+                                <img src="images/team/manage-3.png" class="img-responsive" alt="">
+                                <div class="team-details">
+                                    <h4>John Doe</h4>
+                                    <div class="designation">Senior Web Developer</div>
+                                    <ul style="text-align: center;">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="team-member">
+                                <img src="images/team/manage-4.png" class="img-responsive" alt="">
+                                <div class="team-details">
+                                    <h4>John Doe</h4>
+                                    <div class="designation">Senior Web Developer</div>
+                                    <ul style="text-align: center;">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="team-member">
+                                <img src="images/team/team-1.jpg" class="img-responsive" alt="">
+                                <div class="team-details">
+                                    <h4>John Doe</h4>
+                                    <div class="designation">Senior Web Developer</div>
+                                    <ul style="text-align: center;">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="team-member">
+                                <img src="images/team/team-2.jpg" class="img-responsive" alt="">
+                                <div class="team-details">
+                                    <h4>John Doe</h4>
+                                    <div class="designation">Senior Web Developer</div>
+                                    <ul style="text-align: center;">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 col-sm-6">
+                            <div class="team-member">
+                                <img src="images/team/team-3.jpg" class="img-responsive" alt="">
+                                <div class="team-details">
+                                    <h4>John Doe</h4>
+                                    <div class="designation">Senior Web Developer</div>
+                                    <ul style="text-align: center;">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 col-sm-6">
+                            <div class="team-member">
+                                <img src="images/team/team-4.jpg" class="img-responsive" alt="">
+                                <div class="team-details">
+                                    <h4>John Doe</h4>
+                                    <div class="designation">Senior Web Developer</div>
+                                    <ul style="text-align: center;">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div><!-- /.row -->
+                </div>
+                
+            </div>
+        </div>
+        <!-- End Team Member Section -->
+        
+        
+        <!-- Start Latest News Section -->
+        <div class="section-modal modal fade" id="modal-tulcan" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+               <div class="close-modal" data-dismiss="modal">
+                      <i class="fa fa-times-circle-o fa-3x"></i>
+                </div>
+                   <div class="container">
+                    <div class="row">
+                        <div class="section-title text-center">
+                            <h3>Cantón Tulcán</h3>
+                            <p>Un cantón que te hará revivir tiempos prehistóricos</p>
+                            <center><img src="images/tulcan.jpg" class="img-responsive" width="450px"></center>
+                            <br><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                                <div class="btn" id="btn_alojamiento">
+                                    <i class="fa fa-home"></i>
+                                    <div class="feature-content">
+                                        <h4>Alojamiento</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="comidas_bebidas">
+                                <i class="fa fa-cutlery"></i>
+                                <div class="feature-content">
+                                    <h4>Comidas & Bebidas</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="atractivos">
+                                <i class="fa fa-picture-o"></i>
+                                <div class="feature-content">
+                                    <h4>Atractivos Turísticos</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                    </div><!-- /.row -->
+                </div>
+                        <!-- Start Copyright Section -->
+                <div class="copyright text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                               <span class="bigger-120">
+                                    <span class="">http://www.carchi.gob.ec/</span>
+                                     &copy; 2014-2015
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Latest News Section -->
+        <!-- Start Contact Section -->
+        <div class="section-modal modal fade" id="modal-montufar" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+               <div class="close-modal" data-dismiss="modal">
+                      <i class="fa fa-times-circle-o fa-3x"></i>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title text-center">
+                            <h3>Cantón Montúfar</h3>
+                            <p>Un cantón que te hará revivir tiempos prehistóricos</p>
+                            <center><img src="images/montufar.jpg" class="img-responsive" width="450px"></center>
+                            <br><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="alojamiento">
+                                <i class="fa fa-home"></i>
+                                <div class="feature-content">
+                                    <h4>Alojamiento</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="comidas_bebidas">
+                                <i class="fa fa-cutlery"></i>
+                                <div class="feature-content">
+                                    <h4>Comidas & Bebidas</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="atractivos">
+                                <i class="fa fa-picture-o"></i>
+                                <div class="feature-content">
+                                    <h4>Atractivos Turísticos</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                    </div><!-- /.row -->
+                </div>
+                        <!-- Start Copyright Section -->
+                <div class="copyright text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                               <span class="bigger-120">
+                                    <span class="">http://www.carchi.gob.ec/</span>
+                                     &copy; 2014-2015
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Contact Section -->
+        
+        
+         <!-- Start Testimonial Section -->
+        <div class="section-modal modal fade" id="modal-huaca" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+               <div class="close-modal" data-dismiss="modal">
+                      <i class="fa fa-times-circle-o fa-3x"></i>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title text-center">
+                            <h3>Cantón Huaca</h3>
+                            <p>Un cantón que te hará revivir tiempos prehistóricos</p>
+                            <center><img src="images/huaca.jpg" class="img-responsive" width="450px"></center>
+                            <br><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="alojamiento">
+                                <i class="fa fa-home"></i>
+                                <div class="feature-content">
+                                    <h4>Alojamiento</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="comidas_bebidas">
+                                <i class="fa fa-cutlery"></i>
+                                <div class="feature-content">
+                                    <h4>Comidas & Bebidas</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="feature">
+                            <a href="atractivos">
+                                <i class="fa fa-picture-o"></i>
+                                <div class="feature-content">
+                                    <h4>Atractivos Turísticos</h4>
+                                </div>
+                            </a>
+                            </div>
+                        </div><!-- /.col-md-3 -->
+                    </div><!-- /.row -->
+                </div>
+                        <!-- Start Copyright Section -->
+                <div class="copyright text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                               <span class="bigger-120">
+                                    <span class="">http://www.carchi.gob.ec/</span>
+                                     &copy; 2014-2015
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Testimonial Section -->
+
+        <div class="section-modal modal fade" id="modal-alojamiento" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+               <div class="close-modal" data-dismiss="modal">
+                      <i class="fa fa-times-circle-o fa-3x"></i>
+                </div>
+                <input type="text" id="txt_id_cantones"> 
+                <div class="container" id="obj_alojamiento">
+                    
+                </div>
+                        <!-- Start Copyright Section -->
+                <div class="copyright text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                               <span class="bigger-120">
+                                    <span class="">http://www.carchi.gob.ec/</span>
+                                     &copy; 2014-2015
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+    <script type="text/javascript" src="app.js"></script>
+</html>

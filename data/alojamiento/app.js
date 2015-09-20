@@ -60,6 +60,7 @@
 						$('#lbl_correo1').text(data[12]);
 						$('#lbl_web1').text(data[13]);
 						$('#lbl_descripcion1').text(data[14]);
+						$('#lbl_precio1').text(data[16]);
 						$('#lbl_foto1').text(data[15]);
 					}
 				})
@@ -94,6 +95,7 @@
 						$('#lbl_correo').text(data[12]);	
 						$('#lbl_web').text(data[13]);	
 						$('#lbl_descripcion').text(data[14]);	
+						$('#lbl_precio').text(data[16]);
 						$('#lbl_foto').text(data[15]);	
 
 
@@ -103,8 +105,8 @@
 						//$('#select_canton').editable('setValue', data[3]);
 						$('#select_parroquia').editable('setValue', data[4]);
 						$('#lbl_direccion').editable('setValue', data[5]);						
-						$('#lbl_latitud').editable('setValue', latitud);
-						$('#lbl_longitud').editable('setValue', longitud);
+						$('#lbl_latitud').editable('setValue',data[6]);
+						$('#lbl_longitud').editable('setValue', data[7]);
 						$('#select_categoria').editable('setValue', data[8]);
 						$('#lbl_habitaciones').editable('setValue', data[9]);
 						$('#lbl_plazas').editable('setValue', data[10]);
@@ -112,6 +114,7 @@
 						$('#lbl_correo').editable('setValue', data[12]);
 						$('#lbl_web').editable('setValue', data[13]);
 						$('#lbl_descripcion').editable('setValue', data[14]);
+						$('#lbl_precio').editable('setValue', data[16]);
 						$('#lbl_foto').editable('setValue', data[15]);
 					}
 				})
@@ -161,7 +164,6 @@
 						})
 					}
 				});
-				
 			}
 	// fin proceso tabla configuracion
 // procesando mapas
@@ -320,7 +322,11 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control,
 });
 // inicialisando procesos del dom para ejecución de jquery
 $(function(){
-
+	// evento click boton ayuda
+	$('#btn_ayuda').click(function(){
+		$('#modal-ayuda').modal('show')
+		iniciar();
+	});
 	// evento click boton mas tipo
 	$('#btn_mas_tipo').click(function(){
 		$('#modal-tipo').modal('show')
@@ -352,7 +358,6 @@ $(function(){
 		droppable:true,
 		thumbnail:'small',
 		preview_error : function(filename, error_code) {
-			
 		}
 
 	}).on('change', function(){
@@ -368,7 +373,6 @@ $(function(){
 		droppable:true,
 		thumbnail:'small',
 		preview_error : function(filename, error_code) {
-			
 		}
 
 	}).on('change', function(){
@@ -656,6 +660,30 @@ $(function(){
 		}
     });
 
+
+  	//text editable
+ $('#lbl_precio').editable({
+		type: 'text',
+		name: 'username',
+		validate: function(value) {
+		    if($.trim(value) == '') {
+		        return 'Por favor, digite precio, campo requerido';
+		    }
+		    // validar solo numero
+		    if (!/^[+-]?[0-9]{1,9}(?:\.[0-9]{1,20})?$/.test(value)){
+      			return 'Por favor, solo numeros, campo requerido';
+		    }
+		},
+		success: function(response, newValue) {	
+			var id=$('#txt_id_alojamiento').val();			
+			$.ajax({
+	            url:'app.php',
+	            async :  false ,   
+	            type:  'post',
+	            data: {editar_precio:'ok',id:id,valor:newValue}          		                
+	    	});
+		}
+    });
 	//text editable
     $('#lbl_telefono').editable({
 		type: 'text',
@@ -946,6 +974,9 @@ $(function(){
 				required: true,
 				number: true
 			},
+			txt_nplazas: {
+				number: true
+			},
 			txt_telf: {
 				number: true
 			}
@@ -987,6 +1018,9 @@ $(function(){
 			},
 			txt_nplazas: {
 				required: "Este campo es requerido.",
+				number: "Ingrese solo números."
+			},
+			txt_precio: {				
 				number: "Ingrese solo números."
 			},
 			txt_telf: {				

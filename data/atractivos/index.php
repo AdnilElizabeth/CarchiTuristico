@@ -185,6 +185,15 @@
 													</div>
 												</div>
 												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Poblado:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<input type="text" name="txt_poblado" id="txt_poblado" style='text-transform:uppercase;' class="col-xs-12 col-sm-10">
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Dirección:</label>
 
 													<div class="col-xs-12 col-sm-9">
@@ -231,6 +240,70 @@
 													</div>
 												</div>
 												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment">Estado de conservación:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<textarea class="col-xs-12 col-sm-10" name="txt_estado" id="txt_estado"></textarea>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment">Rutas de acceso:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<textarea class="col-xs-12 col-sm-10" name="txt_rutas" id="txt_rutas"></textarea>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment">Actividades que se puede realizar:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<textarea class="col-xs-12 col-sm-10" name="txt_actividades" id="txt_actividades"></textarea>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment">Descripción:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<textarea class="col-xs-12 col-sm-10" name="descripcion" id="descripcion"></textarea>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment">Para quien:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<textarea class="col-xs-12 col-sm-10" name="txt_quien" id="txt_quien"></textarea>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email"> Precio:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<textarea class="col-xs-12 col-sm-10" name="txt_precio" id="txt_precio"></textarea>
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment">Contacto:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<textarea class="col-xs-12 col-sm-10" name="txt_contacto" id="txt_contacto"></textarea>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Teléfono:</label>
 
 													<div class="col-xs-12 col-sm-9">
@@ -258,14 +331,33 @@
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment">Descripción:</label>
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment">Alojamiento:</label>
 
 													<div class="col-xs-12 col-sm-9">
 														<div class="clearfix">
-															<textarea class="col-xs-12 col-sm-10" name="descripcion" id="descripcion"></textarea>
+															<textarea class="col-xs-12 col-sm-10" name="txt_alojamiento" id="txt_alojamiento"></textarea>
 														</div>
 													</div>
 												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment">Alimentación:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<textarea class="col-xs-12 col-sm-10" name="txt_alimentacion" id="txt_alimentacion"></textarea>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comment">Atractivos cercanos:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<textarea class="col-xs-12 col-sm-10" name="txt_atractivos_cercanos" id="txt_atractivos_cercanos"></textarea>
+														</div>
+													</div>
+												</div>
+												
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Fotografia:</label>
 
@@ -390,6 +482,13 @@
 											</div>
 										</div>
 										<div class="profile-info-row">
+											<div class="profile-info-name"> Poblado: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_poblado">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
 											<div class="profile-info-name"> Dirección: </div>
 
 											<div class="profile-info-value" >
@@ -431,6 +530,57 @@
 											</div>
 										</div>
 										<div class="profile-info-row">
+											<div class="profile-info-name"> Estado de conservación: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_estado">..</span>
+												
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Rutas de acceso: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_rutas">..</span>
+												
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Actividades que se pueden realizar: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_actividades">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Descripción: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_descripcion">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Para quien: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_quien">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Precio: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_precio">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Contacto: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_contacto">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
 											<div class="profile-info-name"> Teléfono: </div>
 
 											<div class="profile-info-value" >
@@ -452,10 +602,24 @@
 											</div>
 										</div>
 										<div class="profile-info-row">
-											<div class="profile-info-name"> Descripción: </div>
+											<div class="profile-info-name"> Alojamiento: </div>
 
 											<div class="profile-info-value" >
-												<span class="editable" id="lbl_descripcion">..</span>
+												<span class="editable" id="lbl_alojamiento">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Alimentación: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_alimentacion">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Atractivos cercanos: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_atractivos_cercanos">..</span>
 											</div>
 										</div>
 									</div>
@@ -592,6 +756,13 @@
 											</div>
 										</div>
 										<div class="profile-info-row">
+											<div class="profile-info-name"> Poblado: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_poblado1">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
 											<div class="profile-info-name"> Dirección: </div>
 
 											<div class="profile-info-value" >
@@ -631,7 +802,59 @@
 											</div>
 										</div>
 										<div class="profile-info-row">
+											<div class="profile-info-name"> Estado de conservación: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_estado1">..</span>
+												
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Rutas de acceso: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_rutas1">..</span>
+												
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Actividades que se pueden realizar: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_actividades1">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Descripción: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_descripcion1">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Para quien: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_quien1">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Precio: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_precio1">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Contacto: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_contacto1">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
 											<div class="profile-info-name"> Teléfono: </div>
+
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_telefono1">..</span>
 											</div>
@@ -641,7 +864,6 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_correo1">..</span>
-												
 											</div>
 										</div>
 										<div class="profile-info-row">
@@ -649,17 +871,29 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_web1">..</span>
-												
 											</div>
 										</div>
 										<div class="profile-info-row">
-											<div class="profile-info-name"> Descripción: </div>
+											<div class="profile-info-name"> Alojamiento: </div>
 
 											<div class="profile-info-value" >
-												<span class="editable" id="lbl_descripcion1">..</span>
-												
+												<span class="editable" id="lbl_alojamiento1">..</span>
 											</div>
 										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Alimentación: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_alimentacion1">..</span>
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Atractivos cercanos: </div>
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_atractivos_cercanos1">..</span>
+											</div>
+										</div>
+
 									</div>
 
 									</div>
@@ -695,6 +929,9 @@
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									<span class="white">&times;</span>
 								</button>
+								<a href="#" class="close">
+									<i class="ace-icon fa fa-question bigger-05"  type="button" id="btn_ayuda"></i>
+								</a>
 								Mapa
 							</div>
 						</div>
@@ -893,6 +1130,31 @@
 											</form>
 										</div>
 									</div>
+						</div>
+						
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+			<div id="modal-ayuda" class="modal fade" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header no-padding">
+							<div class="table-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="white">&times;</span>
+								</button>
+								Ayuda
+							</div>
+						</div>
+						<div class="modal-body padding">
+						<p align="justify">
+							Utilice el cursor para desplazarse a la ubicacion deseada, tiene las opciones (+ -) que le servirán
+							para acercar o alejar el mapa.
+							Para seleciconar un punto geográfico basta con un click, el doble click se utiliza para acercar. 
+							Si está seguro de seleccionar esa ubicación click en Si, de lo contrario click en Cancelar y puede 
+							volver a buscar otro punto geográfico en el mapa.
+							</p>
+
 						</div>
 						
 					</div><!-- /.modal-content -->

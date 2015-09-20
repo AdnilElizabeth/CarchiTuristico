@@ -1,3 +1,12 @@
+<?php
+ session_start(); 
+ if ($_SESSION["autentificado"] != "SI") { 
+// Como no es un usario que halla iniciado sesion, lo mando a una página de error. 
+header("Location:../../reg/index.html"); exit(); 
+}
+//echo 'Bienvenido'.$usuario.' Administrador(<a href="cerrar_sesion.php"> cerrar</a>)';
+?>
+
 <?php 
 // Menu cabecera
 
@@ -25,10 +34,10 @@ function menu_cabecera(){
 			<ul class="nav ace-nav">
 				<li class="light-black">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-						<img class="nav-user-photo" src="../../dist/avatars/user.jpg" alt="Jasons Photo" />
+						<img class="nav-user-photo" src="../../dist/avatars/logo.jpg" alt="Jasons Photo" />
 						<span class="user-info">
-							<small>Welcome,</small>
-							Jason
+							<small>Bienvenido,</small>
+							'.$_SESSION['usuario'].'
 						</span>
 
 						<i class="ace-icon fa fa-caret-down"></i>
@@ -52,9 +61,9 @@ function menu_cabecera(){
 						<li class="divider"></li>
 
 						<li>
-							<a href="#">
+							<a href="../../reg/cerrar_sesion.php">
 								<i class="ace-icon fa fa-power-off"></i>
-								Logout
+								Cerrar sesión
 							</a>
 						</li>
 					</ul>

@@ -1,6 +1,7 @@
 <?php require('../menu/index.php');?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
@@ -228,6 +229,15 @@
 													</div>
 												</div>
 												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email"> Precio:</label>
+
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<input type="number" name="txt_precio" id="txt_precio" class="col-xs-12 col-sm-10">
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Teléfono:</label>
 
 													<div class="col-xs-12 col-sm-9">
@@ -433,6 +443,14 @@
 
 											<div class="profile-info-value" >
 												<span class="editable" id="lbl_plazas">..</span>
+												
+											</div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Precio: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_precio">..</span>
 												
 											</div>
 										</div>
@@ -649,6 +667,14 @@
 											</div>
 										</div>
 										<div class="profile-info-row">
+											<div class="profile-info-name"> Precio: </div>
+
+											<div class="profile-info-value" >
+												<span class="editable" id="lbl_precio1">..</span>
+												
+											</div>
+										</div>
+										<div class="profile-info-row">
 											<div class="profile-info-name"> Teléfono: </div>
 
 											<div class="profile-info-value" >
@@ -718,6 +744,9 @@
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									<span class="white">&times;</span>
 								</button>
+								<a href="#" class="close">
+									<i class="ace-icon fa fa-question bigger-05"  type="button" id="btn_ayuda"></i>
+								</a>
 								Mapa
 							</div>
 						</div>
@@ -767,6 +796,31 @@
 											</form>
 										</div>
 									</div>
+						</div>
+						
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+			<div id="modal-ayuda" class="modal fade" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header no-padding">
+							<div class="table-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="white">&times;</span>
+								</button>
+								Ayuda
+							</div>
+						</div>
+						<div class="modal-body padding">
+						<p align="justify">
+							Utilice el cursor para desplazarse a la ubicacion deseada, tiene las opciones (+ -) que le servirán
+							para acercar o alejar el mapa.
+							Para seleciconar un punto geográfico basta con un click, el doble click se utiliza para acercar. 
+							Si está seguro de seleccionar esa ubicación click en Si, de lo contrario click en Cancelar y puede 
+							volver a buscar otro punto geográfico en el mapa.
+							</p>
+
 						</div>
 						
 					</div><!-- /.modal-content -->
@@ -926,8 +980,6 @@
 
 				$('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
 				$("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
-				
-				
 				$(document).one('ajaxloadstart.page', function(e) {
 					$('#colorbox, #cboxOverlay').remove();
 			   });
